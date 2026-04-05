@@ -1,25 +1,1477 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
-
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
+/*
+ * MeNova Health — Home Page
+ * Design: Biophilic Wellness Modernism
+ * Colors: Forest Green oklch(0.24 0.07 155), Terracotta oklch(0.60 0.12 42), Cream oklch(0.98 0.01 90)
+ * Typography: Playfair Display (headings) + DM Sans (body)
+ * Layout: MEDVi-inspired with dark hero, horizontal category scroll, alternating feature sections
  */
-export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
+
+import { useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
+import {
+  CheckCircle2,
+  ArrowRight,
+  Menu,
+  X,
+  Star,
+  Leaf,
+  HeartPulse,
+  Brain,
+  Thermometer,
+  Moon,
+  Zap,
+  Shield,
+  Clock,
+  Package,
+  Video,
+  ChevronDown,
+} from "lucide-react";
+
+// ─── Image URLs ───────────────────────────────────────────────────────────────
+const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663515887063/Mbboc9yaua4MvveQ5gebGn/menova-hero-bg-jRKC2iNt3D4DtGerP5ykiZ.webp";
+const WOMAN_HERO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663515887063/Mbboc9yaua4MvveQ5gebGn/menova-woman-hero-TdGCoZDVuHwERKBpG5xxdo.webp";
+const WOMAN_OUTDOOR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663515887063/Mbboc9yaua4MvveQ5gebGn/menova-woman-outdoor-DmRovSNgWvgd9QDKqkUgts.webp";
+const CONSULTATION = "https://d2xsxph8kpxj0f.cloudfront.net/310519663515887063/Mbboc9yaua4MvveQ5gebGn/menova-consultation-7HLYCdQ4bkU8gNuifUHess.webp";
+
+// ─── Scroll Animation Component ───────────────────────────────────────────────
+function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => el.classList.add("visible"), delay);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [delay]);
+  return (
+    <div ref={ref} className={`fade-up ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+// ─── Navigation ───────────────────────────────────────────────────────────────
+function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handler);
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
+  const navLinks = [
+    { label: "How It Works", href: "#how-it-works" },
+    { label: "Treatments", href: "#treatments" },
+    { label: "Pricing", href: "#pricing" },
+    { label: "Our Providers", href: "#providers" },
+    { label: "FAQ", href: "#faq" },
+  ];
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 lg:h-20">
+          <a href="#" className="flex items-center gap-2">
+            <div
+              className="w-8 h-8 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: scrolled ? "oklch(0.24 0.07 155)" : "rgba(255,255,255,0.2)" }}
+            >
+              <Leaf className="w-4 h-4 text-white" />
+            </div>
+            <span
+              className="text-xl font-bold tracking-tight"
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                color: scrolled ? "oklch(0.24 0.07 155)" : "white",
+              }}
+            >
+              MeNova
+            </span>
+          </a>
+
+          <div className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-sm font-medium transition-colors duration-200 hover:opacity-100"
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  color: scrolled ? "oklch(0.35 0.005 65)" : "rgba(255,255,255,0.82)",
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          <div className="hidden lg:flex items-center gap-3">
+            <a
+              href="#quiz"
+              className="btn-terracotta"
+              style={{ padding: "0.6rem 1.5rem", fontSize: "0.875rem" }}
+            >
+              Start Your Assessment
+            </a>
+          </div>
+
+          <button
+            className="lg:hidden p-2 rounded-md"
+            style={{ color: scrolled ? "oklch(0.24 0.07 155)" : "white" }}
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </div>
+
+      {mobileOpen && (
+        <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg">
+          <div className="px-4 py-4 space-y-3">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="block text-sm font-medium py-2"
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.35 0.005 65)" }}
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+            <a href="#quiz" className="btn-terracotta block text-center mt-4">
+              Start Your Assessment
+            </a>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+}
+
+// ─── Hero Section ─────────────────────────────────────────────────────────────
+function HeroSection() {
+  return (
+    <section
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{ backgroundColor: "oklch(0.18 0.07 155)" }}
+    >
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${HERO_BG})`, opacity: 0.22 }}
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(135deg, oklch(0.18 0.07 155 / 0.96) 40%, oklch(0.24 0.07 155 / 0.72) 100%)",
+        }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="mb-6">
+              <span
+                className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-full"
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.10)",
+                  color: "rgba(255,255,255,0.85)",
+                  fontFamily: "'DM Sans', sans-serif",
+                  backdropFilter: "blur(8px)",
+                }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                Join 2,500+ Canadian women in their journey
+              </span>
+            </div>
+
+            <h1
+              className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6"
+              style={{ fontFamily: "'Playfair Display', serif", color: "white" }}
+            >
+              Hormonal health,{" "}
+              <em className="not-italic" style={{ color: "oklch(0.75 0.10 42)" }}>
+                redefined
+              </em>{" "}
+              for real life.
+            </h1>
+
+            <p
+              className="text-lg lg:text-xl mb-8 leading-relaxed max-w-lg"
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.72)" }}
+            >
+              Get your energy back. See a Canadian menopause specialist this week — no waiting rooms, no referrals. Just personalized BHRT care that works.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+              <a href="#quiz" className="btn-terracotta text-center">
+                Take the Free Symptom Quiz
+              </a>
+              <a
+                href="#how-it-works"
+                className="inline-flex items-center justify-center gap-2 text-sm font-semibold"
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.82)" }}
+              >
+                See how it works <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+
+            <div className="flex flex-wrap gap-6">
+              {[
+                { icon: Shield, label: "Health Canada Compliant" },
+                { icon: Video, label: "100% Virtual Care" },
+                { icon: Package, label: "Delivered to Your Door" },
+              ].map(({ icon: Icon, label }) => (
+                <div
+                  key={label}
+                  className="flex items-center gap-2 text-sm"
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.65)" }}
+                >
+                  <Icon className="w-4 h-4" style={{ color: "oklch(0.75 0.10 42)" }} />
+                  {label}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative hidden lg:block">
+            <div
+              className="relative rounded-3xl overflow-hidden shadow-2xl"
+              style={{ maxWidth: 420, marginLeft: "auto" }}
+            >
+              <img
+                src={WOMAN_HERO}
+                alt="Vibrant woman in her 40s"
+                className="w-full object-cover"
+                style={{ height: 520 }}
+              />
+              <div
+                className="absolute bottom-6 left-6 right-6 rounded-2xl p-4"
+                style={{ backgroundColor: "rgba(255,255,255,0.93)", backdropFilter: "blur(12px)" }}
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: "oklch(0.24 0.07 155 / 0.10)" }}
+                  >
+                    <HeartPulse className="w-5 h-5" style={{ color: "oklch(0.24 0.07 155)" }} />
+                  </div>
+                  <div>
+                    <p
+                      className="text-xs font-semibold"
+                      style={{ color: "oklch(0.24 0.07 155)", fontFamily: "'DM Sans', sans-serif" }}
+                    >
+                      Next available appointment
+                    </p>
+                    <p
+                      className="text-sm font-bold"
+                      style={{ color: "oklch(0.22 0.005 65)", fontFamily: "'DM Sans', sans-serif" }}
+                    >
+                      This week — Book in 2 minutes
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-15"
+              style={{ backgroundColor: "oklch(0.60 0.12 42)" }}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40">
+        <span className="text-xs text-white" style={{ fontFamily: "'DM Sans', sans-serif" }}>Scroll</span>
+        <ChevronDown className="w-4 h-4 text-white animate-bounce" />
+      </div>
+    </section>
+  );
+}
+
+// ─── Category Scroll ──────────────────────────────────────────────────────────
+function CategoryScroll() {
+  const categories = [
+    { label: "Hormone Therapy (BHRT)", icon: "🌿" },
+    { label: "Hot Flash Relief", icon: "🌡️" },
+    { label: "Sleep & Mood Support", icon: "🌙" },
+    { label: "Brain Fog & Energy", icon: "⚡" },
+    { label: "Weight Management", icon: "💪" },
+    { label: "Skin & Hair Health", icon: "✨" },
+    { label: "Bone & Heart Health", icon: "❤️" },
+    { label: "Libido & Intimacy", icon: "🌸" },
+  ];
+  const doubled = [...categories, ...categories];
+
+  return (
+    <section
+      className="py-5 overflow-hidden border-y"
+      style={{ backgroundColor: "white", borderColor: "oklch(0.88 0.01 90)" }}
+    >
+      <div className="flex" style={{ width: "max-content" }}>
+        <div className="flex animate-marquee">
+          {doubled.map((cat, i) => (
+            <button
+              key={i}
+              onClick={() => toast.info(`${cat.label} — Feature coming soon`)}
+              className="flex items-center gap-2 mx-6 whitespace-nowrap group"
+            >
+              <span className="text-base">{cat.icon}</span>
+              <span
+                className="text-sm font-medium"
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.40 0.005 65)" }}
+              >
+                {cat.label}
+              </span>
+              <ArrowRight
+                className="w-3 h-3 transition-transform group-hover:translate-x-1"
+                style={{ color: "oklch(0.60 0.12 42)" }}
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Trust Bar ────────────────────────────────────────────────────────────────
+function TrustBar() {
+  const items = [
+    { icon: Shield, label: "Licensed NPs & MDs" },
+    { icon: Video, label: "100% Online" },
+    { icon: Package, label: "Shipped to Your Door" },
+    { icon: Clock, label: "Book This Week" },
+    { icon: HeartPulse, label: "BC-Based Providers" },
+  ];
+
+  return (
+    <section
+      className="py-3 border-b"
+      style={{ backgroundColor: "oklch(0.96 0.015 90)", borderColor: "oklch(0.88 0.01 90)" }}
+    >
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex flex-wrap justify-center gap-6 lg:gap-10">
+          {items.map(({ icon: Icon, label }) => (
+            <div key={label} className="flex items-center gap-2">
+              <Icon className="w-4 h-4" style={{ color: "oklch(0.24 0.07 155)" }} />
+              <span
+                className="text-xs font-semibold tracking-wide uppercase"
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.40 0.005 65)" }}
+              >
+                {label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── BHRT Feature Section ─────────────────────────────────────────────────────
+function BHRTSection() {
+  const features = [
+    "Personalized BHRT prescription plan",
+    "1:1 Nurse Practitioner guidance",
+    "Unlimited 24/7 messaging support",
+    "Symptom tracking & follow-ups",
+    "Compounded meds delivered to your door",
+  ];
+
+  return (
+    <section id="treatments" className="py-20 lg:py-28" style={{ backgroundColor: "white" }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <FadeUp className="relative">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="rounded-2xl overflow-hidden shadow-lg" style={{ height: 320 }}>
+                <img src={WOMAN_HERO} alt="Woman feeling vibrant" className="w-full h-full object-cover" />
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-lg mt-10" style={{ height: 280 }}>
+                <img src={CONSULTATION} alt="Telehealth consultation" className="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div
+              className="absolute -bottom-4 left-4 rounded-2xl p-4 shadow-xl"
+              style={{ backgroundColor: "oklch(0.24 0.07 155)" }}
+            >
+              <p
+                className="text-3xl font-bold text-white"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                87%
+              </p>
+              <p
+                className="text-xs mt-0.5"
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.75)" }}
+              >
+                report symptom relief
+                <br />
+                within 8 weeks
+              </p>
+            </div>
+          </FadeUp>
+
+          <FadeUp delay={120}>
+            <span className="badge-forest mb-4">NP-Guided BHRT Care</span>
+            <h2
+              className="text-4xl lg:text-5xl font-bold mb-6 leading-tight"
+              style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
+            >
+              Hormone balance{" "}
+              <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
+                made simple
+              </em>{" "}
+              with personalized care
+            </h2>
+            <p
+              className="text-base lg:text-lg mb-8 leading-relaxed"
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
+            >
+              Find the right Bioidentical Hormone Replacement Therapy with the confidence that comes from knowing it is NP-approved, Health Canada compliant, and budget-friendly. No 6-month wait times.
+            </p>
+
+            <ul className="space-y-3 mb-8">
+              {features.map((f) => (
+                <li key={f} className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" style={{ color: "oklch(0.24 0.07 155)" }} />
+                  <span
+                    className="text-sm"
+                    style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.35 0.005 65)" }}
+                  >
+                    {f}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <a href="#quiz" className="btn-forest">
+              Start Your Care Plan
+            </a>
+          </FadeUp>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── How It Works ─────────────────────────────────────────────────────────────
+function HowItWorksSection() {
+  const steps = [
+    {
+      num: "01",
+      title: "Take the Symptom Quiz",
+      desc: "Complete our 2-minute Menopause Quick 6 assessment. It qualifies your symptoms and prepares your care profile before you speak to a provider.",
+      icon: Brain,
+    },
+    {
+      num: "02",
+      title: "Book Your Video Consult",
+      desc: "Choose a time that works for you. Meet your licensed BC Nurse Practitioner via secure video call — this week, not in 6 months.",
+      icon: Video,
+    },
+    {
+      num: "03",
+      title: "Receive Your Custom Plan",
+      desc: "Your NP prescribes a personalized BHRT plan. Your compounded medication is dispensed by our BC partner pharmacy and shipped discreetly to your door.",
+      icon: Package,
+    },
+    {
+      num: "04",
+      title: "Ongoing Support",
+      desc: "Track your progress, message your care team anytime, and attend follow-up appointments. Your plan evolves as your body does.",
+      icon: HeartPulse,
+    },
+  ];
+
+  return (
+    <section
+      id="how-it-works"
+      className="py-20 lg:py-28"
+      style={{ backgroundColor: "oklch(0.97 0.015 90)" }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <FadeUp className="text-center mb-16">
+          <span className="badge-forest mb-4">Simple Process</span>
+          <h2
+            className="text-4xl lg:text-5xl font-bold mb-4"
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
+          >
+            Care in{" "}
+            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
+              four steps
+            </em>
+          </h2>
+          <p
+            className="text-base lg:text-lg max-w-xl mx-auto"
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
+          >
+            From symptom quiz to medication delivery — the entire process happens online, on your schedule.
+          </p>
+        </FadeUp>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {steps.map((step, i) => (
+            <FadeUp key={step.num} delay={i * 100}>
+              <div
+                className="card-hover bg-white rounded-2xl p-6 shadow-sm border h-full"
+                style={{ borderColor: "oklch(0.88 0.01 90)" }}
+              >
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                  style={{ backgroundColor: "oklch(0.24 0.07 155 / 0.08)" }}
+                >
+                  <step.icon className="w-6 h-6" style={{ color: "oklch(0.24 0.07 155)" }} />
+                </div>
+                <span
+                  className="text-4xl font-bold opacity-10 block mb-2"
+                  style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.24 0.07 155)" }}
+                >
+                  {step.num}
+                </span>
+                <h3
+                  className="text-lg font-bold mb-2"
+                  style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
+                >
+                  {step.title}
+                </h3>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.50 0.005 65)" }}
+                >
+                  {step.desc}
+                </p>
+              </div>
+            </FadeUp>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Symptom Quiz CTA ─────────────────────────────────────────────────────────
+function QuizSection() {
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+
+  const symptoms = [
+    { label: "Hot Flashes", icon: Thermometer },
+    { label: "Brain Fog", icon: Brain },
+    { label: "Sleep Issues", icon: Moon },
+    { label: "Low Energy", icon: Zap },
+    { label: "Mood Changes", icon: HeartPulse },
+    { label: "Weight Gain", icon: Leaf },
+  ];
+
+  const toggle = (label: string) => {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      next.has(label) ? next.delete(label) : next.add(label);
+      return next;
+    });
+  };
+
+  return (
+    <section
+      id="quiz"
+      className="py-20 lg:py-28"
+      style={{ backgroundColor: "oklch(0.24 0.07 155)" }}
+    >
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <FadeUp>
+          <span
+            className="inline-block text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-6"
+            style={{
+              backgroundColor: "rgba(255,255,255,0.10)",
+              color: "rgba(255,255,255,0.75)",
+              fontFamily: "'DM Sans', sans-serif",
+            }}
+          >
+            2-Minute Assessment
+          </span>
+          <h2
+            className="text-4xl lg:text-5xl font-bold text-white mb-4"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            Which symptoms are{" "}
+            <em className="not-italic" style={{ color: "oklch(0.75 0.10 42)" }}>
+              affecting you?
+            </em>
+          </h2>
+          <p
+            className="text-base lg:text-lg mb-10"
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.65)" }}
+          >
+            Select all that apply. Our clinical intake quiz qualifies your symptoms before your first appointment.
+          </p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-10">
+            {symptoms.map(({ label, icon: Icon }) => {
+              const active = selected.has(label);
+              return (
+                <button
+                  key={label}
+                  onClick={() => toggle(label)}
+                  className="flex items-center gap-3 p-4 rounded-xl text-left transition-all duration-200"
+                  style={{
+                    backgroundColor: active ? "oklch(0.60 0.12 42)" : "rgba(255,255,255,0.08)",
+                    border: `1.5px solid ${active ? "oklch(0.60 0.12 42)" : "rgba(255,255,255,0.18)"}`,
+                    color: "white",
+                  }}
+                >
+                  <Icon className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-sm font-medium" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                    {label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <a
+            href="#"
+            className="btn-terracotta inline-block text-base"
+            style={{ padding: "1rem 2.5rem" }}
+            onClick={(e) => {
+              e.preventDefault();
+              toast.info("Full symptom quiz — Feature coming soon");
+            }}
+          >
+            See My Care Options <ArrowRight className="inline w-4 h-4 ml-2" />
+          </a>
+
+          <p
+            className="mt-4 text-xs"
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.40)" }}
+          >
+            Prescriptions are issued only after an online consultation with a licensed BC Nurse Practitioner.
+          </p>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+// ─── Whole-Body Care Section ──────────────────────────────────────────────────
+function WholeCareSection() {
+  const benefits = [
+    "Hormone balance & BHRT",
+    "Weight management support",
+    "Sleep & mood optimization",
+    "Skin health & radiance",
+    "Brain fog & energy restoration",
+    "Bone & cardiovascular health",
+  ];
+
+  return (
+    <section className="py-20 lg:py-28" style={{ backgroundColor: "white" }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <FadeUp>
+            <span className="badge-forest mb-4">Care Designed for Women's Health</span>
+            <h2
+              className="text-4xl lg:text-5xl font-bold mb-6 leading-tight"
+              style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
+            >
+              Whole-body care for her{" "}
+              <em className="not-italic" style={{ color: "oklch(0.60 0.12 42)" }}>
+                balance, vitality,
+              </em>{" "}
+              and confidence
+            </h2>
+            <p
+              className="text-base lg:text-lg mb-8 leading-relaxed"
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
+            >
+              Doctor-guided care for hormones, weight, skin, and mood — with personalized treatment plans designed to support your health through every stage of perimenopause and beyond.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+              {benefits.map((b) => (
+                <div key={b} className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 flex-shrink-0" style={{ color: "oklch(0.60 0.12 42)" }} />
+                  <span
+                    className="text-sm"
+                    style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.35 0.005 65)" }}
+                  >
+                    {b}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <a href="#quiz" className="btn-terracotta">
+              Start Your Journey
+            </a>
+          </FadeUp>
+
+          <FadeUp delay={120} className="relative">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="rounded-2xl overflow-hidden shadow-lg" style={{ height: 360 }}>
+                <img src={WOMAN_OUTDOOR} alt="Active woman outdoors" className="w-full h-full object-cover" />
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-lg mt-12" style={{ height: 300 }}>
+                <img src={WOMAN_HERO} alt="Confident woman at home" className="w-full h-full object-cover" />
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Features / Portal Section ────────────────────────────────────────────────
+function FeaturesSection() {
+  const features = [
+    {
+      icon: "📱",
+      title: "Everything, all in one place",
+      desc: "Track your progress, check in with your provider, and manage your care in your all-in-one patient portal — powered by Jane.app, BC's leading EMR.",
+      highlight: true,
+    },
+    {
+      icon: "💬",
+      title: "Unlimited 24/7 support",
+      desc: "Medical support continues throughout your care, whenever you need it. Message your care team at any hour.",
+      highlight: false,
+    },
+    {
+      icon: "🚚",
+      title: "Fast & discreet shipping",
+      desc: "Your compounded medications arrive in plain packaging, shipped directly from our BC partner pharmacy.",
+      highlight: false,
+    },
+    {
+      icon: "🔬",
+      title: "Evidence-based protocols",
+      desc: "All treatment plans follow current NAMS and SOGC menopause guidelines, reviewed by our medical advisory board.",
+      highlight: false,
+    },
+  ];
+
+  return (
+    <section className="py-20 lg:py-28" style={{ backgroundColor: "oklch(0.97 0.015 90)" }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <FadeUp className="text-center mb-16">
+          <span className="badge-forest mb-4">Better is Possible</span>
+          <h2
+            className="text-4xl lg:text-5xl font-bold mb-4"
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
+          >
+            Modern healthcare,{" "}
+            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
+              built around you
+            </em>
+          </h2>
+          <p
+            className="text-base max-w-xl mx-auto"
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
+          >
+            We're creating a better healthcare experience, and the details matter.
+          </p>
+        </FadeUp>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((f, i) => (
+            <FadeUp key={f.title} delay={i * 80}>
+              <div
+                className="card-hover rounded-2xl p-6 h-full"
+                style={{
+                  backgroundColor: f.highlight ? "oklch(0.24 0.07 155)" : "white",
+                  border: `1px solid ${f.highlight ? "transparent" : "oklch(0.88 0.01 90)"}`,
+                }}
+              >
+                <span className="text-3xl mb-4 block">{f.icon}</span>
+                <h3
+                  className="text-lg font-bold mb-2"
+                  style={{
+                    fontFamily: "'Playfair Display', serif",
+                    color: f.highlight ? "white" : "oklch(0.22 0.005 65)",
+                  }}
+                >
+                  {f.title}
+                </h3>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    color: f.highlight ? "rgba(255,255,255,0.72)" : "oklch(0.50 0.005 65)",
+                  }}
+                >
+                  {f.desc}
+                </p>
+              </div>
+            </FadeUp>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Pricing Section ──────────────────────────────────────────────────────────
+function PricingSection() {
+  const plans = [
+    {
+      name: "Initial Consult",
+      price: "$175",
+      period: "one-time",
+      desc: "Your first step to hormonal clarity",
+      features: [
+        "45-minute video consult with BC NP",
+        "Comprehensive symptom assessment",
+        "Personalized BHRT recommendation",
+        "Lab requisition if needed",
+        "Secure patient portal access",
+      ],
+      cta: "Book Consult",
+      highlight: false,
+    },
+    {
+      name: "Monthly Care Bundle",
+      price: "$199",
+      period: "per month",
+      desc: "Everything you need for ongoing hormonal health",
+      features: [
+        "Monthly follow-up appointments",
+        "Custom compounded BHRT medications",
+        "Unlimited 24/7 messaging support",
+        "Symptom tracking dashboard",
+        "Discreet home delivery",
+        "Plan adjustments as needed",
+      ],
+      cta: "Start Subscription",
+      highlight: true,
+      badge: "Most Popular",
+    },
+  ];
+
+  return (
+    <section id="pricing" className="py-20 lg:py-28" style={{ backgroundColor: "white" }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <FadeUp className="text-center mb-16">
+          <span className="badge-forest mb-4">Transparent Pricing</span>
+          <h2
+            className="text-4xl lg:text-5xl font-bold mb-4"
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
+          >
+            Clear pricing,{" "}
+            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
+              no surprises
+            </em>
+          </h2>
+          <p
+            className="text-base max-w-lg mx-auto"
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
+          >
+            Most private insurance plans cover the medication portion. We'll help you navigate your benefits.
+          </p>
+        </FadeUp>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {plans.map((plan, i) => (
+            <FadeUp key={plan.name} delay={i * 100}>
+              <div
+                className="relative rounded-3xl p-8 shadow-sm h-full flex flex-col"
+                style={{
+                  backgroundColor: plan.highlight ? "oklch(0.24 0.07 155)" : "oklch(0.97 0.015 90)",
+                  border: `2px solid ${plan.highlight ? "oklch(0.24 0.07 155)" : "oklch(0.88 0.01 90)"}`,
+                }}
+              >
+                {plan.badge && (
+                  <span
+                    className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide"
+                    style={{
+                      backgroundColor: "oklch(0.60 0.12 42)",
+                      color: "white",
+                      fontFamily: "'DM Sans', sans-serif",
+                    }}
+                  >
+                    {plan.badge}
+                  </span>
+                )}
+                <p
+                  className="text-xs font-semibold tracking-widest uppercase mb-2"
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    color: plan.highlight ? "rgba(255,255,255,0.55)" : "oklch(0.50 0.005 65)",
+                  }}
+                >
+                  {plan.name}
+                </p>
+                <div className="flex items-baseline gap-2 mb-1">
+                  <span
+                    className="text-5xl font-bold"
+                    style={{
+                      fontFamily: "'Playfair Display', serif",
+                      color: plan.highlight ? "white" : "oklch(0.22 0.005 65)",
+                    }}
+                  >
+                    {plan.price}
+                  </span>
+                  <span
+                    className="text-sm"
+                    style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      color: plan.highlight ? "rgba(255,255,255,0.55)" : "oklch(0.50 0.005 65)",
+                    }}
+                  >
+                    CAD / {plan.period}
+                  </span>
+                </div>
+                <p
+                  className="text-sm mb-6"
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    color: plan.highlight ? "rgba(255,255,255,0.65)" : "oklch(0.50 0.005 65)",
+                  }}
+                >
+                  {plan.desc}
+                </p>
+
+                <ul className="space-y-3 mb-8 flex-1">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-start gap-3">
+                      <CheckCircle2
+                        className="w-4 h-4 mt-0.5 flex-shrink-0"
+                        style={{ color: plan.highlight ? "oklch(0.75 0.10 42)" : "oklch(0.24 0.07 155)" }}
+                      />
+                      <span
+                        className="text-sm"
+                        style={{
+                          fontFamily: "'DM Sans', sans-serif",
+                          color: plan.highlight ? "rgba(255,255,255,0.82)" : "oklch(0.35 0.005 65)",
+                        }}
+                      >
+                        {f}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <button
+                  onClick={() => toast.info("Booking — Feature coming soon")}
+                  className={plan.highlight ? "btn-terracotta w-full text-center block" : "btn-outline-forest w-full text-center block"}
+                >
+                  {plan.cta}
+                </button>
+              </div>
+            </FadeUp>
+          ))}
+        </div>
+
+        <p
+          className="text-center text-xs mt-8"
+          style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.55 0.005 65)" }}
+        >
+          Prescriptions are issued only after an online consultation with a licensed BC Nurse Practitioner. Compound medications are dispensed by Health Canada–regulated pharmacies.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// ─── Providers Section ────────────────────────────────────────────────────────
+function ProvidersSection() {
+  const providers = [
+    {
+      name: "Dr. Sarah Chen, NP",
+      credential: "BC College of Nursing Professionals",
+      specialty: "Menopause & Hormonal Health",
+      img: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop&crop=face",
+    },
+    {
+      name: "Dr. Priya Sharma, MD",
+      credential: "University of British Columbia",
+      specialty: "Women's Endocrinology",
+      img: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=400&fit=crop&crop=face",
+    },
+    {
+      name: "Dr. Lisa Tremblay, NP",
+      credential: "NAMS Certified Menopause Practitioner",
+      specialty: "BHRT & Integrative Medicine",
+      img: "https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?w=400&h=400&fit=crop&crop=face",
+    },
+  ];
+
+  return (
+    <section
+      id="providers"
+      className="py-20 lg:py-28"
+      style={{ backgroundColor: "oklch(0.97 0.015 90)" }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <FadeUp className="text-center mb-16">
+          <span className="badge-forest mb-4">Our Clinical Team</span>
+          <h2
+            className="text-4xl lg:text-5xl font-bold mb-4"
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
+          >
+            Medical care from{" "}
+            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
+              leading experts
+            </em>
+          </h2>
+          <p
+            className="text-base max-w-xl mx-auto"
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
+          >
+            Our BC-licensed Nurse Practitioners specialize in menopause care and bring both expertise and genuine compassion to every appointment.
+          </p>
+        </FadeUp>
+
+        <div className="grid sm:grid-cols-3 gap-8">
+          {providers.map((p, i) => (
+            <FadeUp key={p.name} delay={i * 100}>
+              <div
+                className="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border"
+                style={{ borderColor: "oklch(0.88 0.01 90)" }}
+              >
+                <div className="h-56 overflow-hidden">
+                  <img src={p.img} alt={p.name} className="w-full h-full object-cover" />
+                </div>
+                <div className="p-6">
+                  <h3
+                    className="text-lg font-bold mb-1"
+                    style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
+                  >
+                    {p.name}
+                  </h3>
+                  <p
+                    className="text-xs mb-3"
+                    style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.50 0.005 65)" }}
+                  >
+                    {p.credential}
+                  </p>
+                  <span
+                    className="inline-block text-xs px-3 py-1 rounded-full"
+                    style={{
+                      backgroundColor: "oklch(0.24 0.07 155 / 0.08)",
+                      color: "oklch(0.24 0.07 155)",
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {p.specialty}
+                  </span>
+                </div>
+              </div>
+            </FadeUp>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Testimonials ─────────────────────────────────────────────────────────────
+function TestimonialsSection() {
+  const testimonials = [
+    {
+      name: "Sandra M.",
+      location: "Vancouver, BC",
+      text: "I waited 7 months for a specialist referral before finding MeNova. Within 2 weeks I had a diagnosis, a prescription, and my hot flashes were under control. Life-changing.",
+      stars: 5,
+    },
+    {
+      name: "Jennifer K.",
+      location: "North Vancouver, BC",
+      text: "The NP was incredibly knowledgeable and actually listened to me. She explained everything clearly and I felt supported throughout. I finally feel like myself again.",
+      stars: 5,
+    },
+    {
+      name: "Diane L.",
+      location: "Burnaby, BC",
+      text: "The brain fog was so bad I thought I was losing my mind. Three months into my BHRT plan and I'm sharp, sleeping well, and back to running. I can't recommend this enough.",
+      stars: 5,
+    },
+    {
+      name: "Tracey W.",
+      location: "Richmond, BC",
+      text: "Affordable, fast, and genuinely caring. The 24/7 messaging means I never feel alone in this journey. My family has noticed the difference too.",
+      stars: 5,
+    },
+    {
+      name: "Michelle R.",
+      location: "West Vancouver, BC",
+      text: "I was skeptical about virtual care but the process was seamless. The medication arrived within days and the follow-up support is exceptional.",
+      stars: 5,
+    },
+    {
+      name: "Patricia H.",
+      location: "Surrey, BC",
+      text: "After years of being dismissed by my GP, MeNova's NP took my symptoms seriously immediately. I'm now on a plan that actually works. Thank you.",
+      stars: 5,
+    },
+  ];
+
+  return (
+    <section
+      className="py-20 lg:py-28"
+      style={{ backgroundColor: "oklch(0.24 0.07 155)" }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <FadeUp className="text-center mb-16">
+          <span
+            className="inline-block text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-4"
+            style={{
+              backgroundColor: "rgba(255,255,255,0.10)",
+              color: "rgba(255,255,255,0.75)",
+              fontFamily: "'DM Sans', sans-serif",
+            }}
+          >
+            Patient Stories
+          </span>
+          <h2
+            className="text-4xl lg:text-5xl font-bold text-white mb-4"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            There's a reason women are{" "}
+            <em className="not-italic" style={{ color: "oklch(0.75 0.10 42)" }}>
+              raving about us
+            </em>
+          </h2>
+          <p
+            className="text-base max-w-xl mx-auto"
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.60)" }}
+          >
+            Join thousands of Canadian women who have reclaimed their vitality with MeNova Health.
+          </p>
+        </FadeUp>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {testimonials.map((t, i) => (
+            <FadeUp key={t.name} delay={i * 60}>
+              <div
+                className="rounded-2xl p-6 h-full flex flex-col"
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.07)",
+                  border: "1px solid rgba(255,255,255,0.10)",
+                }}
+              >
+                <div className="flex gap-0.5 mb-4">
+                  {Array.from({ length: t.stars }).map((_, j) => (
+                    <Star key={j} className="w-4 h-4 fill-current" style={{ color: "oklch(0.75 0.10 42)" }} />
+                  ))}
+                </div>
+                <p
+                  className="text-sm leading-relaxed mb-4 flex-1"
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.82)" }}
+                >
+                  "{t.text}"
+                </p>
+                <div>
+                  <p
+                    className="text-sm font-semibold text-white"
+                    style={{ fontFamily: "'DM Sans', sans-serif" }}
+                  >
+                    {t.name}
+                  </p>
+                  <p
+                    className="text-xs"
+                    style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.45)" }}
+                  >
+                    {t.location}
+                  </p>
+                </div>
+              </div>
+            </FadeUp>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── FAQ Section ──────────────────────────────────────────────────────────────
+function FAQSection() {
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      q: "Is MeNova Health available across British Columbia?",
+      a: "Yes. MeNova Health serves patients throughout BC, including Vancouver, Victoria, Kelowna, Kamloops, and all surrounding areas. All appointments are conducted via secure video call.",
+    },
+    {
+      q: "Does my insurance cover the cost?",
+      a: "Most private insurance plans (e.g., Sun Life, Manulife, Great-West Life) cover the medication portion of your care. The consultation fee may also be eligible under your extended health benefits. We provide detailed receipts for reimbursement.",
+    },
+    {
+      q: "What is BHRT and is it safe?",
+      a: "Bioidentical Hormone Replacement Therapy (BHRT) uses hormones that are molecularly identical to those your body produces. It is prescribed following current NAMS and SOGC guidelines and is considered safe and effective for the majority of perimenopausal and menopausal women.",
+    },
+    {
+      q: "How long before I feel results?",
+      a: "Most patients notice improvements in sleep and mood within 2–4 weeks. Hot flashes and energy levels typically improve within 4–8 weeks. Your NP will monitor your progress and adjust your plan as needed.",
+    },
+    {
+      q: "Who prescribes my medication?",
+      a: "All prescriptions are issued by licensed BC Nurse Practitioners registered with the BC College of Nursing Professionals. Medications are dispensed by our partner Health Canada–regulated compounding pharmacy.",
+    },
+    {
+      q: "Can I cancel my subscription?",
+      a: "Yes. You can pause or cancel your monthly subscription at any time with no cancellation fees. We believe in earning your trust every month.",
+    },
+    {
+      q: "What happens at my first appointment?",
+      a: "Your first 45-minute video consult covers your full symptom history, current health, medications, and goals. Your NP will review your quiz results and recommend a personalized care plan. Lab work may be requested if needed.",
+    },
+  ];
+
+  return (
+    <section id="faq" className="py-20 lg:py-28" style={{ backgroundColor: "white" }}>
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <FadeUp className="text-center mb-16">
+          <span className="badge-forest mb-4">Common Questions</span>
+          <h2
+            className="text-4xl lg:text-5xl font-bold mb-4"
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
+          >
+            Frequently asked{" "}
+            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
+              questions
+            </em>
+          </h2>
+        </FadeUp>
+
+        <div className="space-y-3">
+          {faqs.map((faq, i) => (
+            <FadeUp key={i} delay={i * 40}>
+              <div
+                className="rounded-xl border overflow-hidden"
+                style={{ borderColor: "oklch(0.88 0.01 90)" }}
+              >
+                <button
+                  className="w-full flex items-center justify-between p-5 text-left transition-colors"
+                  style={{ backgroundColor: openIdx === i ? "oklch(0.24 0.07 155 / 0.04)" : "white" }}
+                  onClick={() => setOpenIdx(openIdx === i ? null : i)}
+                >
+                  <span
+                    className="text-base font-semibold pr-4"
+                    style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.22 0.005 65)" }}
+                  >
+                    {faq.q}
+                  </span>
+                  <ChevronDown
+                    className="w-5 h-5 flex-shrink-0 transition-transform duration-200"
+                    style={{
+                      color: "oklch(0.24 0.07 155)",
+                      transform: openIdx === i ? "rotate(180deg)" : "rotate(0deg)",
+                    }}
+                  />
+                </button>
+                {openIdx === i && (
+                  <div className="px-5 pb-5">
+                    <p
+                      className="text-sm leading-relaxed"
+                      style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
+                    >
+                      {faq.a}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </FadeUp>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Final CTA ────────────────────────────────────────────────────────────────
+function FinalCTA() {
+  return (
+    <section
+      className="py-20 lg:py-28 relative overflow-hidden"
+      style={{ backgroundColor: "oklch(0.97 0.015 90)" }}
+    >
+      <div
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `url(${WOMAN_OUTDOOR})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <FadeUp>
+          <span className="badge-forest mb-6">Get Started Today</span>
+          <h2
+            className="text-4xl lg:text-5xl font-bold mb-6 leading-tight"
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
+          >
+            Your energy, clarity, and{" "}
+            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
+              confidence
+            </em>{" "}
+            are waiting
+          </h2>
+          <p
+            className="text-base lg:text-lg mb-10"
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
+          >
+            Canada's menopause gap is real — but it doesn't have to be your reality. Book your first appointment this week and start feeling like yourself again.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#quiz" className="btn-forest text-center">
+              Take the Free Symptom Quiz
+            </a>
+            <button
+              onClick={() => toast.info("Booking — Feature coming soon")}
+              className="btn-outline-forest"
+            >
+              Book a Consult — $175 CAD
+            </button>
+          </div>
+          <p
+            className="mt-6 text-xs"
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.55 0.005 65)" }}
+          >
+            No referral needed · BC-licensed providers · Cancel anytime
+          </p>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+// ─── Footer ───────────────────────────────────────────────────────────────────
+function Footer() {
+  const links: Record<string, string[]> = {
+    Care: ["How It Works", "Treatments", "Pricing", "Our Providers"],
+    Company: ["About Us", "Medical Advisory Board", "Careers", "Press"],
+    Legal: ["Privacy Policy", "Terms of Service", "Cookie Policy", "Accessibility"],
+    Support: ["FAQ", "Contact Us", "Patient Portal", "Pharmacy Partners"],
+  };
+
+  return (
+    <footer style={{ backgroundColor: "oklch(0.18 0.07 155)" }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+          <div className="col-span-2 lg:col-span-1">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white/10">
+                <Leaf className="w-4 h-4 text-white" />
+              </div>
+              <span
+                className="text-xl font-bold text-white"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                MeNova
+              </span>
+            </div>
+            <p
+              className="text-sm leading-relaxed mb-4"
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.50)" }}
+            >
+              Menopause telehealth care for Canadian women. Licensed NPs, personalized BHRT, delivered to your door.
+            </p>
+            <p
+              className="text-xs"
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.30)" }}
+            >
+              Serving Vancouver, BC & across British Columbia
+            </p>
+          </div>
+
+          {Object.entries(links).map(([category, items]) => (
+            <div key={category}>
+              <h4
+                className="text-xs font-semibold tracking-widest uppercase mb-4"
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.45)" }}
+              >
+                {category}
+              </h4>
+              <ul className="space-y-2">
+                {items.map((item) => (
+                  <li key={item}>
+                    <a
+                      href="#"
+                      className="text-sm transition-colors hover:text-white"
+                      style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.60)" }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info(`${item} — Feature coming soon`);
+                      }}
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div
+          className="border-t pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+          style={{ borderColor: "rgba(255,255,255,0.08)" }}
+        >
+          <p
+            className="text-xs text-center sm:text-left"
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.30)" }}
+          >
+            © 2026 MeNova Health MSO Inc. All rights reserved. MeNova Health is a Management Services Organization. Medical care is provided by independently contracted licensed Nurse Practitioners registered with the BC College of Nursing Professionals.
+          </p>
+          <div className="flex gap-4 flex-shrink-0">
+            {["Instagram", "Facebook", "LinkedIn"].map((s) => (
+              <a
+                key={s}
+                href="#"
+                className="text-xs transition-colors hover:text-white"
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.40)" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  toast.info(`${s} — Coming soon`);
+                }}
+              >
+                {s}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ─── Main Page ────────────────────────────────────────────────────────────────
+export default function Home() {
+  return (
+    <div className="min-h-screen">
+      <Navbar />
+      <HeroSection />
+      <CategoryScroll />
+      <TrustBar />
+      <BHRTSection />
+      <HowItWorksSection />
+      <QuizSection />
+      <WholeCareSection />
+      <FeaturesSection />
+      <PricingSection />
+      <ProvidersSection />
+      <TestimonialsSection />
+      <FAQSection />
+      <FinalCTA />
+      <Footer />
     </div>
   );
 }
