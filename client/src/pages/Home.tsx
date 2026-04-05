@@ -215,7 +215,7 @@ function HeroSection() {
               className="text-lg lg:text-xl mb-8 leading-relaxed max-w-lg"
               style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.72)" }}
             >
-              Get your energy back. See a Canadian menopause specialist this week — no waiting rooms, no referrals. Just personalized BHRT care that works.
+              Get your energy back. See a Canadian menopause specialist this week — no waiting rooms, no referrals. Just personalized Bioidentical Hormone Replacement Therapy (BHRT) care that works.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
@@ -307,7 +307,7 @@ function HeroSection() {
 // ─── Category Scroll ──────────────────────────────────────────────────────────
 function CategoryScroll() {
   const categories = [
-    { label: "Hormone Therapy (BHRT)", icon: "🌿" },
+    { label: "Bioidentical Hormone Replacement Therapy (BHRT)", icon: "🌿" },
     { label: "Hot Flash Relief", icon: "🌡️" },
     { label: "Sleep & Mood Support", icon: "🌙" },
     { label: "Brain Fog & Energy", icon: "⚡" },
@@ -387,7 +387,7 @@ function TrustBar() {
 // ─── BHRT Feature Section ─────────────────────────────────────────────────────
 function BHRTSection() {
   const features = [
-    "Personalized BHRT prescription plan",
+    "Personalized Bioidentical Hormone Replacement Therapy (BHRT) prescription plan",
     "1:1 Nurse Practitioner guidance",
     "Unlimited 24/7 messaging support",
     "Symptom tracking & follow-ups",
@@ -429,7 +429,7 @@ function BHRTSection() {
           </FadeUp>
 
           <FadeUp delay={120}>
-            <span className="badge-forest mb-4">NP-Guided BHRT Care</span>
+            <span className="badge-forest mb-4">NP-Guided Bioidentical Hormone Replacement Therapy (BHRT) Care</span>
             <h2
               className="text-4xl lg:text-5xl font-bold mb-6 leading-tight"
               style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
@@ -444,7 +444,7 @@ function BHRTSection() {
               className="text-base lg:text-lg mb-8 leading-relaxed"
               style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
             >
-              Find the right Bioidentical Hormone Replacement Therapy with the confidence that comes from knowing it is NP-approved, Health Canada compliant, and budget-friendly. No 6-month wait times.
+              Find the right Bioidentical Hormone Replacement Therapy (BHRT) with the confidence that comes from knowing it is NP-approved, Health Canada compliant, and budget-friendly. No 6-month wait times.
             </p>
 
             <ul className="space-y-3 mb-8">
@@ -489,7 +489,7 @@ function HowItWorksSection() {
     {
       num: "03",
       title: "Receive Your Custom Plan",
-      desc: "Your NP prescribes a personalized BHRT plan. Your compounded medication is dispensed by our BC partner pharmacy and shipped discreetly to your door.",
+      desc: "Your NP prescribes a personalized Bioidentical Hormone Replacement Therapy (BHRT) plan. Your compounded medication is dispensed by our BC partner pharmacy and shipped discreetly to your door.",
       icon: Package,
     },
     {
@@ -671,7 +671,7 @@ function QuizSection() {
 // ─── Whole-Body Care Section ──────────────────────────────────────────────────
 function WholeCareSection() {
   const benefits = [
-    "Hormone balance & BHRT",
+    "Hormone balance & Bioidentical Hormone Replacement Therapy (BHRT)",
     "Weight management support",
     "Sleep & mood optimization",
     "Skin health & radiance",
@@ -837,7 +837,7 @@ function PricingSection() {
       features: [
         "45-minute video consult with BC NP",
         "Comprehensive symptom assessment",
-        "Personalized BHRT recommendation",
+        "Personalized Bioidentical Hormone Replacement Therapy (BHRT) recommendation",
         "Lab requisition if needed",
         "Secure patient portal access",
       ],
@@ -851,7 +851,7 @@ function PricingSection() {
       desc: "Everything you need for ongoing hormonal health",
       features: [
         "Monthly follow-up appointments",
-        "Custom compounded BHRT medications",
+        "Custom compounded Bioidentical Hormone Replacement Therapy (BHRT) medications",
         "Unlimited 24/7 messaging support",
         "Symptom tracking dashboard",
         "Discreet home delivery",
@@ -1006,7 +1006,7 @@ function ProvidersSection() {
     {
       name: "Dr. Lisa Tremblay, NP",
       credential: "NAMS Certified Menopause Practitioner",
-      specialty: "BHRT & Integrative Medicine",
+      specialty: "Bioidentical Hormone Replacement Therapy (BHRT) & Integrative Medicine",
       img: "https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?w=400&h=400&fit=crop&crop=face",
     },
   ];
@@ -1099,7 +1099,7 @@ function TestimonialsSection() {
     {
       name: "Diane L.",
       location: "Burnaby, BC",
-      text: "The brain fog was so bad I thought I was losing my mind. Three months into my BHRT plan and I'm sharp, sleeping well, and back to running. I can't recommend this enough.",
+      text: "The brain fog was so bad I thought I was losing my mind. Three months into my Bioidentical Hormone Replacement Therapy (BHRT) plan and I'm sharp, sleeping well, and back to running. I can't recommend this enough.",
       stars: 5,
     },
     {
@@ -1214,7 +1214,7 @@ function FAQSection() {
       a: "Most private insurance plans (e.g., Sun Life, Manulife, Great-West Life) cover the medication portion of your care. The consultation fee may also be eligible under your extended health benefits. We provide detailed receipts for reimbursement.",
     },
     {
-      q: "What is BHRT and is it safe?",
+      q: "What is Bioidentical Hormone Replacement Therapy (BHRT) and is it safe?",
       a: "Bioidentical Hormone Replacement Therapy (BHRT) uses hormones that are molecularly identical to those your body produces. It is prescribed following current NAMS and SOGC guidelines and is considered safe and effective for the majority of perimenopausal and menopausal women.",
     },
     {
@@ -1382,7 +1382,7 @@ function Footer() {
               className="text-sm leading-relaxed mb-4"
               style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.50)" }}
             >
-              Menopause telehealth care for Canadian women. Licensed NPs, personalized BHRT, delivered to your door.
+              Menopause telehealth care for Canadian women. Licensed NPs, personalized Bioidentical Hormone Replacement Therapy (BHRT), delivered to your door.
             </p>
             <p
               className="text-xs"
