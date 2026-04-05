@@ -384,6 +384,313 @@ function TrustBar() {
   );
 }
 
+// ─── What Is BHRT Explainer Section ─────────────────────────────────────────
+function WhatIsBHRTSection() {
+  const steps = [
+    {
+      id: 1,
+      icon: (
+        <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
+          <circle cx="24" cy="24" r="20" fill="oklch(0.24 0.07 155 / 0.12)" />
+          <path d="M16 28c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="oklch(0.24 0.07 155)" strokeWidth="2.5" strokeLinecap="round" />
+          <circle cx="24" cy="18" r="3.5" fill="oklch(0.24 0.07 155)" />
+          <path d="M20 34h8" stroke="oklch(0.60 0.12 42)" strokeWidth="2.5" strokeLinecap="round" />
+        </svg>
+      ),
+      label: "Your body's hormone levels decline",
+      sublabel: "Perimenopause & menopause",
+    },
+    {
+      id: 2,
+      icon: (
+        <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
+          <circle cx="24" cy="24" r="20" fill="oklch(0.60 0.12 42 / 0.12)" />
+          <rect x="14" y="20" width="20" height="12" rx="3" stroke="oklch(0.60 0.12 42)" strokeWidth="2.5" />
+          <path d="M18 20v-3a6 6 0 0 1 12 0v3" stroke="oklch(0.60 0.12 42)" strokeWidth="2.5" strokeLinecap="round" />
+          <circle cx="24" cy="26" r="2.5" fill="oklch(0.60 0.12 42)" />
+        </svg>
+      ),
+      label: "Bioidentical hormones are prescribed",
+      sublabel: "Molecularly identical to yours",
+    },
+    {
+      id: 3,
+      icon: (
+        <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
+          <circle cx="24" cy="24" r="20" fill="oklch(0.24 0.07 155 / 0.12)" />
+          <path d="M16 32l4-8 4 5 3-4 5 7" stroke="oklch(0.24 0.07 155)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M14 20h4M30 20h4" stroke="oklch(0.24 0.07 155)" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      ),
+      label: "Compounded & delivered to you",
+      sublabel: "Custom dose, BC pharmacy",
+    },
+    {
+      id: 4,
+      icon: (
+        <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
+          <circle cx="24" cy="24" r="20" fill="oklch(0.60 0.12 42 / 0.12)" />
+          <path d="M24 14v4M24 30v4M14 24h4M30 24h4" stroke="oklch(0.60 0.12 42)" strokeWidth="2.5" strokeLinecap="round" />
+          <circle cx="24" cy="24" r="5" stroke="oklch(0.60 0.12 42)" strokeWidth="2.5" />
+          <circle cx="24" cy="24" r="2" fill="oklch(0.60 0.12 42)" />
+        </svg>
+      ),
+      label: "Hormones rebalance naturally",
+      sublabel: "Energy, sleep & mood restored",
+    },
+  ];
+
+  const comparisons = [
+    { label: "Source", bhrt: "Derived from plants (yam, soy)", synth: "Synthetic or animal-derived", highlight: true },
+    { label: "Structure", bhrt: "Identical to human hormones", synth: "Similar but not identical", highlight: false },
+    { label: "Dosing", bhrt: "Custom-compounded for you", synth: "Standard fixed doses", highlight: true },
+    { label: "Delivery", bhrt: "Cream, gel, patch, or capsule", synth: "Mostly oral pill or patch", highlight: false },
+    { label: "Monitoring", bhrt: "Regular NP check-ins & labs", synth: "Less frequent follow-up", highlight: true },
+    { label: "Regulation", bhrt: "Health Canada compliant", synth: "Health Canada approved", highlight: false },
+  ];
+
+  return (
+    <section
+      id="what-is-bhrt"
+      className="py-20 lg:py-28"
+      style={{ backgroundColor: "oklch(0.97 0.015 90)" }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <FadeUp className="text-center mb-16">
+          <span className="badge-forest mb-4">Understanding Your Treatment</span>
+          <h2
+            className="text-4xl lg:text-5xl font-bold mb-4 leading-tight"
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
+          >
+            What is{" "}
+            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
+              Bioidentical Hormone
+            </em>
+            <br />
+            Replacement Therapy?
+          </h2>
+          <p
+            className="text-base lg:text-lg max-w-2xl mx-auto leading-relaxed"
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
+          >
+            As you approach perimenopause and menopause, your body produces less estrogen, progesterone, and testosterone.
+            Bioidentical Hormone Replacement Therapy (BHRT) restores these levels using hormones that are{" "}
+            <strong style={{ color: "oklch(0.24 0.07 155)" }}>molecularly identical</strong> to the ones your body naturally makes.
+          </p>
+        </FadeUp>
+
+        {/* How It Works Diagram */}
+        <FadeUp className="mb-20">
+          <div
+            className="rounded-3xl p-8 lg:p-12"
+            style={{ backgroundColor: "white", border: "1px solid oklch(0.88 0.01 90)" }}
+          >
+            <p
+              className="text-center text-xs font-semibold tracking-widest uppercase mb-10"
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.55 0.005 65)" }}
+            >
+              How Bioidentical Hormone Replacement Therapy Works
+            </p>
+
+            {/* Step flow */}
+            <div className="relative">
+              {/* Connector line — desktop only */}
+              <div
+                className="hidden lg:block absolute top-12 left-[12.5%] right-[12.5%] h-0.5"
+                style={{ backgroundColor: "oklch(0.88 0.01 90)" }}
+              />
+
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+                {steps.map((step, i) => (
+                  <div key={step.id} className="flex flex-col items-center text-center">
+                    {/* Icon bubble */}
+                    <div
+                      className="w-20 h-20 rounded-full flex items-center justify-center mb-4 shadow-sm relative"
+                      style={{ backgroundColor: "oklch(0.97 0.015 90)", border: "2px solid oklch(0.88 0.01 90)" }}
+                    >
+                      {step.icon}
+                      {/* Step number badge */}
+                      <span
+                        className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white"
+                        style={{
+                          backgroundColor: i % 2 === 0 ? "oklch(0.24 0.07 155)" : "oklch(0.60 0.12 42)",
+                          fontFamily: "'DM Sans', sans-serif",
+                        }}
+                      >
+                        {step.id}
+                      </span>
+                    </div>
+                    <p
+                      className="text-sm font-bold mb-1 leading-snug"
+                      style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.22 0.005 65)" }}
+                    >
+                      {step.label}
+                    </p>
+                    <p
+                      className="text-xs"
+                      style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.55 0.005 65)" }}
+                    >
+                      {step.sublabel}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Hormone level SVG chart */}
+            <div className="mt-12 pt-10" style={{ borderTop: "1px solid oklch(0.92 0.01 90)" }}>
+              <p
+                className="text-center text-xs font-semibold tracking-widest uppercase mb-6"
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.55 0.005 65)" }}
+              >
+                Hormone Level Over Time
+              </p>
+              <div className="max-w-2xl mx-auto">
+                <svg viewBox="0 0 600 200" className="w-full" style={{ overflow: "visible" }}>
+                  {/* Grid lines */}
+                  {[40, 80, 120, 160].map((y) => (
+                    <line key={y} x1="60" y1={y} x2="580" y2={y} stroke="oklch(0.88 0.01 90)" strokeWidth="1" strokeDasharray="4 4" />
+                  ))}
+
+                  {/* Y-axis labels */}
+                  <text x="50" y="44" textAnchor="end" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">High</text>
+                  <text x="50" y="124" textAnchor="end" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">Mid</text>
+                  <text x="50" y="164" textAnchor="end" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">Low</text>
+
+                  {/* X-axis labels */}
+                  <text x="130" y="192" textAnchor="middle" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">Pre-menopause</text>
+                  <text x="290" y="192" textAnchor="middle" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">Perimenopause</text>
+                  <text x="430" y="192" textAnchor="middle" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">Menopause</text>
+                  <text x="540" y="192" textAnchor="middle" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">With BHRT</text>
+
+                  {/* Vertical dividers */}
+                  <line x1="200" y1="30" x2="200" y2="175" stroke="oklch(0.88 0.01 90)" strokeWidth="1" strokeDasharray="4 4" />
+                  <line x1="360" y1="30" x2="360" y2="175" stroke="oklch(0.88 0.01 90)" strokeWidth="1" strokeDasharray="4 4" />
+                  <line x1="480" y1="30" x2="480" y2="175" stroke="oklch(0.88 0.01 90)" strokeWidth="1" strokeDasharray="4 4" />
+
+                  {/* Declining natural hormone line */}
+                  <path
+                    d="M 70 60 C 130 58, 180 65, 200 75 C 240 95, 300 130, 360 155 C 400 168, 450 172, 480 173"
+                    fill="none"
+                    stroke="oklch(0.65 0.005 65)"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeDasharray="6 3"
+                  />
+
+                  {/* BHRT restored line */}
+                  <path
+                    d="M 480 173 C 495 170, 510 100, 520 80 C 530 65, 545 58, 570 55"
+                    fill="none"
+                    stroke="oklch(0.24 0.07 155)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  />
+
+                  {/* Shaded area under BHRT line */}
+                  <path
+                    d="M 480 173 C 495 170, 510 100, 520 80 C 530 65, 545 58, 570 55 L 570 175 L 480 175 Z"
+                    fill="oklch(0.24 0.07 155 / 0.08)"
+                  />
+
+                  {/* BHRT start marker */}
+                  <circle cx="480" cy="173" r="5" fill="oklch(0.60 0.12 42)" />
+                  <line x1="480" y1="30" x2="480" y2="173" stroke="oklch(0.60 0.12 42)" strokeWidth="1.5" strokeDasharray="3 3" />
+                  <rect x="430" y="14" width="100" height="18" rx="4" fill="oklch(0.60 0.12 42)" />
+                  <text x="480" y="26" textAnchor="middle" fontSize="9" fill="white" fontFamily="DM Sans, sans-serif" fontWeight="600">BHRT Starts Here</text>
+
+                  {/* Legend */}
+                  <line x1="70" y1="15" x2="100" y2="15" stroke="oklch(0.65 0.005 65)" strokeWidth="2" strokeDasharray="5 3" />
+                  <text x="105" y="19" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">Natural hormone level</text>
+                  <line x1="280" y1="15" x2="310" y2="15" stroke="oklch(0.24 0.07 155)" strokeWidth="2.5" />
+                  <text x="315" y="19" fontSize="10" fill="oklch(0.24 0.07 155)" fontFamily="DM Sans, sans-serif" fontWeight="600">With Bioidentical HRT</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </FadeUp>
+
+        {/* Comparison Table */}
+        <FadeUp delay={80}>
+          <div
+            className="rounded-3xl overflow-hidden"
+            style={{ border: "1px solid oklch(0.88 0.01 90)" }}
+          >
+            <div
+              className="px-8 py-5"
+              style={{ backgroundColor: "oklch(0.24 0.07 155)" }}
+            >
+              <h3
+                className="text-xl font-bold text-white"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                Bioidentical vs. Conventional Hormone Therapy
+              </h3>
+              <p
+                className="text-sm mt-1"
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.60)" }}
+              >
+                Understanding the key differences
+              </p>
+            </div>
+
+            {/* Table header */}
+            <div
+              className="grid grid-cols-3 px-8 py-3"
+              style={{ backgroundColor: "oklch(0.22 0.07 155)", borderBottom: "1px solid oklch(0.88 0.01 90)" }}
+            >
+              <span className="text-xs font-semibold tracking-widest uppercase" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.50)" }}>Feature</span>
+              <span className="text-xs font-semibold tracking-widest uppercase" style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.75 0.10 42)" }}>Bioidentical HRT (MeNova)</span>
+              <span className="text-xs font-semibold tracking-widest uppercase" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.50)" }}>Conventional HRT</span>
+            </div>
+
+            {comparisons.map((row, i) => (
+              <div
+                key={row.label}
+                className="grid grid-cols-3 px-8 py-4 items-center"
+                style={{
+                  backgroundColor: row.highlight ? "oklch(0.97 0.015 90)" : "white",
+                  borderBottom: i < comparisons.length - 1 ? "1px solid oklch(0.92 0.01 90)" : "none",
+                }}
+              >
+                <span
+                  className="text-sm font-semibold"
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.35 0.005 65)" }}
+                >
+                  {row.label}
+                </span>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "oklch(0.24 0.07 155)" }} />
+                  <span
+                    className="text-sm font-medium"
+                    style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.24 0.07 155)" }}
+                  >
+                    {row.bhrt}
+                  </span>
+                </div>
+                <span
+                  className="text-sm"
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.55 0.005 65)" }}
+                >
+                  {row.synth}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <p
+            className="text-center text-xs mt-6"
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.60 0.005 65)" }}
+          >
+            All MeNova treatment plans are prescribed by BC-licensed Nurse Practitioners following current NAMS and SOGC guidelines.
+          </p>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
 // ─── BHRT Feature Section ─────────────────────────────────────────────────────
 function BHRTSection() {
   const features = [
@@ -1461,6 +1768,7 @@ export default function Home() {
       <HeroSection />
       <CategoryScroll />
       <TrustBar />
+      <WhatIsBHRTSection />
       <BHRTSection />
       <HowItWorksSection />
       <QuizSection />
