@@ -195,7 +195,7 @@ function HeroSection() {
                 }}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                Join 2,500+ Canadian women in their journey
+                Join 2,500+ BC women in their menopause journey
               </span>
             </div>
 
@@ -203,18 +203,18 @@ function HeroSection() {
               className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6"
               style={{ fontFamily: "'Playfair Display', serif", color: "white" }}
             >
-              Hormonal health,{" "}
+              Menopause care,{" "}
               <em className="not-italic" style={{ color: "oklch(0.75 0.10 42)" }}>
                 redefined
               </em>{" "}
-              for real life.
+              for BC women.
             </h1>
 
             <p
               className="text-lg lg:text-xl mb-8 leading-relaxed max-w-lg"
               style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.72)" }}
             >
-              Get your energy back. See a Canadian menopause specialist this week — no waiting rooms, no referrals. Just personalized Bioidentical Hormone Replacement Therapy (BHRT) care that works.
+              Vancouver's menopause telehealth clinic. See a BC-licensed Nurse Practitioner this week — no referral, no 6-month wait. Personalized Bioidentical Hormone Replacement Therapy (BHRT) delivered to your door.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
@@ -255,7 +255,7 @@ function HeroSection() {
             >
               <img
                 src={WOMAN_HERO}
-                alt="Vibrant woman in her 40s"
+                alt="BC woman in her 40s experiencing menopause relief through telehealth BHRT care"
                 className="w-full object-cover"
                 style={{ height: 520 }}
               />
@@ -453,6 +453,7 @@ function WhatIsBHRTSection() {
       id="what-is-bhrt"
       className="py-20 lg:py-28"
       style={{ backgroundColor: "oklch(0.97 0.015 90)" }}
+      aria-label="What is Bioidentical Hormone Replacement Therapy BHRT Vancouver BC"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -1510,39 +1511,47 @@ function TestimonialsSection() {
 function FAQSection() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
-  const faqs = [
+    const faqs = [
     {
-      q: "Is MeNova Health available across British Columbia?",
-      a: "Yes. MeNova Health serves patients throughout BC, including Vancouver, Victoria, Kelowna, Kamloops, and all surrounding areas. All appointments are conducted via secure video call.",
+      q: "Do I need a referral to see a menopause specialist in BC?",
+      a: "No referral is needed. MeNova Health is a direct-access telehealth clinic. You can book a virtual consultation with a BC-licensed Nurse Practitioner this week — most patients are seen within 3–5 business days, compared to the 6–12 month wait for a specialist referral through the public system.",
     },
     {
-      q: "Does my insurance cover the cost?",
-      a: "Most private insurance plans (e.g., Sun Life, Manulife, Great-West Life) cover the medication portion of your care. The consultation fee may also be eligible under your extended health benefits. We provide detailed receipts for reimbursement.",
+      q: "Is MeNova Health available across British Columbia?",
+      a: "Yes. MeNova Health serves patients throughout BC, including Vancouver, Surrey, Burnaby, Richmond, North Vancouver, West Vancouver, Coquitlam, Kelowna, Victoria, Kamloops, and all surrounding areas. All appointments are conducted via secure video call.",
+    },
+    {
+      q: "Is BHRT covered by BC PharmaCare or private insurance?",
+      a: "As of March 2026, BC PharmaCare covers standard menopausal hormone therapy (MHT) for eligible BC residents. Most private insurance plans (Sun Life, Manulife, Great-West Life) also cover the medication portion of your care. Our care team will help you navigate your benefits during your consultation.",
     },
     {
       q: "What is Bioidentical Hormone Replacement Therapy (BHRT) and is it safe?",
-      a: "Bioidentical Hormone Replacement Therapy (BHRT) uses hormones that are molecularly identical to those your body produces. It is prescribed following current NAMS and SOGC guidelines and is considered safe and effective for the majority of perimenopausal and menopausal women.",
+      a: "Bioidentical Hormone Replacement Therapy (BHRT) uses plant-derived hormones that are molecularly identical to those your body produces. Unlike synthetic HRT, BHRT is custom-compounded to your specific hormone levels. It is prescribed following current NAMS and SOGC guidelines and is considered safe and effective for the majority of perimenopausal and menopausal women.",
     },
     {
-      q: "How long before I feel results?",
+      q: "How quickly can I get a menopause prescription in BC?",
+      a: "Most MeNova patients receive their personalized BHRT prescription within 5–7 days of their initial consultation. Compounded medications are dispensed by our BC partner pharmacy and shipped discreetly to your door, typically within 3–5 business days of the prescription.",
+    },
+    {
+      q: "What menopause symptoms does MeNova Health treat?",
+      a: "MeNova treats the full spectrum of perimenopause and menopause symptoms: hot flashes, night sweats, brain fog, sleep disturbances, mood changes, anxiety, weight gain, low libido, vaginal dryness, fatigue, hair thinning, and bone health concerns. All treatment plans are personalized by a BC-licensed Nurse Practitioner.",
+    },
+    {
+      q: "How long before I feel results from BHRT?",
       a: "Most patients notice improvements in sleep and mood within 2–4 weeks. Hot flashes and energy levels typically improve within 4–8 weeks. Your NP will monitor your progress and adjust your plan as needed.",
     },
     {
       q: "Who prescribes my medication?",
-      a: "All prescriptions are issued by licensed BC Nurse Practitioners registered with the BC College of Nursing Professionals. Medications are dispensed by our partner Health Canada–regulated compounding pharmacy.",
-    },
-    {
-      q: "Can I cancel my subscription?",
-      a: "Yes. You can pause or cancel your monthly subscription at any time with no cancellation fees. We believe in earning your trust every month.",
+      a: "All prescriptions are issued by licensed BC Nurse Practitioners registered with the BC College of Nursing Professionals. Medications are dispensed by our partner Health Canada–regulated compounding pharmacy in British Columbia.",
     },
     {
       q: "What happens at my first appointment?",
-      a: "Your first 45-minute video consult covers your full symptom history, current health, medications, and goals. Your NP will review your quiz results and recommend a personalized care plan. Lab work may be requested if needed.",
+      a: "Your first 45-minute video consult covers your full symptom history, current health, medications, and goals. Your NP will review your quiz results and recommend a personalized care plan. Lab work may be requested if needed. The consultation costs $175 CAD.",
     },
   ];
 
   return (
-    <section id="faq" className="py-20 lg:py-28" style={{ backgroundColor: "white" }}>
+    <section id="faq" className="py-20 lg:py-28" style={{ backgroundColor: "white" }} aria-label="Frequently Asked Questions about Menopause and BHRT in BC">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeUp className="text-center mb-16">
           <span className="badge-forest mb-4">Common Questions</span>
@@ -1768,6 +1777,14 @@ function Footer() {
             ))}
           </div>
         </div>
+
+        {/* SEO keyword paragraph — visible to crawlers, styled subtly */}
+        <p
+          className="text-xs mt-8 leading-relaxed max-w-4xl mx-auto text-center"
+          style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.18)" }}
+        >
+          MeNova Health provides virtual menopause care and Bioidentical Hormone Replacement Therapy (BHRT) to women across British Columbia, including Vancouver, Surrey, Burnaby, Richmond, North Vancouver, Coquitlam, Kelowna, Victoria, and Kamloops. Our BC-licensed Nurse Practitioners treat hot flashes, night sweats, brain fog, sleep disturbances, mood changes, weight gain, low libido, and vaginal dryness. No referral required. Book a menopause consultation online today.
+        </p>
       </div>
     </footer>
   );
@@ -1778,6 +1795,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Navbar />
+      <main id="main-content">
       <HeroSection />
       <CategoryScroll />
       <TrustBar />
@@ -1791,6 +1809,7 @@ export default function Home() {
       <TestimonialsSection />
       <FAQSection />
       <FinalCTA />
+      </main>
       <Footer />
     </div>
   );
