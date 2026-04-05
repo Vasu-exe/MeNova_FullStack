@@ -221,11 +221,13 @@ function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                 Take the Free Symptom Quiz
               </button>
               <a
-                href="#how-it-works"
-                className="inline-flex items-center justify-center gap-2 text-sm font-semibold"
-                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.82)" }}
+                href="https://doxy.me/menova"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-semibold border-2 transition-all hover:bg-white/10"
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "white", borderColor: "rgba(255,255,255,0.45)" }}
               >
-                See how it works <ArrowRight className="w-4 h-4" />
+                Book a Consultation <ArrowRight className="w-4 h-4" />
               </a>
             </div>
 
@@ -1631,7 +1633,7 @@ function FinalCTA({ onOpenQuiz }: { onOpenQuiz: () => void }) {
               Take the Free Symptom Quiz
             </button>
             <a
-              href="https://menovahealth.janeapp.com"
+              href="https://doxy.me/menova"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline-forest text-center"

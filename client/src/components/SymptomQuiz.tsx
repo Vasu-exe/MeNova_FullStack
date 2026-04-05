@@ -684,7 +684,7 @@ export default function SymptomQuiz({ onClose }: SymptomQuizProps) {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="https://menovahealth.janeapp.com"
+                href="https://doxy.me/menova"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 text-center py-4 rounded-full text-white font-semibold text-base transition-all hover:opacity-90 active:scale-95"
