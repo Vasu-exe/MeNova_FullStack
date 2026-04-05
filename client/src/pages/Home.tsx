@@ -6,8 +6,10 @@
  * Layout: MEDVi-inspired with dark hero, horizontal category scroll, alternating feature sections
  */
 
+import { AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import SymptomQuiz from "@/components/SymptomQuiz";
 import {
   CheckCircle2,
   ArrowRight,
@@ -17,9 +19,6 @@ import {
   Leaf,
   HeartPulse,
   Brain,
-  Thermometer,
-  Moon,
-  Zap,
   Shield,
   Clock,
   Package,
@@ -59,7 +58,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 }
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
-function Navbar() {
+function Navbar({ onOpenQuiz }: { onOpenQuiz: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -119,13 +118,13 @@ function Navbar() {
           </div>
 
           <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="#quiz"
+            <button
+              onClick={onOpenQuiz}
               className="btn-terracotta"
               style={{ padding: "0.6rem 1.5rem", fontSize: "0.875rem" }}
             >
               Start Your Assessment
-            </a>
+            </button>
           </div>
 
           <button
@@ -152,9 +151,9 @@ function Navbar() {
                 {link.label}
               </a>
             ))}
-            <a href="#quiz" className="btn-terracotta block text-center mt-4">
+            <button onClick={() => { onOpenQuiz(); setMobileOpen(false); }} className="btn-terracotta block text-center w-full mt-4">
               Start Your Assessment
-            </a>
+            </button>
           </div>
         </div>
       )}
@@ -163,7 +162,7 @@ function Navbar() {
 }
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
-function HeroSection() {
+function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
   return (
     <section
       className="relative min-h-screen flex items-center overflow-hidden"
@@ -218,9 +217,9 @@ function HeroSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <a href="#quiz" className="btn-terracotta text-center">
+              <button onClick={onOpenQuiz} className="btn-terracotta text-center">
                 Take the Free Symptom Quiz
-              </a>
+              </button>
               <a
                 href="#how-it-works"
                 className="inline-flex items-center justify-center gap-2 text-sm font-semibold"
@@ -874,25 +873,15 @@ function HowItWorksSection() {
 }
 
 // ─── Symptom Quiz CTA ─────────────────────────────────────────────────────────
-function QuizSection() {
-  const [selected, setSelected] = useState<Set<string>>(new Set());
-
+function QuizSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
   const symptoms = [
-    { label: "Hot Flashes", icon: Thermometer },
-    { label: "Brain Fog", icon: Brain },
-    { label: "Sleep Issues", icon: Moon },
-    { label: "Low Energy", icon: Zap },
-    { label: "Mood Changes", icon: HeartPulse },
-    { label: "Weight Gain", icon: Leaf },
+    { label: "Hot Flashes", emoji: "🌡️" },
+    { label: "Brain Fog", emoji: "🧠" },
+    { label: "Sleep Issues", emoji: "🌙" },
+    { label: "Low Energy", emoji: "⚡" },
+    { label: "Mood Changes", emoji: "💚" },
+    { label: "Weight Gain", emoji: "⚖️" },
   ];
-
-  const toggle = (label: string) => {
-    setSelected((prev) => {
-      const next = new Set(prev);
-      next.has(label) ? next.delete(label) : next.add(label);
-      return next;
-    });
-  };
 
   return (
     <section
@@ -910,7 +899,7 @@ function QuizSection() {
               fontFamily: "'DM Sans', sans-serif",
             }}
           >
-            2-Minute Assessment
+            Free 3-Minute Assessment
           </span>
           <h2
             className="text-4xl lg:text-5xl font-bold text-white mb-4"
@@ -925,43 +914,35 @@ function QuizSection() {
             className="text-base lg:text-lg mb-10"
             style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.65)" }}
           >
-            Select all that apply. Our clinical intake quiz qualifies your symptoms before your first appointment.
+            Take our free symptom assessment and get a personalised care recommendation — in under 3 minutes.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-10">
-            {symptoms.map(({ label, icon: Icon }) => {
-              const active = selected.has(label);
-              return (
-                <button
-                  key={label}
-                  onClick={() => toggle(label)}
-                  className="flex items-center gap-3 p-4 rounded-xl text-left transition-all duration-200"
-                  style={{
-                    backgroundColor: active ? "oklch(0.60 0.12 42)" : "rgba(255,255,255,0.08)",
-                    border: `1.5px solid ${active ? "oklch(0.60 0.12 42)" : "rgba(255,255,255,0.18)"}`,
-                    color: "white",
-                  }}
-                >
-                  <Icon className="w-5 h-5 flex-shrink-0" />
-                  <span className="text-sm font-medium" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                    {label}
-                  </span>
-                </button>
-              );
-            })}
+            {symptoms.map(({ label, emoji }) => (
+              <div
+                key={label}
+                className="flex items-center gap-3 p-4 rounded-xl text-left"
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.08)",
+                  border: "1.5px solid rgba(255,255,255,0.18)",
+                  color: "white",
+                }}
+              >
+                <span className="text-xl">{emoji}</span>
+                <span className="text-sm font-medium" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                  {label}
+                </span>
+              </div>
+            ))}
           </div>
 
-          <a
-            href="#"
-            className="btn-terracotta inline-block text-base"
+          <button
+            onClick={onOpenQuiz}
+            className="btn-terracotta inline-flex items-center gap-2 text-base"
             style={{ padding: "1rem 2.5rem" }}
-            onClick={(e) => {
-              e.preventDefault();
-              toast.info("Full symptom quiz — Feature coming soon");
-            }}
           >
-            See My Care Options <ArrowRight className="inline w-4 h-4 ml-2" />
-          </a>
+            Start My Free Assessment <ArrowRight className="w-4 h-4" />
+          </button>
 
           <p
             className="mt-4 text-xs"
@@ -1134,7 +1115,7 @@ function FeaturesSection() {
 }
 
 // ─── Pricing Section ──────────────────────────────────────────────────────────
-function PricingSection() {
+function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
   const plans = [
     {
       name: "Initial Consult",
@@ -1274,7 +1255,7 @@ function PricingSection() {
                 </ul>
 
                 <button
-                  onClick={() => toast.info("Booking — Feature coming soon")}
+                  onClick={onOpenQuiz}
                   className={plan.highlight ? "btn-terracotta w-full text-center block" : "btn-outline-forest w-full text-center block"}
                 >
                   {plan.cta}
@@ -1612,7 +1593,7 @@ function FAQSection() {
 }
 
 // ─── Final CTA ────────────────────────────────────────────────────────────────
-function FinalCTA() {
+function FinalCTA({ onOpenQuiz }: { onOpenQuiz: () => void }) {
   return (
     <section
       className="py-20 lg:py-28 relative overflow-hidden"
@@ -1646,15 +1627,17 @@ function FinalCTA() {
             Canada's menopause gap is real — but it doesn't have to be your reality. Book your first appointment this week and start feeling like yourself again.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#quiz" className="btn-forest text-center">
+            <button onClick={onOpenQuiz} className="btn-forest text-center">
               Take the Free Symptom Quiz
-            </a>
-            <button
-              onClick={() => toast.info("Booking — Feature coming soon")}
-              className="btn-outline-forest"
+            </button>
+            <a
+              href="https://menovahealth.janeapp.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline-forest text-center"
             >
               Book a Consult — $175 CAD
-            </button>
+            </a>
           </div>
           <p
             className="mt-6 text-xs"
@@ -1792,25 +1775,34 @@ function Footer() {
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 export default function Home() {
+  const [quizOpen, setQuizOpen] = useState(false);
+  const openQuiz = () => setQuizOpen(true);
+  const closeQuiz = () => setQuizOpen(false);
+
   return (
     <div className="min-h-screen">
-      <Navbar />
+      <Navbar onOpenQuiz={openQuiz} />
       <main id="main-content">
-      <HeroSection />
+      <HeroSection onOpenQuiz={openQuiz} />
       <CategoryScroll />
       <TrustBar />
       <WhatIsBHRTSection />
       <BHRTSection />
       <HowItWorksSection />
-      <QuizSection />
+      <QuizSection onOpenQuiz={openQuiz} />
       <WholeCareSection />
       <FeaturesSection />
-      <PricingSection />
+      <PricingSection onOpenQuiz={openQuiz} />
       <TestimonialsSection />
       <FAQSection />
-      <FinalCTA />
+      <FinalCTA onOpenQuiz={openQuiz} />
       </main>
       <Footer />
+
+      {/* Global quiz modal */}
+      <AnimatePresence>
+        {quizOpen && <SymptomQuiz onClose={closeQuiz} />}
+      </AnimatePresence>
     </div>
   );
 }
