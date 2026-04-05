@@ -73,7 +73,6 @@ function Navbar() {
     { label: "How It Works", href: "#how-it-works" },
     { label: "Treatments", href: "#treatments" },
     { label: "Pricing", href: "#pricing" },
-    { label: "Our Providers", href: "#providers" },
     { label: "FAQ", href: "#faq" },
   ];
 
@@ -1662,11 +1661,25 @@ function FinalCTA() {
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
 function Footer() {
-  const links: Record<string, string[]> = {
-    Care: ["How It Works", "Treatments", "Pricing", "Our Providers"],
-    Company: ["About Us", "Medical Advisory Board", "Careers", "Press"],
-    Legal: ["Privacy Policy", "Terms of Service", "Cookie Policy", "Accessibility"],
-    Support: ["FAQ", "Contact Us", "Patient Portal", "Pharmacy Partners"],
+  const links: Record<string, { label: string; href: string }[]> = {
+    "On This Page": [
+      { label: "How It Works", href: "#how-it-works" },
+      { label: "Treatments", href: "#treatments" },
+      { label: "Pricing", href: "#pricing" },
+      { label: "FAQ", href: "#faq" },
+      { label: "Symptom Quiz", href: "#quiz" },
+    ],
+    Legal: [
+      { label: "Privacy Policy", href: "#" },
+      { label: "Terms of Service", href: "#" },
+      { label: "Cookie Policy", href: "#" },
+      { label: "Accessibility", href: "#" },
+    ],
+    Support: [
+      { label: "Contact Us", href: "#" },
+      { label: "Patient Portal", href: "#" },
+      { label: "Pharmacy Partners", href: "#" },
+    ],
   };
 
   return (
@@ -1709,17 +1722,17 @@ function Footer() {
               </h4>
               <ul className="space-y-2">
                 {items.map((item) => (
-                  <li key={item}>
+                  <li key={item.label}>
                     <a
-                      href="#"
+                      href={item.href}
                       className="text-sm transition-colors hover:text-white"
                       style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.60)" }}
-                      onClick={(e) => {
+                      onClick={item.href === "#" ? (e) => {
                         e.preventDefault();
-                        toast.info(`${item} — Feature coming soon`);
-                      }}
+                        toast.info(`${item.label} — Feature coming soon`);
+                      } : undefined}
                     >
-                      {item}
+                      {item.label}
                     </a>
                   </li>
                 ))}
@@ -1775,7 +1788,6 @@ export default function Home() {
       <WholeCareSection />
       <FeaturesSection />
       <PricingSection />
-      <ProvidersSection />
       <TestimonialsSection />
       <FAQSection />
       <FinalCTA />
