@@ -269,6 +269,25 @@ export default function SymptomQuiz({ onClose }: SymptomQuizProps) {
 
   function submitContact(e: React.FormEvent) {
     e.preventDefault();
+    
+    // Send quiz data to Make.com webhook
+    const quizData = {
+      name: contact.name,
+      email: contact.email,
+      timestamp: new Date().toISOString(),
+      score: totalScore,
+      maxScore: maxScore,
+      tier: getResult(totalScore, maxScore).tier,
+      answers: answers,
+      recommendation: getResult(totalScore, maxScore).body,
+    };
+    
+    fetch('https://hook.us2.make.com/q2vzlc48xdjdmchngqbi3j1u0ilq0n4d', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(quizData),
+    }).catch((err) => console.error('Webhook error:', err));
+    
     setStep("results");
   }
 
