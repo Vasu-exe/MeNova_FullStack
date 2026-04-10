@@ -1028,93 +1028,7 @@ function WholeCareSection() {
 }
 
 // ─── Features / Portal Section ────────────────────────────────────────────────
-function FeaturesSection() {
-  const features = [
-    {
-      icon: "📱",
-      title: "Everything, all in one place",
-      desc: "Track your progress, check in with your provider, and manage your care in your all-in-one patient portal — powered by Jane.app, BC's leading EMR.",
-      highlight: true,
-    },
-    {
-      icon: "💬",
-      title: "Unlimited 24/7 support",
-      desc: "Medical support continues throughout your care, whenever you need it. Message your care team at any hour.",
-      highlight: false,
-    },
-    {
-      icon: "🚚",
-      title: "Fast & discreet shipping",
-      desc: "Your compounded medications arrive in plain packaging, shipped directly from our BC partner pharmacy.",
-      highlight: false,
-    },
-    {
-      icon: "🔬",
-      title: "Evidence-based protocols",
-      desc: "All treatment plans follow current NAMS and SOGC menopause guidelines, reviewed by our medical advisory board.",
-      highlight: false,
-    },
-  ];
 
-  return (
-    <section className="py-20 lg:py-28" style={{ backgroundColor: "oklch(0.97 0.015 90)" }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeUp className="text-center mb-16">
-          <span className="badge-forest mb-4">Better is Possible</span>
-          <h2
-            className="text-4xl lg:text-5xl font-bold mb-4"
-            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
-          >
-            Modern healthcare,{" "}
-            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
-              built around you
-            </em>
-          </h2>
-          <p
-            className="text-base max-w-xl mx-auto"
-            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
-          >
-            We're creating a better healthcare experience, and the details matter.
-          </p>
-        </FadeUp>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((f, i) => (
-            <FadeUp key={f.title} delay={i * 80}>
-              <div
-                className="card-hover rounded-2xl p-6 h-full"
-                style={{
-                  backgroundColor: f.highlight ? "oklch(0.24 0.07 155)" : "white",
-                  border: `1px solid ${f.highlight ? "transparent" : "oklch(0.88 0.01 90)"}`,
-                }}
-              >
-                <span className="text-3xl mb-4 block">{f.icon}</span>
-                <h3
-                  className="text-lg font-bold mb-2"
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    color: f.highlight ? "white" : "oklch(0.22 0.005 65)",
-                  }}
-                >
-                  {f.title}
-                </h3>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    color: f.highlight ? "rgba(255,255,255,0.72)" : "oklch(0.50 0.005 65)",
-                  }}
-                >
-                  {f.desc}
-                </p>
-              </div>
-            </FadeUp>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // ─── Pricing Section ──────────────────────────────────────────────────────────
 function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
@@ -1806,10 +1720,9 @@ export default function Home() {
       <WhatIsBHRTSection />
       <BHRTSection />
       <HowItWorksSection />
+      <PricingSection onOpenQuiz={openQuiz} />
       <QuizSection onOpenQuiz={openQuiz} />
       <WholeCareSection />
-      <FeaturesSection />
-      <PricingSection onOpenQuiz={openQuiz} />
       <TestimonialsSection />
       <FAQSection />
       <FinalCTA onOpenQuiz={openQuiz} />
