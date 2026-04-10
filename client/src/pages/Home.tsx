@@ -221,7 +221,7 @@ function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                 Take the Free Symptom Quiz
               </button>
               <a
-                href="https://cal.com/menova/30min"
+                href="https://cal.com/menova/60min"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-semibold border-2 transition-all hover:bg-white/10"
@@ -1184,7 +1184,7 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                 </ul>
 
                 <a
-                  href="https://cal.com/menova/30min"
+                  href="https://cal.com/menova/60min"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={plan.highlight ? "btn-terracotta w-full text-center block" : "btn-outline-forest w-full text-center block"}
@@ -1562,7 +1562,7 @@ function FinalCTA({ onOpenQuiz }: { onOpenQuiz: () => void }) {
               Take the Free Symptom Quiz
             </button>
             <a
-              href="https://cal.com/menova/30min"
+              href="https://cal.com/menova/60min"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline-forest text-center"
