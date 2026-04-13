@@ -1063,9 +1063,10 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
         "Refill authorization & prescription renewal",
         "Ongoing progress tracking in your patient portal",
       ],
-      cta: "Sign In",
+      cta: "Available to existing patients only",
       highlight: true,
-      badge: "Most Popular",
+      badge: null,
+      isDisabled: true,
     },
   ];
 
@@ -1112,6 +1113,9 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                   >
                     {plan.badge}
                   </span>
+                )}
+                {plan.isDisabled && (
+                  <div className="absolute inset-0 rounded-3xl" style={{ backgroundColor: "rgba(0,0,0,0.15)" }} />
                 )}
                 <p
                   className="text-xs font-semibold tracking-widest uppercase mb-2"
@@ -1183,14 +1187,28 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                   ))}
                 </ul>
 
-                <a
-                  href="https://cal.com/menova/60min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={plan.highlight ? "btn-terracotta w-full text-center block" : "btn-outline-forest w-full text-center block"}
-                >
-                  {plan.cta}
-                </a>
+                {plan.isDisabled ? (
+                  <div
+                    className="w-full text-center py-3 rounded-lg font-semibold"
+                    style={{
+                      backgroundColor: "oklch(0.85 0.01 90)",
+                      color: "oklch(0.55 0.005 65)",
+                      fontFamily: "'DM Sans', sans-serif",
+                      opacity: 0.6,
+                    }}
+                  >
+                    {plan.cta}
+                  </div>
+                ) : (
+                  <a
+                    href="https://cal.com/menova/60min"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={plan.highlight ? "btn-terracotta w-full text-center block" : "btn-outline-forest w-full text-center block"}
+                  >
+                    {plan.cta}
+                  </a>
+                )}
               </div>
             </FadeUp>
           ))}
