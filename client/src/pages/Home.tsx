@@ -1099,7 +1099,6 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                 style={{
                   backgroundColor: plan.highlight ? "oklch(0.24 0.07 155)" : "oklch(0.97 0.015 90)",
                   border: `2px solid ${plan.highlight ? "oklch(0.24 0.07 155)" : "oklch(0.88 0.01 90)"}`,
-                  opacity: 0.6,
                 }}
               >
                 {plan.badge && (
@@ -1184,17 +1183,14 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                   ))}
                 </ul>
 
-                <div
-                  className="w-full text-center py-3 rounded-lg font-semibold"
-                  style={{
-                    backgroundColor: "oklch(0.85 0.01 90)",
-                    color: "oklch(0.55 0.005 65)",
-                    fontFamily: "'DM Sans', sans-serif",
-                    opacity: 0.6,
-                  }}
+                <a
+                  href="https://cal.com/menova/60min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={plan.highlight ? "btn-terracotta w-full text-center block" : "btn-outline-forest w-full text-center block"}
                 >
-                  Available to existing patients only
-                </div>
+                  {plan.cta}
+                </a>
               </div>
             </FadeUp>
           ))}
