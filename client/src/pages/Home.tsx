@@ -1611,10 +1611,10 @@ function Footer() {
       { label: "Symptom Quiz", href: "#quiz" },
     ],
     Legal: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Cookie Policy", href: "#" },
-      { label: "Accessibility", href: "#" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms of Service", href: "/terms-and-conditions" },
+      { label: "Cookie Policy", href: "/cookie-policy" },
+      { label: "Accessibility", href: "/accessibility" },
     ],
     Support: [
       { label: "Contact Us", href: "#" },
