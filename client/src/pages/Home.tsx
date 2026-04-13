@@ -1585,7 +1585,7 @@ function FinalCTA({ onOpenQuiz }: { onOpenQuiz: () => void }) {
               rel="noopener noreferrer"
               className="btn-outline-forest text-center"
             >
-              Book a Consult — $175 CAD
+              Book a Consult — $199 CAD
             </a>
           </div>
           <p
@@ -1619,7 +1619,6 @@ function Footer() {
     Support: [
       { label: "Contact Us", href: "#" },
       { label: "Patient Portal", href: "#" },
-      { label: "Pharmacy Partners", href: "#" },
     ],
   };
 
