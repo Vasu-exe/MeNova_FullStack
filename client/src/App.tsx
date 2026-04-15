@@ -9,6 +9,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import CookiePolicy from "./pages/CookiePolicy";
 import Accessibility from "./pages/Accessibility";
+import ScheduleFollowup from "./pages/ScheduleFollowup";
 
 
 function Router() {
@@ -19,6 +20,7 @@ function Router() {
       <Route path={"/terms-and-conditions"} component={TermsAndConditions} />
       <Route path={"/cookie-policy"} component={CookiePolicy} />
       <Route path={"/accessibility"} component={Accessibility} />
+      <Route path={"/schedule-followup"} component={ScheduleFollowup} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

@@ -1063,10 +1063,11 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
         "Refill authorization & prescription renewal",
         "Ongoing progress tracking in your patient portal",
       ],
-      cta: "Available to existing patients only",
+      cta: "Schedule Follow-up",
       highlight: true,
       badge: null,
-      isDisabled: true,
+      isDisabled: false,
+      link: "/schedule-followup",
     },
   ];
 
@@ -1201,9 +1202,9 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                   </div>
                 ) : (
                   <a
-                    href="https://cal.com/menova/60min"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={plan.link || "https://cal.com/menova/60min"}
+                    target={plan.link ? undefined : "_blank"}
+                    rel={plan.link ? undefined : "noopener noreferrer"}
                     className={plan.highlight ? "btn-terracotta w-full text-center block" : "btn-outline-forest w-full text-center block"}
                   >
                     {plan.cta}
