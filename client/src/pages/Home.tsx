@@ -1618,7 +1618,7 @@ function Footer() {
     ],
     Support: [
       { label: "Contact Us", href: "#" },
-      { label: "Patient Portal", href: "#" },
+     // { label: "Patient Portal", href: "#" },
     ],
   };
 
