@@ -542,6 +542,13 @@ function submitContact(e: React.FormEvent) {
                 >
                   First name
                 </label>
+                 <label
+                  htmlFor="quiz-name"
+                  className="block text-sm font-medium mb-1.5"
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.35 0.005 65)" }}
+                >
+                  Last name
+                </label>
                 <input
                   id="quiz-name"
                   type="text"
