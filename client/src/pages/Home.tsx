@@ -10,6 +10,7 @@ import { AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import SymptomQuiz from "@/components/SymptomQuiz";
+import WaitlistSection from "@/components/WaitlistSection";
 import {
   CheckCircle2,
   ArrowRight,
@@ -1049,6 +1050,9 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
       ],
       cta: "Book Consult",
       highlight: false,
+      badge: null as string | null,
+      isDisabled: false,
+      link: "https://cal.com/menova/30min",
     },
     {
       name: "💜 Follow-Up (30 min)",
@@ -1065,7 +1069,7 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
       ],
       cta: "Schedule Follow-up",
       highlight: true,
-      badge: null,
+      badge: null as string | null,
       isDisabled: false,
       link: "/schedule-followup",
     },
@@ -1744,8 +1748,10 @@ export default function Home() {
       <TestimonialsSection />
       <FAQSection />
       <FinalCTA onOpenQuiz={openQuiz} />
+      <WaitlistSection />
       </main>
       <Footer />
+
 
       {/* Global quiz modal */}
       <AnimatePresence>

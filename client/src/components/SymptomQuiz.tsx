@@ -300,6 +300,20 @@ function submitContact(e: React.FormEvent) {
     recommendation: result.body,
   };
 
+  // Save to backend database
+  fetch('/api/quiz/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      ...quizData,
+      source: sessionStorage.getItem('menova_source') || '',
+      utmSource: sessionStorage.getItem('menova_utm_source') || '',
+      utmMedium: sessionStorage.getItem('menova_utm_medium') || '',
+      utmCampaign: sessionStorage.getItem('menova_utm_campaign') || '',
+    }),
+  }).catch((err) => console.error('Backend save error:', err));
+
+  // Also send to Make.com webhook (existing flow)
   fetch('https://hook.us2.make.com/q2vzlc48xdjdmchngqbi3j1u0ilq0n4d', {
     method: 'POST',
     headers: {
