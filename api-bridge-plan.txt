@@ -1,0 +1,36 @@
+API BRIDGE PLAN — REST endpoints needed to match frontend components
+
+Frontend components use these REST endpoints:
+1. POST /api/quiz/submit — SymptomQuiz.tsx sends { name, email, score, maxScore, tier, answers, recommendation, source, utmSource, utmMedium, utmCampaign }
+   DB schema uses: severityTier (not tier), single source field (no separate utm fields)
+   
+2. POST /api/followup/request — ScheduleFollowup.tsx sends { firstName, lastName, email }
+   Expects: { sessionId }
+   
+3. GET /api/followup/status/:sessionId — ScheduleFollowup.tsx polls this
+   Expects: { status, qualified, resultMessage }
+   DB schema: no resultMessage field
+
+4. POST /api/followup-result — Make.com webhook (ALREADY EXISTS)
+
+5. POST /api/chat — AIChatWidget.tsx sends { message, history }
+   Expects: { reply }
+   
+6. POST /api/waitlist — WaitlistSection.tsx sends { name, email, interest }
+   DB schema: no interest field, has phone and city instead
+
+7. POST /api/admin/login — AdminDashboard.tsx sends { password }
+   Expects: { success, token }
+
+8. GET /api/admin/stats — AdminDashboard.tsx
+9. GET /api/admin/quiz-submissions — AdminDashboard.tsx
+10. GET /api/admin/followup-requests — AdminDashboard.tsx
+11. GET /api/admin/waitlist — AdminDashboard.tsx
+12. GET /api/admin/export/:type — AdminDashboard.tsx (CSV export)
+
+13. POST /api/analytics/pageview — UTMTracker.tsx sends { page, referrer, utmSource, utmMedium, utmCampaign, timestamp }
+
+APPROACH: Add all REST endpoints to server/_core/index.ts
+- Admin auth: simple password-based (env var MENOVA_ADMIN_PASSWORD)
+- Map frontend field names to DB field names in the handlers
+- For missing DB fields (interest, resultMessage, utm*), either add schema columns or adapt

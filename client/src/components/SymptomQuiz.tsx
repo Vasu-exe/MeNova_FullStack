@@ -266,31 +266,72 @@ export default function SymptomQuiz({ onClose }: SymptomQuizProps) {
       setStep("welcome");
     }
   }
+function formatAnswers() {
+  const formatted: Record<string, { id: string; label: string }[]> = {};
 
-  function submitContact(e: React.FormEvent) {
-    e.preventDefault();
-    
+  QUESTIONS.forEach((q) => {
+    const selectedIds = answers[q.id] ?? [];
+
+    const selectedOptions = q.options
+      .filter((opt) => selectedIds.includes(opt.id))
+      .map((opt) => ({
+        id: opt.id,
+        label: opt.label,
+      }));
+
+    formatted[q.id] = selectedOptions;
+  });
+
+  return formatted;
+}
+function submitContact(e: React.FormEvent) {
+  e.preventDefault();
+
+  const formattedAnswers = formatAnswers();
     // Send quiz data to Make.com webhook
-    const quizData = {
-      name: contact.name,
-      email: contact.email,
-      timestamp: new Date().toISOString(),
-      score: totalScore,
-      maxScore: maxScore,
-      tier: getResult(totalScore, maxScore).tier,
-      answers: answers,
-      recommendation: getResult(totalScore, maxScore).body,
-    };
-    
-    fetch('https://hook.us2.make.com/q2vzlc48xdjdmchngqbi3j1u0ilq0n4d', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(quizData),
-    }).catch((err) => console.error('Webhook error:', err));
-    
-    setStep("results");
-  }
+  const quizData = {
+    name: contact.name,
+    email: contact.email,
+    timestamp: new Date().toISOString(),
+    score: totalScore,
+    maxScore: maxScore,
+    tier: result.tier,
+    answers: formattedAnswers, // ✅ now includes label + id
+    recommendation: result.body,
+  };
 
+  // Save to backend database
+  fetch('/api/quiz/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      ...quizData,
+      source: sessionStorage.getItem('menova_source') || '',
+      utmSource: sessionStorage.getItem('menova_utm_source') || '',
+      utmMedium: sessionStorage.getItem('menova_utm_medium') || '',
+      utmCampaign: sessionStorage.getItem('menova_utm_campaign') || '',
+    }),
+  }).catch((err) => console.error('Backend save error:', err));
+
+  // Also send to Make.com webhook (existing flow)
+  fetch('https://hook.us2.make.com/q2vzlc48xdjdmchngqbi3j1u0ilq0n4d', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(quizData),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error('Webhook failed');
+      }
+    })
+    .catch((err) => {
+      console.error('Webhook error:', err);
+    });
+
+  setStep("results");
+}
   const isAnswered =
     step === "questions" &&
     (answers[currentQ?.id] ?? []).length > 0;
@@ -513,7 +554,7 @@ export default function SymptomQuiz({ onClose }: SymptomQuizProps) {
                   className="block text-sm font-medium mb-1.5"
                   style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.35 0.005 65)" }}
                 >
-                  First name
+                  Full Name
                 </label>
                 <input
                   id="quiz-name"

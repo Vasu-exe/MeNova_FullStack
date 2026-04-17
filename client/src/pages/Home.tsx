@@ -10,6 +10,7 @@ import { AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import SymptomQuiz from "@/components/SymptomQuiz";
+import WaitlistSection from "@/components/WaitlistSection";
 import {
   CheckCircle2,
   ArrowRight,
@@ -221,7 +222,7 @@ function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                 Take the Free Symptom Quiz
               </button>
               <a
-                href="https://cal.com/menova/30min"
+                href="https://cal.com/menova/60min"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-semibold border-2 transition-all hover:bg-white/10"
@@ -1028,128 +1029,49 @@ function WholeCareSection() {
 }
 
 // ─── Features / Portal Section ────────────────────────────────────────────────
-function FeaturesSection() {
-  const features = [
-    {
-      icon: "📱",
-      title: "Everything, all in one place",
-      desc: "Track your progress, check in with your provider, and manage your care in your all-in-one patient portal — powered by Jane.app, BC's leading EMR.",
-      highlight: true,
-    },
-    {
-      icon: "💬",
-      title: "Unlimited 24/7 support",
-      desc: "Medical support continues throughout your care, whenever you need it. Message your care team at any hour.",
-      highlight: false,
-    },
-    {
-      icon: "🚚",
-      title: "Fast & discreet shipping",
-      desc: "Your compounded medications arrive in plain packaging, shipped directly from our BC partner pharmacy.",
-      highlight: false,
-    },
-    {
-      icon: "🔬",
-      title: "Evidence-based protocols",
-      desc: "All treatment plans follow current NAMS and SOGC menopause guidelines, reviewed by our medical advisory board.",
-      highlight: false,
-    },
-  ];
 
-  return (
-    <section className="py-20 lg:py-28" style={{ backgroundColor: "oklch(0.97 0.015 90)" }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeUp className="text-center mb-16">
-          <span className="badge-forest mb-4">Better is Possible</span>
-          <h2
-            className="text-4xl lg:text-5xl font-bold mb-4"
-            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
-          >
-            Modern healthcare,{" "}
-            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
-              built around you
-            </em>
-          </h2>
-          <p
-            className="text-base max-w-xl mx-auto"
-            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
-          >
-            We're creating a better healthcare experience, and the details matter.
-          </p>
-        </FadeUp>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((f, i) => (
-            <FadeUp key={f.title} delay={i * 80}>
-              <div
-                className="card-hover rounded-2xl p-6 h-full"
-                style={{
-                  backgroundColor: f.highlight ? "oklch(0.24 0.07 155)" : "white",
-                  border: `1px solid ${f.highlight ? "transparent" : "oklch(0.88 0.01 90)"}`,
-                }}
-              >
-                <span className="text-3xl mb-4 block">{f.icon}</span>
-                <h3
-                  className="text-lg font-bold mb-2"
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    color: f.highlight ? "white" : "oklch(0.22 0.005 65)",
-                  }}
-                >
-                  {f.title}
-                </h3>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    color: f.highlight ? "rgba(255,255,255,0.72)" : "oklch(0.50 0.005 65)",
-                  }}
-                >
-                  {f.desc}
-                </p>
-              </div>
-            </FadeUp>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // ─── Pricing Section ──────────────────────────────────────────────────────────
 function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
   const plans = [
     {
-      name: "Initial Consult",
-      price: "$175",
+      name: "💜 Initial Consult",
+      originalPrice: "$259",
+      price: "$199",
       period: "one-time",
-      desc: "Your first step to hormonal clarity",
+      desc: "Your first step to feeling like yourself again.",
       features: [
-        "45-minute video consult with BC NP",
-        "Comprehensive symptom assessment",
-        "Personalized Bioidentical Hormone Replacement Therapy (BHRT) recommendation",
-        "Lab requisition if needed",
-        "Secure patient portal access",
+        "60-minute 1-on-1 video consultation with a licensed Nurse Practitioner",
+        "Full review of your symptoms, health history & hormone status",
+        "Personalized treatment plan (HRT, lifestyle, supplements)",
+        "Prescription issued same day if clinically appropriate",
+        "Lab requisition & guidance on next steps",
+        "Access to your secure patient portal",
       ],
       cta: "Book Consult",
       highlight: false,
+      badge: null as string | null,
+      isDisabled: false,
+      link: "https://cal.com/menova/30min",
     },
     {
-      name: "Monthly Care Bundle",
-      price: "$199",
-      period: "per month",
-      desc: "Everything you need for ongoing hormonal health",
+      name: "💜 Follow-Up (30 min)",
+      originalPrice: "$149",
+      price: "$119",
+      period: "one-time",
+      desc: "Check in, adjust, and keep progressing.",
       features: [
-        "Monthly follow-up appointments",
-        "Custom compounded Bioidentical Hormone Replacement Therapy (BHRT) medications",
-        "Unlimited 24/7 messaging support",
-        "Symptom tracking dashboard",
-        "Discreet home delivery",
-        "Plan adjustments as needed",
+        "30-minute video visit with your NP",
+        "Review of labs, symptoms & treatment response",
+        "Medication adjustments or dose changes as needed",
+        "Refill authorization & prescription renewal",
+        "Ongoing progress tracking in your patient portal",
       ],
-      cta: "Start Subscription",
+      cta: "Schedule Follow-up",
       highlight: true,
-      badge: "Most Popular",
+      badge: null as string | null,
+      isDisabled: false,
+      link: "/schedule-followup",
     },
   ];
 
@@ -1197,6 +1119,9 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                     {plan.badge}
                   </span>
                 )}
+                {plan.isDisabled && (
+                  <div className="absolute inset-0 rounded-3xl" style={{ backgroundColor: "rgba(0,0,0,0.15)" }} />
+                )}
                 <p
                   className="text-xs font-semibold tracking-widest uppercase mb-2"
                   style={{
@@ -1207,6 +1132,17 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                   {plan.name}
                 </p>
                 <div className="flex items-baseline gap-2 mb-1">
+                  {plan.originalPrice && (
+                    <span
+                      className="text-2xl line-through"
+                      style={{
+                        fontFamily: "'Playfair Display', serif",
+                        color: plan.highlight ? "rgba(255,255,255,0.45)" : "oklch(0.55 0.005 65)",
+                      }}
+                    >
+                      {plan.originalPrice}
+                    </span>
+                  )}
                   <span
                     className="text-5xl font-bold"
                     style={{
@@ -1256,14 +1192,28 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                   ))}
                 </ul>
 
-                <a
-                  href="https://cal.com/menova/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={plan.highlight ? "btn-terracotta w-full text-center block" : "btn-outline-forest w-full text-center block"}
-                >
-                  {plan.cta}
-                </a>
+                {plan.isDisabled ? (
+                  <div
+                    className="w-full text-center py-3 rounded-lg font-semibold"
+                    style={{
+                      backgroundColor: "oklch(0.85 0.01 90)",
+                      color: "oklch(0.55 0.005 65)",
+                      fontFamily: "'DM Sans', sans-serif",
+                      opacity: 0.6,
+                    }}
+                  >
+                    {plan.cta}
+                  </div>
+                ) : (
+                  <a
+                    href={plan.link || "https://cal.com/menova/60min"}
+                    target={plan.link ? undefined : "_blank"}
+                    rel={plan.link ? undefined : "noopener noreferrer"}
+                    className={plan.highlight ? "btn-terracotta w-full text-center block" : "btn-outline-forest w-full text-center block"}
+                  >
+                    {plan.cta}
+                  </a>
+                )}
               </div>
             </FadeUp>
           ))}
@@ -1531,7 +1481,7 @@ function FAQSection() {
     },
     {
       q: "What happens at my first appointment?",
-      a: "Your first 45-minute video consult covers your full symptom history, current health, medications, and goals. Your NP will review your quiz results and recommend a personalized care plan. Lab work may be requested if needed. The consultation costs $175 CAD.",
+      a: "Your first 60-minute video consult covers your full symptom history, current health, medications, and goals. Your NP will review your quiz results and recommend a personalized treatment plan (HRT, lifestyle, supplements). Lab work may be requested if needed. The initial consultation costs $199 CAD. Follow-up visits (30 min) are $119 CAD.",
     },
   ];
 
@@ -1635,12 +1585,12 @@ function FinalCTA({ onOpenQuiz }: { onOpenQuiz: () => void }) {
               Take the Free Symptom Quiz
             </button>
             <a
-              href="https://cal.com/menova/30min"
+              href="https://cal.com/menova/60min"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline-forest text-center"
             >
-              Book a Consult — $175 CAD
+              Book a Consult — $199 CAD
             </a>
           </div>
           <p
@@ -1666,15 +1616,14 @@ function Footer() {
       { label: "Symptom Quiz", href: "#quiz" },
     ],
     Legal: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Cookie Policy", href: "#" },
-      { label: "Accessibility", href: "#" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms of Service", href: "/terms-and-conditions" },
+      { label: "Cookie Policy", href: "/cookie-policy" },
+      { label: "Accessibility", href: "/accessibility" },
     ],
     Support: [
       { label: "Contact Us", href: "#" },
-      { label: "Patient Portal", href: "#" },
-      { label: "Pharmacy Partners", href: "#" },
+     // { label: "Patient Portal", href: "#" },
     ],
   };
 
@@ -1793,15 +1742,16 @@ export default function Home() {
       <WhatIsBHRTSection />
       <BHRTSection />
       <HowItWorksSection />
+      <PricingSection onOpenQuiz={openQuiz} />
       <QuizSection onOpenQuiz={openQuiz} />
       <WholeCareSection />
-      <FeaturesSection />
-      <PricingSection onOpenQuiz={openQuiz} />
       <TestimonialsSection />
       <FAQSection />
       <FinalCTA onOpenQuiz={openQuiz} />
+      <WaitlistSection />
       </main>
       <Footer />
+
 
       {/* Global quiz modal */}
       <AnimatePresence>
