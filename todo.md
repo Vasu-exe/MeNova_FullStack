@@ -34,4 +34,4 @@
 - [x] Verify waitlist submission saves to database via API test
 - [x] Verify follow-up request + polling + webhook resolution via API test
 - [x] Save checkpoint
-- [ ] Push changes to GitHub
+- [x] Push changes to GitHub
