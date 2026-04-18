@@ -364,8 +364,9 @@ export default function AdminDashboard() {
                   { label: "Moderate Symptoms", count: stats.tierBreakdown.moderate, color: "oklch(0.60 0.12 42)" },
                   { label: "Significant Symptoms", count: stats.tierBreakdown.significant, color: "oklch(0.24 0.07 155)" },
                 ] : []).map((tier) => {
-                  const total = stats.totalQuizSubmissions || 1;
-                  const pct = Math.round((tier.count / total) * 100);
+                  const total = stats?.totalQuizSubmissions || 1;
+                  const count = tier.count || 0;
+                  const pct = total > 0 ? Math.round((count / total) * 100) : 0;
                   return (
                     <div key={tier.label} className="mb-3">
                       <div className="flex justify-between text-sm mb-1" style={{ fontFamily: "'DM Sans', sans-serif" }}>
