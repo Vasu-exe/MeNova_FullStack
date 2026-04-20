@@ -35,3 +35,44 @@
 - [x] Verify follow-up request + polling + webhook resolution via API test
 - [x] Save checkpoint
 - [x] Push changes to GitHub
+
+## Patient Portal
+- [x] Patient login/registration (email + password)
+- [x] Patient dashboard with welcome, next appointment, BHRT status
+- [x] Quiz history page with symptom severity trend chart
+- [x] BHRT prescription view (hormone type, dosage, frequency, duration)
+- [x] Appointment tracking (upcoming, past)
+- [x] Document upload (PDF, images, medical records) to S3
+- [x] Document list with download/delete
+- [x] Messaging with clinic (chat interface)
+
+## NP Portal
+- [x] NP login/registration (email + password, role-based)
+- [x] Patient management dashboard (list all patients, search, filter)
+- [x] Patient profile view (full history, quiz results, documents, notes)
+- [x] Treatment plan creator (hormone type, dosage, duration, instructions)
+- [x] Treatment plan edit/update
+- [x] Appointment management (view, schedule, mark complete)
+- [x] View/download patient documents
+- [x] Mark documents as reviewed
+- [x] Messaging with patients
+- [x] Patient progress tracking (symptom improvement chart)
+- [x] Analytics (patients on BHRT, avg improvement, common symptoms)
+- [x] Export patient data to CSV
+
+## Shared Portal Infrastructure
+- [x] Update database schema with all new tables
+- [x] Build REST API endpoints for both portals
+- [x] Update App.tsx with portal routes
+- [x] Write vitest tests for portal APIs
+- [x] Push all changes to GitHub (Vasu-exe/MeNova_FullStack)
+- [x] Save checkpoint
+
+## Bug Fixes (Session 3)
+- [x] Fix NP dashboard returning arrays instead of counts for activePlans/upcomingAppointments
+- [x] Add completedAppointments count to NP dashboard response
+- [x] Add pendingDocuments count to NP dashboard response
+- [x] Add GET /api/np/documents endpoint (was missing)
+- [x] Add PATCH routes for treatment plan and appointment status updates
+- [x] Add POST /api/np/documents/:id/review route (frontend uses POST)
+- [x] Push portal files to GitHub (Vasu-exe/MeNova_FullStack)

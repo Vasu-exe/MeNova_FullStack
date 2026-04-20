@@ -11,6 +11,9 @@ import CookiePolicy from "./pages/CookiePolicy";
 import Accessibility from "./pages/Accessibility";
 import ScheduleFollowup from "./pages/ScheduleFollowup";
 import AdminDashboard from "./pages/AdminDashboard";
+import PortalAuth from "./pages/PortalAuth";
+import PatientPortal from "./pages/PatientPortal";
+import NPPortal from "./pages/NPPortal";
 import UTMTracker from "./components/UTMTracker";
 import AIChatWidget from "./components/AIChatWidget";
 import { useLocation } from "wouter";
@@ -26,6 +29,9 @@ function Router() {
       <Route path={"/accessibility"} component={Accessibility} />
       <Route path={"/schedule-followup"} component={ScheduleFollowup} />
       <Route path={"/admin"} component={AdminDashboard} />
+      <Route path={"/portal"} component={PortalAuth} />
+      <Route path={"/patient-portal"} component={PatientPortal} />
+      <Route path={"/np-portal"} component={NPPortal} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
@@ -35,8 +41,8 @@ function Router() {
 
 function GlobalChatWidget() {
   const [location] = useLocation();
-  // Don't show chat on admin page
-  if (location.startsWith("/admin")) return null;
+  // Don't show chat on admin, portal, or dashboard pages
+  if (location.startsWith("/admin") || location.startsWith("/patient-portal") || location.startsWith("/np-portal")) return null;
   return <AIChatWidget />;
 }
 
