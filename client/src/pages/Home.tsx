@@ -1067,7 +1067,7 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
         "Refill authorization & prescription renewal",
         "Ongoing progress tracking in your patient portal",
       ],
-      cta: "Schedule Follow-up",
+      cta: "https://cal.com/menova/follow-up-consultation",
       highlight: true,
       badge: null as string | null,
       isDisabled: false,
