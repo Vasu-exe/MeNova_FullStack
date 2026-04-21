@@ -9,8 +9,8 @@
   "packageManager": "pnpm@10.4.1+sha512.c753b6c3ad7afa13af388fa6d808035a008e30ea9993f58c6663e2bc5ff21679aa834db094987129aa4d488b86df57f7b634981b2f827cdcacc698cc0cfb88af",
   "scripts": {
     "dev": "NODE_ENV=development tsx watch server/_core/index.ts",
-    "build": "vite build && esbuild server/_core/index.ts --platform=node --bundle --format=esm --outdir=dist --external:@aws-sdk --external:mysql2 --external:drizzle-orm --external:@trpc/server --external:multer --external:dotenv --external:lightningcss --external:@babel/core --external:@tailwindcss/oxide --external:@tailwindcss/oxide-linux-x64-musl --external:@tailwindcss/oxide-linux-x64-gnu",
-    "start": "NODE_ENV=production node --max-old-space-size=512 dist/index.js",
+    "build": "vite build",
+    "start": "NODE_ENV=production node server/_core/index.ts",
     "check": "tsc --noEmit",
     "format": "prettier --write .",
     "test": "vitest run",
