@@ -1,4 +1,12 @@
-import { boolean, int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import {
+  boolean,
+  int,
+  mysqlEnum,
+  mysqlTable,
+  text,
+  timestamp,
+  varchar,
+} from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing Manus OAuth auth flow.
@@ -72,7 +80,9 @@ export const followUpRequests = mysqlTable("follow_up_requests", {
   lastName: varchar("lastName", { length: 255 }).notNull(),
   email: varchar("email", { length: 320 }).notNull(),
   qualified: boolean("qualified"),
-  status: mysqlEnum("status", ["pending", "qualified", "not_qualified"]).default("pending").notNull(),
+  status: mysqlEnum("status", ["pending", "qualified", "not_qualified"])
+    .default("pending")
+    .notNull(),
   resultMessage: text("resultMessage"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   resolvedAt: timestamp("resolvedAt"),
@@ -127,7 +137,9 @@ export const treatmentPlans = mysqlTable("treatment_plans", {
   frequency: varchar("frequency", { length: 128 }).notNull(),
   duration: varchar("duration", { length: 128 }).notNull(),
   instructions: text("instructions"),
-  status: mysqlEnum("status", ["active", "completed", "paused", "cancelled"]).default("active").notNull(),
+  status: mysqlEnum("status", ["active", "completed", "paused", "cancelled"])
+    .default("active")
+    .notNull(),
   startDate: timestamp("startDate").notNull(),
   endDate: timestamp("endDate"),
   followUpDate: timestamp("followUpDate"),
@@ -150,7 +162,14 @@ export const appointments = mysqlTable("appointments", {
   description: text("description"),
   scheduledAt: timestamp("scheduledAt").notNull(),
   duration: int("duration").default(30).notNull(),
-  status: mysqlEnum("status", ["scheduled", "completed", "cancelled", "no_show"]).default("scheduled").notNull(),
+  status: mysqlEnum("status", [
+    "scheduled",
+    "completed",
+    "cancelled",
+    "no_show",
+  ])
+    .default("scheduled")
+    .notNull(),
   meetingLink: varchar("meetingLink", { length: 512 }),
   npNotes: text("npNotes"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
@@ -172,7 +191,17 @@ export const documents = mysqlTable("documents", {
   fileUrl: varchar("fileUrl", { length: 1024 }).notNull(),
   fileSize: int("fileSize").notNull(),
   mimeType: varchar("mimeType", { length: 128 }).notNull(),
-  category: mysqlEnum("category", ["lab_results", "medical_records", "prescription", "insurance", "id_document", "symptom_diary", "other"]).default("other").notNull(),
+  category: mysqlEnum("category", [
+    "lab_results",
+    "medical_records",
+    "prescription",
+    "insurance",
+    "id_document",
+    "symptom_diary",
+    "other",
+  ])
+    .default("other")
+    .notNull(),
   reviewed: boolean("reviewed").default(false).notNull(),
   reviewedBy: int("reviewedBy"),
   reviewedAt: timestamp("reviewedAt"),

@@ -19,7 +19,11 @@ const mockDb = {
 };
 
 const mockSaveQuizSubmission = vi.fn(async (data: any) => {
-  mockDb.quizSubmissions.push({ id: mockDb.quizSubmissions.length + 1, ...data, createdAt: new Date() });
+  mockDb.quizSubmissions.push({
+    id: mockDb.quizSubmissions.length + 1,
+    ...data,
+    createdAt: new Date(),
+  });
 });
 
 const mockCreateFollowUpRequest = vi.fn(async (data: any) => {
@@ -35,25 +39,33 @@ const mockCreateFollowUpRequest = vi.fn(async (data: any) => {
 });
 
 const mockGetFollowUpRequest = vi.fn(async (sessionId: string) => {
-  return mockDb.followUpRequests.find(r => r.sessionId === sessionId) || undefined;
+  return (
+    mockDb.followUpRequests.find((r) => r.sessionId === sessionId) || undefined
+  );
 });
 
-const mockResolveFollowUpRequest = vi.fn(async (sessionId: string, qualified: boolean) => {
-  const req = mockDb.followUpRequests.find(r => r.sessionId === sessionId);
-  if (req) {
-    req.qualified = qualified;
-    req.status = qualified ? "qualified" : "not_qualified";
-    req.resultMessage = qualified
-      ? "You are eligible for a follow-up consultation."
-      : "Based on our review, a follow-up consultation is not recommended at this time.";
-    req.resolvedAt = new Date();
-  }
-});
+const mockResolveFollowUpRequest = vi.fn(
+  async (sessionId: string, qualified: boolean) => {
+    const req = mockDb.followUpRequests.find((r) => r.sessionId === sessionId);
+    if (req) {
+      req.qualified = qualified;
+      req.status = qualified ? "qualified" : "not_qualified";
+      req.resultMessage = qualified
+        ? "You are eligible for a follow-up consultation."
+        : "Based on our review, a follow-up consultation is not recommended at this time.";
+      req.resolvedAt = new Date();
+    }
+  },
+);
 
 const mockAddToWaitlist = vi.fn(async (data: any) => {
-  const existing = mockDb.waitlistEntries.find(e => e.email === data.email);
+  const existing = mockDb.waitlistEntries.find((e) => e.email === data.email);
   if (existing) return { alreadyExists: true };
-  mockDb.waitlistEntries.push({ id: mockDb.waitlistEntries.length + 1, ...data, createdAt: new Date() });
+  mockDb.waitlistEntries.push({
+    id: mockDb.waitlistEntries.length + 1,
+    ...data,
+    createdAt: new Date(),
+  });
   return { alreadyExists: false };
 });
 
@@ -64,8 +76,11 @@ const mockGetAdminStats = vi.fn(async () => ({
   totalQuiz: mockDb.quizSubmissions.length,
   totalFollowUp: mockDb.followUpRequests.length,
   totalWaitlist: mockDb.waitlistEntries.length,
-  qualifiedCount: mockDb.followUpRequests.filter(r => r.status === "qualified").length,
-  pendingCount: mockDb.followUpRequests.filter(r => r.status === "pending").length,
+  qualifiedCount: mockDb.followUpRequests.filter(
+    (r) => r.status === "qualified",
+  ).length,
+  pendingCount: mockDb.followUpRequests.filter((r) => r.status === "pending")
+    .length,
 }));
 const mockRecordPageview = vi.fn(async (data: any) => {
   mockDb.pageviews.push(data);
@@ -94,18 +109,48 @@ function createTestApp() {
   // Quiz Submission
   app.post("/api/quiz/submit", async (req: Request, res: Response) => {
     try {
-      const { name, email, score, maxScore, tier, answers, recommendation, source, utmSource, utmMedium, utmCampaign } = req.body;
-      if (!name || !email || score === undefined || maxScore === undefined || !tier) {
-        return res.status(400).json({ success: false, error: "Missing required fields" });
+      const {
+        name,
+        email,
+        score,
+        maxScore,
+        tier,
+        answers,
+        recommendation,
+        source,
+        utmSource,
+        utmMedium,
+        utmCampaign,
+      } = req.body;
+      if (
+        !name ||
+        !email ||
+        score === undefined ||
+        maxScore === undefined ||
+        !tier
+      ) {
+        return res
+          .status(400)
+          .json({ success: false, error: "Missing required fields" });
       }
       await mockSaveQuizSubmission({
-        name, email, score: Number(score), maxScore: Number(maxScore), severityTier: tier,
-        recommendation: recommendation || null, answers: answers ? JSON.stringify(answers) : null,
-        source: source || null, utmSource: utmSource || null, utmMedium: utmMedium || null, utmCampaign: utmCampaign || null,
+        name,
+        email,
+        score: Number(score),
+        maxScore: Number(maxScore),
+        severityTier: tier,
+        recommendation: recommendation || null,
+        answers: answers ? JSON.stringify(answers) : null,
+        source: source || null,
+        utmSource: utmSource || null,
+        utmMedium: utmMedium || null,
+        utmCampaign: utmCampaign || null,
       });
       return res.json({ success: true });
     } catch (err) {
-      return res.status(500).json({ success: false, error: "Failed to save quiz submission" });
+      return res
+        .status(500)
+        .json({ success: false, error: "Failed to save quiz submission" });
     }
   });
 
@@ -114,36 +159,54 @@ function createTestApp() {
     try {
       const { firstName, lastName, email } = req.body;
       if (!firstName || !lastName || !email) {
-        return res.status(400).json({ success: false, error: "Missing required fields" });
+        return res
+          .status(400)
+          .json({ success: false, error: "Missing required fields" });
       }
       const sessionId = nanoid(24);
-      await mockCreateFollowUpRequest({ sessionId, firstName, lastName, email });
+      await mockCreateFollowUpRequest({
+        sessionId,
+        firstName,
+        lastName,
+        email,
+      });
       return res.json({ success: true, sessionId });
     } catch (err) {
-      return res.status(500).json({ success: false, error: "Failed to create follow-up request" });
+      return res
+        .status(500)
+        .json({ success: false, error: "Failed to create follow-up request" });
     }
   });
 
   // Follow-Up Status
-  app.get("/api/followup/status/:sessionId", async (req: Request, res: Response) => {
-    try {
-      const { sessionId } = req.params;
-      const result = await mockGetFollowUpRequest(sessionId);
-      if (!result) {
-        return res.status(404).json({ error: "Session not found" });
+  app.get(
+    "/api/followup/status/:sessionId",
+    async (req: Request, res: Response) => {
+      try {
+        const { sessionId } = req.params;
+        const result = await mockGetFollowUpRequest(sessionId);
+        if (!result) {
+          return res.status(404).json({ error: "Session not found" });
+        }
+        return res.json({
+          status: result.status,
+          qualified: result.qualified,
+          resultMessage: result.resultMessage,
+        });
+      } catch (err) {
+        return res.status(500).json({ error: "Internal server error" });
       }
-      return res.json({ status: result.status, qualified: result.qualified, resultMessage: result.resultMessage });
-    } catch (err) {
-      return res.status(500).json({ error: "Internal server error" });
-    }
-  });
+    },
+  );
 
   // Make.com Webhook
   app.post("/api/followup-result", async (req: Request, res: Response) => {
     try {
       const { sessionId, qualified } = req.body;
       if (!sessionId || qualified === undefined) {
-        return res.status(400).json({ error: "Missing sessionId or qualified field" });
+        return res
+          .status(400)
+          .json({ error: "Missing sessionId or qualified field" });
       }
       await mockResolveFollowUpRequest(sessionId, Boolean(qualified));
       return res.json({ success: true });
@@ -157,15 +220,29 @@ function createTestApp() {
     try {
       const { name, email, interest } = req.body;
       if (!name || !email) {
-        return res.status(400).json({ success: false, error: "Name and email are required" });
+        return res
+          .status(400)
+          .json({ success: false, error: "Name and email are required" });
       }
-      const result = await mockAddToWaitlist({ name, email, interest: interest || null });
+      const result = await mockAddToWaitlist({
+        name,
+        email,
+        interest: interest || null,
+      });
       if (result.alreadyExists) {
-        return res.json({ success: true, message: "You're already on the waitlist!" });
+        return res.json({
+          success: true,
+          message: "You're already on the waitlist!",
+        });
       }
-      return res.json({ success: true, message: "You've been added to the waitlist!" });
+      return res.json({
+        success: true,
+        message: "You've been added to the waitlist!",
+      });
     } catch (err) {
-      return res.status(500).json({ success: false, error: "Failed to join waitlist" });
+      return res
+        .status(500)
+        .json({ success: false, error: "Failed to join waitlist" });
     }
   });
 
@@ -179,57 +256,92 @@ function createTestApp() {
   });
 
   // Admin Stats (protected)
-  app.get("/api/admin/stats", adminAuth, async (_req: Request, res: Response) => {
-    const stats = await mockGetAdminStats();
-    return res.json(stats);
-  });
+  app.get(
+    "/api/admin/stats",
+    adminAuth,
+    async (_req: Request, res: Response) => {
+      const stats = await mockGetAdminStats();
+      return res.json(stats);
+    },
+  );
 
   // Admin Quiz Submissions (protected)
-  app.get("/api/admin/quiz-submissions", adminAuth, async (_req: Request, res: Response) => {
-    const submissions = await mockGetAllQuizSubmissions();
-    return res.json(submissions);
-  });
+  app.get(
+    "/api/admin/quiz-submissions",
+    adminAuth,
+    async (_req: Request, res: Response) => {
+      const submissions = await mockGetAllQuizSubmissions();
+      return res.json(submissions);
+    },
+  );
 
   // Admin Follow-Up Requests (protected)
-  app.get("/api/admin/followup-requests", adminAuth, async (_req: Request, res: Response) => {
-    const requests = await mockGetAllFollowUpRequests();
-    return res.json(requests);
-  });
+  app.get(
+    "/api/admin/followup-requests",
+    adminAuth,
+    async (_req: Request, res: Response) => {
+      const requests = await mockGetAllFollowUpRequests();
+      return res.json(requests);
+    },
+  );
 
   // Admin Waitlist (protected)
-  app.get("/api/admin/waitlist", adminAuth, async (_req: Request, res: Response) => {
-    const entries = await mockGetAllWaitlist();
-    return res.json(entries);
-  });
+  app.get(
+    "/api/admin/waitlist",
+    adminAuth,
+    async (_req: Request, res: Response) => {
+      const entries = await mockGetAllWaitlist();
+      return res.json(entries);
+    },
+  );
 
   // Admin CSV Export (protected)
-  app.get("/api/admin/export/:type", adminAuth, async (req: Request, res: Response) => {
-    const { type } = req.params;
-    let data: Record<string, any>[] = [];
-    let filename = "";
-    switch (type) {
-      case "quiz": data = await mockGetAllQuizSubmissions(); filename = "quiz-submissions.csv"; break;
-      case "followup": data = await mockGetAllFollowUpRequests(); filename = "followup-requests.csv"; break;
-      case "waitlist": data = await mockGetAllWaitlist(); filename = "waitlist.csv"; break;
-      default: return res.status(400).json({ error: "Invalid export type" });
-    }
-    if (data.length === 0) return res.status(404).json({ error: "No data to export" });
-    const headers = Object.keys(data[0]);
-    const csvRows = [headers.join(",")];
-    for (const row of data) {
-      const values = headers.map(h => {
-        const val = (row as any)[h];
-        if (val === null || val === undefined) return "";
-        const str = String(val);
-        if (str.includes(",") || str.includes('"') || str.includes("\n")) return `"${str.replace(/"/g, '""')}"`;
-        return str;
-      });
-      csvRows.push(values.join(","));
-    }
-    res.setHeader("Content-Type", "text/csv");
-    res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
-    return res.send(csvRows.join("\n"));
-  });
+  app.get(
+    "/api/admin/export/:type",
+    adminAuth,
+    async (req: Request, res: Response) => {
+      const { type } = req.params;
+      let data: Record<string, any>[] = [];
+      let filename = "";
+      switch (type) {
+        case "quiz":
+          data = await mockGetAllQuizSubmissions();
+          filename = "quiz-submissions.csv";
+          break;
+        case "followup":
+          data = await mockGetAllFollowUpRequests();
+          filename = "followup-requests.csv";
+          break;
+        case "waitlist":
+          data = await mockGetAllWaitlist();
+          filename = "waitlist.csv";
+          break;
+        default:
+          return res.status(400).json({ error: "Invalid export type" });
+      }
+      if (data.length === 0)
+        return res.status(404).json({ error: "No data to export" });
+      const headers = Object.keys(data[0]);
+      const csvRows = [headers.join(",")];
+      for (const row of data) {
+        const values = headers.map((h) => {
+          const val = (row as any)[h];
+          if (val === null || val === undefined) return "";
+          const str = String(val);
+          if (str.includes(",") || str.includes('"') || str.includes("\n"))
+            return `"${str.replace(/"/g, '""')}"`;
+          return str;
+        });
+        csvRows.push(values.join(","));
+      }
+      res.setHeader("Content-Type", "text/csv");
+      res.setHeader(
+        "Content-Disposition",
+        `attachment; filename="${filename}"`,
+      );
+      return res.send(csvRows.join("\n"));
+    },
+  );
 
   // Analytics Pageview
   app.post("/api/analytics/pageview", async (req: Request, res: Response) => {
@@ -297,7 +409,11 @@ describe("MeNova REST API Integration Tests", () => {
     it("POST /api/followup/request should create a request and return sessionId", async () => {
       const res = await request(app)
         .post("/api/followup/request")
-        .send({ firstName: "Sarah", lastName: "Chen", email: "sarah@example.com" });
+        .send({
+          firstName: "Sarah",
+          lastName: "Chen",
+          email: "sarah@example.com",
+        });
 
       expect(res.status).toBe(200);
       expect(res.body.success).toBe(true);
@@ -499,7 +615,11 @@ describe("MeNova REST API Integration Tests", () => {
     it("should record a pageview", async () => {
       const res = await request(app)
         .post("/api/analytics/pageview")
-        .send({ page: "/", referrer: "https://google.com", utmSource: "google" });
+        .send({
+          page: "/",
+          referrer: "https://google.com",
+          utmSource: "google",
+        });
 
       expect(res.status).toBe(200);
       expect(res.body.success).toBe(true);

@@ -51,13 +51,25 @@ describe("Portal Authentication", () => {
       await fetch(`${BASE}/api/portal/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password: "TestPass123!", firstName: "A", lastName: "B", role: "patient" }),
+        body: JSON.stringify({
+          email,
+          password: "TestPass123!",
+          firstName: "A",
+          lastName: "B",
+          role: "patient",
+        }),
       });
       // Second registration with same email
       const res = await fetch(`${BASE}/api/portal/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password: "TestPass123!", firstName: "C", lastName: "D", role: "patient" }),
+        body: JSON.stringify({
+          email,
+          password: "TestPass123!",
+          firstName: "C",
+          lastName: "D",
+          role: "patient",
+        }),
       });
       expect([400, 409]).toContain(res.status);
       const data = await res.json();
@@ -82,7 +94,13 @@ describe("Portal Authentication", () => {
       await fetch(`${BASE}/api/portal/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, firstName: "Login", lastName: "Test", role: "patient" }),
+        body: JSON.stringify({
+          email,
+          password,
+          firstName: "Login",
+          lastName: "Test",
+          role: "patient",
+        }),
       });
     });
 
@@ -111,7 +129,10 @@ describe("Portal Authentication", () => {
       const res = await fetch(`${BASE}/api/portal/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: "nonexistent@example.com", password: "Test123!" }),
+        body: JSON.stringify({
+          email: "nonexistent@example.com",
+          password: "Test123!",
+        }),
       });
       expect(res.status).toBe(401);
     });
@@ -247,7 +268,10 @@ describe("NP Portal API", () => {
     it("assigns a patient to the NP", async () => {
       const res = await fetch(`${BASE}/api/np/assign-patient`, {
         method: "POST",
-        headers: { Authorization: `Bearer ${npToken}`, "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${npToken}`,
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ patientId }),
       });
       expect(res.status).toBe(200);
@@ -260,7 +284,10 @@ describe("NP Portal API", () => {
     it("creates a treatment plan for assigned patient", async () => {
       const res = await fetch(`${BASE}/api/np/treatment-plans`, {
         method: "POST",
-        headers: { Authorization: `Bearer ${npToken}`, "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${npToken}`,
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           patientId,
           hormoneType: "Estradiol",
@@ -292,7 +319,10 @@ describe("NP Portal API", () => {
     it("creates an appointment", async () => {
       const res = await fetch(`${BASE}/api/np/appointments`, {
         method: "POST",
-        headers: { Authorization: `Bearer ${npToken}`, "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${npToken}`,
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           patientId,
           title: "Initial Consultation",
@@ -321,8 +351,14 @@ describe("NP Portal API", () => {
     it("adds a clinical note for a patient", async () => {
       const res = await fetch(`${BASE}/api/np/clinical-notes`, {
         method: "POST",
-        headers: { Authorization: `Bearer ${npToken}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ patientId, content: "Patient presents with hot flashes and sleep disturbance." }),
+        headers: {
+          Authorization: `Bearer ${npToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          patientId,
+          content: "Patient presents with hot flashes and sleep disturbance.",
+        }),
       });
       expect(res.status).toBe(200);
       const data = await res.json();
@@ -348,8 +384,14 @@ describe("NP Portal API", () => {
     it("NP sends message to patient", async () => {
       const res = await fetch(`${BASE}/api/np/messages/send`, {
         method: "POST",
-        headers: { Authorization: `Bearer ${npToken}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ receiverId: patientId, content: "Hello, how are you feeling today?" }),
+        headers: {
+          Authorization: `Bearer ${npToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          receiverId: patientId,
+          content: "Hello, how are you feeling today?",
+        }),
       });
       expect(res.status).toBe(200);
     });
@@ -367,8 +409,14 @@ describe("NP Portal API", () => {
     it("Patient sends reply to NP", async () => {
       const res = await fetch(`${BASE}/api/patient/messages/send`, {
         method: "POST",
-        headers: { Authorization: `Bearer ${patientToken}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ receiverId: npId, content: "I'm feeling better, thank you!" }),
+        headers: {
+          Authorization: `Bearer ${patientToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          receiverId: npId,
+          content: "I'm feeling better, thank you!",
+        }),
       });
       expect(res.status).toBe(200);
     });
