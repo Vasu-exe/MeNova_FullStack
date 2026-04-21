@@ -2,15 +2,24 @@
   "name": "menova-health",
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "license": "MIT",
+  "pnpm": {
+    "overrides": {
+      "bcryptjs": "3.0.3"
+    }
+  },
   "scripts": {
     "dev": "NODE_ENV=development tsx watch server/_core/index.ts",
-    "build": "vite build && esbuild server/_core/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
+    "build": "vite build && esbuild server/_core/index.ts --platform=node --bundle --format=esm --outdir=dist --external:@aws-sdk --external:mysql2 --external:drizzle-orm --external:@trpc/server",
     "start": "NODE_ENV=production node dist/index.js",
     "check": "tsc --noEmit",
     "format": "prettier --write .",
     "test": "vitest run",
-    "db:push": "drizzle-kit generate && drizzle-kit migrate"
+    "db:push": "drizzle-kit generate && drizzle-kit migrate",
+    "build:clean": "rm -rf dist && npm run build"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.693.0",
