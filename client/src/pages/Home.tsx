@@ -1052,7 +1052,7 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
       highlight: false,
       badge: null as string | null,
       isDisabled: false,
-      link: "https://cal.com/menova/30min",
+      link: "https://cal.com/menova/initial-consultation",
     },
     {
       name: "💜 Follow-Up (30 min)",
@@ -1585,7 +1585,7 @@ function FinalCTA({ onOpenQuiz }: { onOpenQuiz: () => void }) {
               Take the Free Symptom Quiz
             </button>
             <a
-              href="https://cal.com/menova/60min"
+              href="https://cal.com/menova/initial-consultation"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline-forest text-center"
