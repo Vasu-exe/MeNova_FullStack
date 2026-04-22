@@ -222,7 +222,7 @@ function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                 Take the Free Symptom Quiz
               </button>
               <a
-                href="https://cal.com/menova/60min"
+                href="https://cal.com/menova/initial-consultation"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-semibold border-2 transition-all hover:bg-white/10"
@@ -1067,7 +1067,7 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
         "Refill authorization & prescription renewal",
         "Ongoing progress tracking in your patient portal",
       ],
-      cta: "Schedule Follow-up",
+      cta: "https://cal.com/menova/follow-up-consultation",
       highlight: true,
       badge: null as string | null,
       isDisabled: false,
@@ -1206,7 +1206,7 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                   </div>
                 ) : (
                   <a
-                    href={plan.link || "https://cal.com/menova/60min"}
+                    href={plan.link || "https://cal.com/menova/initial-consultation"}
                     target={plan.link ? undefined : "_blank"}
                     rel={plan.link ? undefined : "noopener noreferrer"}
                     className={plan.highlight ? "btn-terracotta w-full text-center block" : "btn-outline-forest w-full text-center block"}
@@ -1585,7 +1585,7 @@ function FinalCTA({ onOpenQuiz }: { onOpenQuiz: () => void }) {
               Take the Free Symptom Quiz
             </button>
             <a
-              href="https://cal.com/menova/60min"
+              href="https://cal.com/menova/initial-consultation"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline-forest text-center"
