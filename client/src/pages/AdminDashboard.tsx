@@ -36,7 +36,8 @@ interface QuizSubmission {
   email: string;
   score: number;
   maxScore: number;
-  tier: string;
+  tier?: string;
+  severityTier?: string;
   recommendation: string;
   source: string;
   utmSource: string;
@@ -242,12 +243,14 @@ export default function AdminDashboard() {
 
   const filteredQuiz = quizData.filter(
     (q) =>
+      q && q.name && q.email &&
       q.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       q.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const filteredFollowup = followupData.filter(
     (f) =>
+      f && f.firstName && f.lastName && f.email &&
       f.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       f.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       f.email.toLowerCase().includes(searchTerm.toLowerCase())
@@ -255,6 +258,7 @@ export default function AdminDashboard() {
 
   const filteredWaitlist = waitlistData.filter(
     (w) =>
+      w && w.name && w.email &&
       w.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       w.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -498,13 +502,13 @@ export default function AdminDashboard() {
                               <span
                                 className="inline-block text-xs px-2 py-1 rounded-full font-semibold"
                                 style={{
-                                  backgroundColor: q.tier.includes("Significant") ? "oklch(0.24 0.07 155 / 0.10)" :
-                                    q.tier.includes("Moderate") ? "oklch(0.60 0.12 42 / 0.10)" : "oklch(0.55 0.06 155 / 0.10)",
-                                  color: q.tier.includes("Significant") ? "oklch(0.24 0.07 155)" :
-                                    q.tier.includes("Moderate") ? "oklch(0.60 0.12 42)" : "oklch(0.55 0.06 155)",
+                                  backgroundColor: (q.tier || q.severityTier || "").includes("Significant") ? "oklch(0.24 0.07 155 / 0.10)" :
+                                    (q.tier || q.severityTier || "").includes("Moderate") ? "oklch(0.60 0.12 42 / 0.10)" : "oklch(0.55 0.06 155 / 0.10)",
+                                  color: (q.tier || q.severityTier || "").includes("Significant") ? "oklch(0.24 0.07 155)" :
+                                    (q.tier || q.severityTier || "").includes("Moderate") ? "oklch(0.60 0.12 42)" : "oklch(0.55 0.06 155)",
                                 }}
                               >
-                                {q.tier}
+                                {q.tier || q.severityTier || "Unknown"}
                               </span>
                             </td>
                             <td className="px-4 py-3 text-sm" style={{ color: "oklch(0.55 0.005 65)" }}>
