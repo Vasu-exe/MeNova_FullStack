@@ -2,11 +2,7 @@ import { useState } from "react";
 import { CheckCircle2, Bell, ArrowRight } from "lucide-react";
 
 export default function WaitlistSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    interest: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", interest: "" });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
 
@@ -53,29 +49,19 @@ export default function WaitlistSection() {
             className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
             style={{ backgroundColor: "oklch(0.24 0.07 155 / 0.10)" }}
           >
-            <CheckCircle2
-              className="w-8 h-8"
-              style={{ color: "oklch(0.24 0.07 155)" }}
-            />
+            <CheckCircle2 className="w-8 h-8" style={{ color: "oklch(0.24 0.07 155)" }} />
           </div>
           <h3
             className="text-2xl font-bold mb-3"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              color: "oklch(0.22 0.005 65)",
-            }}
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
           >
             You're on the list!
           </h3>
           <p
             className="text-base"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "oklch(0.45 0.005 65)",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
           >
-            We'll notify you as soon as new appointment slots open up. Thank you
-            for your interest in MeNova Health.
+            We'll notify you as soon as new appointment slots open up. Thank you for your interest in MeNova Health.
           </p>
         </div>
       </section>
@@ -101,35 +87,22 @@ export default function WaitlistSection() {
               className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
               style={{ backgroundColor: "oklch(0.60 0.12 42 / 0.10)" }}
             >
-              <Bell
-                className="w-6 h-6"
-                style={{ color: "oklch(0.60 0.12 42)" }}
-              />
+              <Bell className="w-6 h-6" style={{ color: "oklch(0.60 0.12 42)" }} />
             </div>
             <h3
               className="text-2xl lg:text-3xl font-bold mb-3"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                color: "oklch(0.22 0.005 65)",
-              }}
+              style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
             >
               Join the{" "}
-              <em
-                className="not-italic"
-                style={{ color: "oklch(0.60 0.12 42)" }}
-              >
+              <em className="not-italic" style={{ color: "oklch(0.60 0.12 42)" }}>
                 Waitlist
               </em>
             </h3>
             <p
               className="text-base max-w-md mx-auto"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                color: "oklch(0.45 0.005 65)",
-              }}
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
             >
-              Appointment slots fill up quickly. Join our waitlist and be the
-              first to know when new times open up.
+              Appointment slots fill up quickly. Join our waitlist and be the first to know when new times open up.
             </p>
           </div>
 
@@ -139,9 +112,7 @@ export default function WaitlistSection() {
                 type="text"
                 placeholder="Your full name"
                 value={formData.name}
-                onChange={(e) =>
-                  setFormData((prev) => ({ ...prev, name: e.target.value }))
-                }
+                onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
                 className="w-full px-4 py-3 rounded-xl border focus:outline-none"
                 style={{
                   borderColor: "oklch(0.88 0.01 90)",
@@ -156,9 +127,7 @@ export default function WaitlistSection() {
                 type="email"
                 placeholder="Your email address"
                 value={formData.email}
-                onChange={(e) =>
-                  setFormData((prev) => ({ ...prev, email: e.target.value }))
-                }
+                onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
                 className="w-full px-4 py-3 rounded-xl border focus:outline-none"
                 style={{
                   borderColor: "oklch(0.88 0.01 90)",
@@ -171,25 +140,17 @@ export default function WaitlistSection() {
             <div>
               <select
                 value={formData.interest}
-                onChange={(e) =>
-                  setFormData((prev) => ({ ...prev, interest: e.target.value }))
-                }
+                onChange={(e) => setFormData((prev) => ({ ...prev, interest: e.target.value }))}
                 className="w-full px-4 py-3 rounded-xl border focus:outline-none"
                 style={{
                   borderColor: "oklch(0.88 0.01 90)",
                   fontFamily: "'DM Sans', sans-serif",
-                  color: formData.interest
-                    ? "oklch(0.22 0.005 65)"
-                    : "oklch(0.55 0.005 65)",
+                  color: formData.interest ? "oklch(0.22 0.005 65)" : "oklch(0.55 0.005 65)",
                   fontSize: "0.95rem",
                 }}
               >
-                <option value="">
-                  What are you most interested in? (optional)
-                </option>
-                <option value="bhrt">
-                  Bioidentical Hormone Therapy (BHRT)
-                </option>
+                <option value="">What are you most interested in? (optional)</option>
+                <option value="bhrt">Bioidentical Hormone Therapy (BHRT)</option>
                 <option value="consultation">Initial Consultation</option>
                 <option value="followup">Follow-up Appointment</option>
                 <option value="general">General Information</option>
@@ -197,13 +158,7 @@ export default function WaitlistSection() {
             </div>
 
             {error && (
-              <p
-                className="text-xs text-center"
-                style={{
-                  color: "oklch(0.60 0.20 25)",
-                  fontFamily: "'DM Sans', sans-serif",
-                }}
-              >
+              <p className="text-xs text-center" style={{ color: "oklch(0.60 0.20 25)", fontFamily: "'DM Sans', sans-serif" }}>
                 {error}
               </p>
             )}
@@ -222,10 +177,7 @@ export default function WaitlistSection() {
 
             <p
               className="text-xs text-center"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                color: "oklch(0.60 0.005 65)",
-              }}
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.60 0.005 65)" }}
             >
               We'll only email you when slots open. No spam, ever.
             </p>

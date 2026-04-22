@@ -8,10 +8,7 @@ export default function CookiePolicy() {
   }, []);
 
   return (
-    <div
-      className="min-h-screen flex flex-col"
-      style={{ backgroundColor: "white" }}
-    >
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: "white" }}>
       {/* Header */}
       <header
         className="py-6 border-b"
@@ -32,10 +29,7 @@ export default function CookiePolicy() {
           </Link>
           <h1
             className="text-3xl font-bold"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              color: "oklch(0.22 0.005 65)",
-            }}
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
           >
             Cookie Policy
           </h1>
@@ -47,73 +41,49 @@ export default function CookiePolicy() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p
             className="text-sm mb-8"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "oklch(0.50 0.005 65)",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.50 0.005 65)" }}
           >
             Last updated: April 12, 2026
           </p>
 
           <div
             className="prose prose-lg max-w-none"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "oklch(0.35 0.005 65)",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.35 0.005 65)" }}
           >
             <section className="mb-8">
               <h2
                 className="text-2xl font-bold mb-4"
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  color: "oklch(0.22 0.005 65)",
-                }}
+                style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
               >
                 What Cookies Are
               </h2>
               <p className="mb-4">
-                This Cookie Policy explains how Menova Health uses cookies and
-                similar technologies on its website. Cookies are small text
-                files stored on a user's device when visiting a website. They
-                help websites function properly and can also help site owners
-                understand how visitors use the site.
+                This Cookie Policy explains how Menova Health uses cookies and similar technologies on its website. Cookies are
+                small text files stored on a user's device when visiting a website. They help websites function properly and can
+                also help site owners understand how visitors use the site.
               </p>
             </section>
 
             <section className="mb-8">
               <h2
                 className="text-2xl font-bold mb-4"
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  color: "oklch(0.22 0.005 65)",
-                }}
+                style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
               >
                 Types of Cookies Used
               </h2>
               <p className="mb-4">The website may use:</p>
               <ul className="list-disc list-inside space-y-2 mb-4">
-                <li>
-                  Strictly necessary cookies to support core website functions
-                </li>
+                <li>Strictly necessary cookies to support core website functions</li>
                 <li>Preference cookies to remember settings and selections</li>
-                <li>
-                  Analytics cookies to understand traffic and usage patterns
-                </li>
-                <li>
-                  Functionality cookies to support tools such as forms, booking
-                  flows, or embedded services
-                </li>
+                <li>Analytics cookies to understand traffic and usage patterns</li>
+                <li>Functionality cookies to support tools such as forms, booking flows, or embedded services</li>
               </ul>
             </section>
 
             <section className="mb-8">
               <h2
                 className="text-2xl font-bold mb-4"
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  color: "oklch(0.22 0.005 65)",
-                }}
+                style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
               >
                 How Cookies Are Used
               </h2>
@@ -130,62 +100,47 @@ export default function CookiePolicy() {
             <section className="mb-8">
               <h2
                 className="text-2xl font-bold mb-4"
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  color: "oklch(0.22 0.005 65)",
-                }}
+                style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
               >
                 Third-Party Cookies
               </h2>
               <p className="mb-4">
-                Some cookies may be placed by third-party services used on the
-                website, such as analytics providers, form tools, payment
-                systems, or patient portal integrations. Those third parties may
-                collect information according to their own policies.
+                Some cookies may be placed by third-party services used on the website, such as analytics providers, form tools,
+                payment systems, or patient portal integrations. Those third parties may collect information according to their
+                own policies.
               </p>
             </section>
 
             <section className="mb-8">
               <h2
                 className="text-2xl font-bold mb-4"
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  color: "oklch(0.22 0.005 65)",
-                }}
+                style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
               >
                 Managing Cookies
               </h2>
               <p className="mb-4">
-                Users can manage or delete cookies through browser settings and,
-                where available, through any cookie consent or preference tools
-                on the website. Disabling certain cookies may affect website
-                functionality.
+                Users can manage or delete cookies through browser settings and, where available, through any cookie consent or
+                preference tools on the website. Disabling certain cookies may affect website functionality.
               </p>
             </section>
 
             <section className="mb-8">
               <h2
                 className="text-2xl font-bold mb-4"
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  color: "oklch(0.22 0.005 65)",
-                }}
+                style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
               >
                 Changes to This Policy
               </h2>
               <p className="mb-4">
-                This Cookie Policy may be updated from time to time. Any updates
-                will be posted on this page with a revised effective date.
+                This Cookie Policy may be updated from time to time. Any updates will be posted on this page with a revised
+                effective date.
               </p>
             </section>
 
             <section className="mb-8">
               <h2
                 className="text-2xl font-bold mb-4"
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  color: "oklch(0.22 0.005 65)",
-                }}
+                style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
               >
                 Contact
               </h2>
@@ -193,10 +148,7 @@ export default function CookiePolicy() {
                 Questions about this Cookie Policy may be sent to{" "}
                 <a
                   href="mailto:support.menova@gmail.com"
-                  style={{
-                    color: "oklch(0.24 0.07 155)",
-                    textDecoration: "underline",
-                  }}
+                  style={{ color: "oklch(0.24 0.07 155)", textDecoration: "underline" }}
                 >
                   support.menova@gmail.com
                 </a>

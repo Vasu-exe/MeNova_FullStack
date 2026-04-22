@@ -29,10 +29,7 @@ export default function UTMTracker() {
       try {
         const referrerHost = new URL(document.referrer).hostname;
         const currentHost = window.location.hostname;
-        if (
-          referrerHost !== currentHost &&
-          !sessionStorage.getItem("menova_source")
-        ) {
+        if (referrerHost !== currentHost && !sessionStorage.getItem("menova_source")) {
           sessionStorage.setItem("menova_source", referrerHost);
         }
       } catch {

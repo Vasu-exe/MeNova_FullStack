@@ -33,7 +33,7 @@ export default function PortalAuth() {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -41,12 +41,10 @@ export default function PortalAuth() {
     setLoading(true);
 
     try {
-      const endpoint =
-        mode === "login" ? "/api/portal/login" : "/api/portal/register";
-      const body =
-        mode === "login"
-          ? { email: form.email, password: form.password }
-          : { ...form, role };
+      const endpoint = mode === "login" ? "/api/portal/login" : "/api/portal/register";
+      const body = mode === "login"
+        ? { email: form.email, password: form.password }
+        : { ...form, role };
 
       const res = await fetch(endpoint, {
         method: "POST",
@@ -66,9 +64,7 @@ export default function PortalAuth() {
       localStorage.setItem("portalToken", data.token);
       localStorage.setItem("portalUser", JSON.stringify(data.user));
 
-      toast.success(
-        mode === "login" ? "Welcome back!" : "Account created successfully!",
-      );
+      toast.success(mode === "login" ? "Welcome back!" : "Account created successfully!");
 
       // Navigate to appropriate portal
       if (data.user.role === "np") {
@@ -84,32 +80,23 @@ export default function PortalAuth() {
   };
 
   return (
-    <div
-      className="min-h-screen flex"
-      style={{ background: "oklch(0.98 0.01 90)" }}
-    >
+    <div className="min-h-screen flex" style={{ background: "oklch(0.98 0.01 90)" }}>
       {/* Left Side — Branding */}
       <div
         className="hidden lg:flex lg:w-1/2 flex-col justify-center items-center p-12"
         style={{ background: "oklch(0.24 0.07 155)" }}
       >
         <div className="max-w-md text-center">
-          <Leaf
-            className="w-16 h-16 mx-auto mb-6"
-            style={{ color: "oklch(0.80 0.12 155)" }}
-          />
+          <Leaf className="w-16 h-16 mx-auto mb-6" style={{ color: "oklch(0.80 0.12 155)" }} />
           <h1
             className="text-4xl font-bold mb-4"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              color: "oklch(0.98 0.01 90)",
-            }}
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.98 0.01 90)" }}
           >
             MeNova Health
           </h1>
           <p className="text-lg mb-8" style={{ color: "oklch(0.80 0.01 90)" }}>
-            Your personalized menopause care journey starts here. Access your
-            health dashboard, treatment plans, and connect with your care team.
+            Your personalized menopause care journey starts here. Access your health dashboard,
+            treatment plans, and connect with your care team.
           </p>
           <div className="grid grid-cols-2 gap-4 text-left">
             {[
@@ -118,15 +105,8 @@ export default function PortalAuth() {
               { icon: Mail, text: "Secure messaging" },
               { icon: Lock, text: "Private & secure" },
             ].map((item, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-2"
-                style={{ color: "oklch(0.85 0.01 90)" }}
-              >
-                <item.icon
-                  className="w-5 h-5"
-                  style={{ color: "oklch(0.80 0.12 155)" }}
-                />
+              <div key={i} className="flex items-center gap-2" style={{ color: "oklch(0.85 0.01 90)" }}>
+                <item.icon className="w-5 h-5" style={{ color: "oklch(0.80 0.12 155)" }} />
                 <span className="text-sm">{item.text}</span>
               </div>
             ))}
@@ -139,32 +119,19 @@ export default function PortalAuth() {
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
           <div className="lg:hidden text-center mb-8">
-            <Leaf
-              className="w-10 h-10 mx-auto mb-2"
-              style={{ color: "oklch(0.24 0.07 155)" }}
-            />
-            <h1
-              className="text-2xl font-bold"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                color: "oklch(0.24 0.07 155)",
-              }}
-            >
+            <Leaf className="w-10 h-10 mx-auto mb-2" style={{ color: "oklch(0.24 0.07 155)" }} />
+            <h1 className="text-2xl font-bold" style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.24 0.07 155)" }}>
               MeNova Health
             </h1>
           </div>
 
           {/* Mode Toggle */}
-          <div
-            className="flex rounded-lg overflow-hidden mb-6 border"
-            style={{ borderColor: "oklch(0.85 0.01 90)" }}
-          >
+          <div className="flex rounded-lg overflow-hidden mb-6 border" style={{ borderColor: "oklch(0.85 0.01 90)" }}>
             <button
               onClick={() => setMode("login")}
               className="flex-1 py-3 text-sm font-medium transition-all"
               style={{
-                background:
-                  mode === "login" ? "oklch(0.24 0.07 155)" : "transparent",
+                background: mode === "login" ? "oklch(0.24 0.07 155)" : "transparent",
                 color: mode === "login" ? "white" : "oklch(0.45 0.03 155)",
               }}
             >
@@ -174,8 +141,7 @@ export default function PortalAuth() {
               onClick={() => setMode("register")}
               className="flex-1 py-3 text-sm font-medium transition-all"
               style={{
-                background:
-                  mode === "register" ? "oklch(0.24 0.07 155)" : "transparent",
+                background: mode === "register" ? "oklch(0.24 0.07 155)" : "transparent",
                 color: mode === "register" ? "white" : "oklch(0.45 0.03 155)",
               }}
             >
@@ -186,10 +152,7 @@ export default function PortalAuth() {
           {/* Role Selection (Register only) */}
           {mode === "register" && (
             <div className="mb-6">
-              <label
-                className="block text-sm font-medium mb-2"
-                style={{ color: "oklch(0.35 0.05 155)" }}
-              >
+              <label className="block text-sm font-medium mb-2" style={{ color: "oklch(0.35 0.05 155)" }}>
                 I am a:
               </label>
               <div className="grid grid-cols-2 gap-3">
@@ -197,27 +160,15 @@ export default function PortalAuth() {
                   onClick={() => setRole("patient")}
                   className="p-4 rounded-lg border-2 text-center transition-all"
                   style={{
-                    borderColor:
-                      role === "patient"
-                        ? "oklch(0.24 0.07 155)"
-                        : "oklch(0.90 0.01 90)",
-                    background:
-                      role === "patient" ? "oklch(0.95 0.02 155)" : "white",
+                    borderColor: role === "patient" ? "oklch(0.24 0.07 155)" : "oklch(0.90 0.01 90)",
+                    background: role === "patient" ? "oklch(0.95 0.02 155)" : "white",
                   }}
                 >
                   <HeartPulse
                     className="w-8 h-8 mx-auto mb-2"
-                    style={{
-                      color:
-                        role === "patient"
-                          ? "oklch(0.24 0.07 155)"
-                          : "oklch(0.55 0.03 155)",
-                    }}
+                    style={{ color: role === "patient" ? "oklch(0.24 0.07 155)" : "oklch(0.55 0.03 155)" }}
                   />
-                  <span
-                    className="text-sm font-medium"
-                    style={{ color: "oklch(0.24 0.07 155)" }}
-                  >
+                  <span className="text-sm font-medium" style={{ color: "oklch(0.24 0.07 155)" }}>
                     Patient
                   </span>
                 </button>
@@ -225,27 +176,15 @@ export default function PortalAuth() {
                   onClick={() => setRole("np")}
                   className="p-4 rounded-lg border-2 text-center transition-all"
                   style={{
-                    borderColor:
-                      role === "np"
-                        ? "oklch(0.24 0.07 155)"
-                        : "oklch(0.90 0.01 90)",
-                    background:
-                      role === "np" ? "oklch(0.95 0.02 155)" : "white",
+                    borderColor: role === "np" ? "oklch(0.24 0.07 155)" : "oklch(0.90 0.01 90)",
+                    background: role === "np" ? "oklch(0.95 0.02 155)" : "white",
                   }}
                 >
                   <Stethoscope
                     className="w-8 h-8 mx-auto mb-2"
-                    style={{
-                      color:
-                        role === "np"
-                          ? "oklch(0.24 0.07 155)"
-                          : "oklch(0.55 0.03 155)",
-                    }}
+                    style={{ color: role === "np" ? "oklch(0.24 0.07 155)" : "oklch(0.55 0.03 155)" }}
                   />
-                  <span
-                    className="text-sm font-medium"
-                    style={{ color: "oklch(0.24 0.07 155)" }}
-                  >
+                  <span className="text-sm font-medium" style={{ color: "oklch(0.24 0.07 155)" }}>
                     Nurse Practitioner
                   </span>
                 </button>
@@ -258,17 +197,11 @@ export default function PortalAuth() {
             {mode === "register" && (
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label
-                    className="block text-xs font-medium mb-1"
-                    style={{ color: "oklch(0.45 0.03 155)" }}
-                  >
+                  <label className="block text-xs font-medium mb-1" style={{ color: "oklch(0.45 0.03 155)" }}>
                     First Name
                   </label>
                   <div className="relative">
-                    <User
-                      className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
-                      style={{ color: "oklch(0.55 0.03 155)" }}
-                    />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "oklch(0.55 0.03 155)" }} />
                     <input
                       type="text"
                       name="firstName"
@@ -277,25 +210,16 @@ export default function PortalAuth() {
                       required
                       placeholder="Jane"
                       className="w-full pl-10 pr-3 py-2.5 rounded-lg border text-sm"
-                      style={{
-                        borderColor: "oklch(0.85 0.01 90)",
-                        color: "oklch(0.25 0.05 155)",
-                      }}
+                      style={{ borderColor: "oklch(0.85 0.01 90)", color: "oklch(0.25 0.05 155)" }}
                     />
                   </div>
                 </div>
                 <div>
-                  <label
-                    className="block text-xs font-medium mb-1"
-                    style={{ color: "oklch(0.45 0.03 155)" }}
-                  >
+                  <label className="block text-xs font-medium mb-1" style={{ color: "oklch(0.45 0.03 155)" }}>
                     Last Name
                   </label>
                   <div className="relative">
-                    <User
-                      className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
-                      style={{ color: "oklch(0.55 0.03 155)" }}
-                    />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "oklch(0.55 0.03 155)" }} />
                     <input
                       type="text"
                       name="lastName"
@@ -304,10 +228,7 @@ export default function PortalAuth() {
                       required
                       placeholder="Smith"
                       className="w-full pl-10 pr-3 py-2.5 rounded-lg border text-sm"
-                      style={{
-                        borderColor: "oklch(0.85 0.01 90)",
-                        color: "oklch(0.25 0.05 155)",
-                      }}
+                      style={{ borderColor: "oklch(0.85 0.01 90)", color: "oklch(0.25 0.05 155)" }}
                     />
                   </div>
                 </div>
@@ -315,17 +236,11 @@ export default function PortalAuth() {
             )}
 
             <div>
-              <label
-                className="block text-xs font-medium mb-1"
-                style={{ color: "oklch(0.45 0.03 155)" }}
-              >
+              <label className="block text-xs font-medium mb-1" style={{ color: "oklch(0.45 0.03 155)" }}>
                 Email Address
               </label>
               <div className="relative">
-                <Mail
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
-                  style={{ color: "oklch(0.55 0.03 155)" }}
-                />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "oklch(0.55 0.03 155)" }} />
                 <input
                   type="email"
                   name="email"
@@ -334,26 +249,17 @@ export default function PortalAuth() {
                   required
                   placeholder="jane@example.com"
                   className="w-full pl-10 pr-3 py-2.5 rounded-lg border text-sm"
-                  style={{
-                    borderColor: "oklch(0.85 0.01 90)",
-                    color: "oklch(0.25 0.05 155)",
-                  }}
+                  style={{ borderColor: "oklch(0.85 0.01 90)", color: "oklch(0.25 0.05 155)" }}
                 />
               </div>
             </div>
 
             <div>
-              <label
-                className="block text-xs font-medium mb-1"
-                style={{ color: "oklch(0.45 0.03 155)" }}
-              >
+              <label className="block text-xs font-medium mb-1" style={{ color: "oklch(0.45 0.03 155)" }}>
                 Password
               </label>
               <div className="relative">
-                <Lock
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
-                  style={{ color: "oklch(0.55 0.03 155)" }}
-                />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "oklch(0.55 0.03 155)" }} />
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
@@ -361,14 +267,9 @@ export default function PortalAuth() {
                   onChange={handleChange}
                   required
                   minLength={8}
-                  placeholder={
-                    mode === "register" ? "Min 8 characters" : "Enter password"
-                  }
+                  placeholder={mode === "register" ? "Min 8 characters" : "Enter password"}
                   className="w-full pl-10 pr-10 py-2.5 rounded-lg border text-sm"
-                  style={{
-                    borderColor: "oklch(0.85 0.01 90)",
-                    color: "oklch(0.25 0.05 155)",
-                  }}
+                  style={{ borderColor: "oklch(0.85 0.01 90)", color: "oklch(0.25 0.05 155)" }}
                 />
                 <button
                   type="button"
@@ -376,15 +277,9 @@ export default function PortalAuth() {
                   className="absolute right-3 top-1/2 -translate-y-1/2"
                 >
                   {showPassword ? (
-                    <EyeOff
-                      className="w-4 h-4"
-                      style={{ color: "oklch(0.55 0.03 155)" }}
-                    />
+                    <EyeOff className="w-4 h-4" style={{ color: "oklch(0.55 0.03 155)" }} />
                   ) : (
-                    <Eye
-                      className="w-4 h-4"
-                      style={{ color: "oklch(0.55 0.03 155)" }}
-                    />
+                    <Eye className="w-4 h-4" style={{ color: "oklch(0.55 0.03 155)" }} />
                   )}
                 </button>
               </div>
@@ -392,17 +287,11 @@ export default function PortalAuth() {
 
             {mode === "register" && (
               <div>
-                <label
-                  className="block text-xs font-medium mb-1"
-                  style={{ color: "oklch(0.45 0.03 155)" }}
-                >
+                <label className="block text-xs font-medium mb-1" style={{ color: "oklch(0.45 0.03 155)" }}>
                   Phone (optional)
                 </label>
                 <div className="relative">
-                  <Phone
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
-                    style={{ color: "oklch(0.55 0.03 155)" }}
-                  />
+                  <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "oklch(0.55 0.03 155)" }} />
                   <input
                     type="tel"
                     name="phone"
@@ -410,10 +299,7 @@ export default function PortalAuth() {
                     onChange={handleChange}
                     placeholder="+1 (604) 555-0123"
                     className="w-full pl-10 pr-3 py-2.5 rounded-lg border text-sm"
-                    style={{
-                      borderColor: "oklch(0.85 0.01 90)",
-                      color: "oklch(0.25 0.05 155)",
-                    }}
+                    style={{ borderColor: "oklch(0.85 0.01 90)", color: "oklch(0.25 0.05 155)" }}
                   />
                 </div>
               </div>
@@ -423,10 +309,7 @@ export default function PortalAuth() {
               type="submit"
               disabled={loading}
               className="w-full py-3 rounded-lg text-white font-medium flex items-center justify-center gap-2 transition-opacity"
-              style={{
-                background: "oklch(0.24 0.07 155)",
-                opacity: loading ? 0.7 : 1,
-              }}
+              style={{ background: "oklch(0.24 0.07 155)", opacity: loading ? 0.7 : 1 }}
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -440,13 +323,8 @@ export default function PortalAuth() {
           </form>
 
           {/* Footer */}
-          <p
-            className="text-center text-xs mt-6"
-            style={{ color: "oklch(0.55 0.03 155)" }}
-          >
-            {mode === "login"
-              ? "Don't have an account? "
-              : "Already have an account? "}
+          <p className="text-center text-xs mt-6" style={{ color: "oklch(0.55 0.03 155)" }}>
+            {mode === "login" ? "Don't have an account? " : "Already have an account? "}
             <button
               onClick={() => setMode(mode === "login" ? "register" : "login")}
               className="font-medium underline"

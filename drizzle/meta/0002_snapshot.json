@@ -85,13 +85,17 @@
       "compositePrimaryKeys": {
         "follow_up_requests_id": {
           "name": "follow_up_requests_id",
-          "columns": ["id"]
+          "columns": [
+            "id"
+          ]
         }
       },
       "uniqueConstraints": {
         "follow_up_requests_sessionId_unique": {
           "name": "follow_up_requests_sessionId_unique",
-          "columns": ["sessionId"]
+          "columns": [
+            "sessionId"
+          ]
         }
       },
       "checkConstraint": {}
@@ -155,7 +159,9 @@
       "compositePrimaryKeys": {
         "pageviews_id": {
           "name": "pageviews_id",
-          "columns": ["id"]
+          "columns": [
+            "id"
+          ]
         }
       },
       "uniqueConstraints": {},
@@ -262,7 +268,9 @@
       "compositePrimaryKeys": {
         "quiz_submissions_id": {
           "name": "quiz_submissions_id",
-          "columns": ["id"]
+          "columns": [
+            "id"
+          ]
         }
       },
       "uniqueConstraints": {},
@@ -345,13 +353,17 @@
       "compositePrimaryKeys": {
         "users_id": {
           "name": "users_id",
-          "columns": ["id"]
+          "columns": [
+            "id"
+          ]
         }
       },
       "uniqueConstraints": {
         "users_openId_unique": {
           "name": "users_openId_unique",
-          "columns": ["openId"]
+          "columns": [
+            "openId"
+          ]
         }
       },
       "checkConstraint": {}
@@ -415,13 +427,17 @@
       "compositePrimaryKeys": {
         "waitlist_id": {
           "name": "waitlist_id",
-          "columns": ["id"]
+          "columns": [
+            "id"
+          ]
         }
       },
       "uniqueConstraints": {
         "waitlist_email_unique": {
           "name": "waitlist_email_unique",
-          "columns": ["email"]
+          "columns": [
+            "email"
+          ]
         }
       },
       "checkConstraint": {}

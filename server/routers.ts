@@ -21,7 +21,7 @@ export const appRouter = router({
   system: systemRouter,
 
   auth: router({
-    me: publicProcedure.query((opts) => opts.ctx.user),
+    me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
@@ -32,18 +32,16 @@ export const appRouter = router({
   // Quiz procedures
   quiz: router({
     submit: publicProcedure
-      .input(
-        z.object({
-          name: z.string().min(1),
-          email: z.string().email(),
-          score: z.number(),
-          maxScore: z.number(),
-          severityTier: z.string(),
-          recommendation: z.string().optional(),
-          answers: z.string().optional(),
-          source: z.string().optional(),
-        }),
-      )
+      .input(z.object({
+        name: z.string().min(1),
+        email: z.string().email(),
+        score: z.number(),
+        maxScore: z.number(),
+        severityTier: z.string(),
+        recommendation: z.string().optional(),
+        answers: z.string().optional(),
+        source: z.string().optional(),
+      }))
       .mutation(async ({ input }) => {
         await saveQuizSubmission({
           name: input.name,
@@ -70,13 +68,11 @@ export const appRouter = router({
   // Follow-up verification procedures
   followUp: router({
     submit: publicProcedure
-      .input(
-        z.object({
-          firstName: z.string().min(1),
-          lastName: z.string().min(1),
-          email: z.string().email(),
-        }),
-      )
+      .input(z.object({
+        firstName: z.string().min(1),
+        lastName: z.string().min(1),
+        email: z.string().email(),
+      }))
       .mutation(async ({ input }) => {
         const sessionId = nanoid(32);
         await createFollowUpRequest({
@@ -87,19 +83,16 @@ export const appRouter = router({
           status: "pending",
         });
         try {
-          await fetch(
-            "https://hook.us2.make.com/dhizujs8dmj9v1255tklx92ehmgxg3uu",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                firstName: input.firstName,
-                lastName: input.lastName,
-                email: input.email,
-                sessionId,
-              }),
-            },
-          );
+          await fetch("https://hook.us2.make.com/dhizujs8dmj9v1255tklx92ehmgxg3uu", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              firstName: input.firstName,
+              lastName: input.lastName,
+              email: input.email,
+              sessionId,
+            }),
+          });
         } catch (e) {
           console.warn("[Make.com] Follow-up webhook failed:", e);
         }
@@ -121,14 +114,12 @@ export const appRouter = router({
   // Waitlist procedures
   waitlist: router({
     join: publicProcedure
-      .input(
-        z.object({
-          name: z.string().min(1),
-          email: z.string().email(),
-          phone: z.string().optional(),
-          city: z.string().optional(),
-        }),
-      )
+      .input(z.object({
+        name: z.string().min(1),
+        email: z.string().email(),
+        phone: z.string().optional(),
+        city: z.string().optional(),
+      }))
       .mutation(async ({ input }) => {
         const result = await addToWaitlist({
           name: input.name,
@@ -136,8 +127,7 @@ export const appRouter = router({
           phone: input.phone ?? null,
           city: input.city ?? null,
         });
-        if (result?.alreadyExists)
-          return { success: true, alreadyExists: true };
+        if (result?.alreadyExists) return { success: true, alreadyExists: true };
         await notifyOwner({
           title: "New Waitlist Signup",
           content: `${input.name} (${input.email}) joined the waitlist. City: ${input.city ?? "not specified"}`,
@@ -153,16 +143,12 @@ export const appRouter = router({
   // AI Chat procedure
   chat: router({
     message: publicProcedure
-      .input(
-        z.object({
-          messages: z.array(
-            z.object({
-              role: z.enum(["user", "assistant"]),
-              content: z.string(),
-            }),
-          ),
-        }),
-      )
+      .input(z.object({
+        messages: z.array(z.object({
+          role: z.enum(["user", "assistant"]),
+          content: z.string(),
+        })),
+      }))
       .mutation(async ({ input }) => {
         const response = await invokeLLM({
           messages: [
@@ -173,9 +159,7 @@ export const appRouter = router({
             ...input.messages,
           ],
         });
-        const content =
-          response.choices?.[0]?.message?.content ??
-          "I'm sorry, I couldn't generate a response. Please try again.";
+        const content = response.choices?.[0]?.message?.content ?? "I'm sorry, I couldn't generate a response. Please try again.";
         return { content };
       }),
   }),
@@ -195,33 +179,23 @@ export const appRouter = router({
       return {
         quiz: {
           total: quizList.length,
-          last7Days: quizList.filter((q) => q.createdAt > sevenDaysAgo).length,
-          last30Days: quizList.filter((q) => q.createdAt > thirtyDaysAgo)
-            .length,
+          last7Days: quizList.filter(q => q.createdAt > sevenDaysAgo).length,
+          last30Days: quizList.filter(q => q.createdAt > thirtyDaysAgo).length,
           bySeverity: {
-            early: quizList.filter((q) =>
-              q.severityTier?.toLowerCase().includes("early"),
-            ).length,
-            moderate: quizList.filter((q) =>
-              q.severityTier?.toLowerCase().includes("moderate"),
-            ).length,
-            significant: quizList.filter((q) =>
-              q.severityTier?.toLowerCase().includes("significant"),
-            ).length,
+            early: quizList.filter(q => q.severityTier?.toLowerCase().includes("early")).length,
+            moderate: quizList.filter(q => q.severityTier?.toLowerCase().includes("moderate")).length,
+            significant: quizList.filter(q => q.severityTier?.toLowerCase().includes("significant")).length,
           },
         },
         followUp: {
           total: followUpList.length,
-          pending: followUpList.filter((f) => f.status === "pending").length,
-          qualified: followUpList.filter((f) => f.status === "qualified")
-            .length,
-          notQualified: followUpList.filter((f) => f.status === "not_qualified")
-            .length,
+          pending: followUpList.filter(f => f.status === "pending").length,
+          qualified: followUpList.filter(f => f.status === "qualified").length,
+          notQualified: followUpList.filter(f => f.status === "not_qualified").length,
         },
         waitlist: {
           total: waitlistList.length,
-          last7Days: waitlistList.filter((w) => w.createdAt > sevenDaysAgo)
-            .length,
+          last7Days: waitlistList.filter(w => w.createdAt > sevenDaysAgo).length,
         },
       };
     }),

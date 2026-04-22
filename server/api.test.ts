@@ -32,9 +32,7 @@ vi.mock("../server/db", () => ({
 // Mock the LLM module
 vi.mock("./server/_core/llm", () => ({
   invokeLLM: vi.fn().mockResolvedValue({
-    choices: [
-      { message: { content: "This is a helpful response about menopause." } },
-    ],
+    choices: [{ message: { content: "This is a helpful response about menopause." } }],
   }),
 }));
 
@@ -56,10 +54,7 @@ describe("MeNova REST API Contracts", () => {
     it("admin auth middleware should reject missing authorization header", () => {
       // Simulate the adminAuth middleware logic
       const authHeader = undefined;
-      const isAuthorized =
-        authHeader &&
-        typeof authHeader === "string" &&
-        authHeader.startsWith("Bearer ");
+      const isAuthorized = authHeader && typeof authHeader === "string" && authHeader.startsWith("Bearer ");
       expect(isAuthorized).toBeFalsy();
     });
 
@@ -95,8 +90,7 @@ describe("MeNova REST API Contracts", () => {
 
     it("should reject missing required fields", () => {
       const invalidPayload = { name: "Jane Doe" };
-      const isValid =
-        invalidPayload.name &&
+      const isValid = invalidPayload.name &&
         (invalidPayload as any).email &&
         (invalidPayload as any).score !== undefined &&
         (invalidPayload as any).maxScore !== undefined &&
@@ -135,8 +129,7 @@ describe("MeNova REST API Contracts", () => {
 
     it("should reject missing required fields", () => {
       const invalidPayload = { firstName: "Jane" };
-      const isValid =
-        invalidPayload.firstName &&
+      const isValid = invalidPayload.firstName &&
         (invalidPayload as any).lastName &&
         (invalidPayload as any).email;
       expect(isValid).toBeFalsy();
@@ -173,9 +166,7 @@ describe("MeNova REST API Contracts", () => {
 
     it("should reject missing sessionId", () => {
       const invalidPayload = { qualified: true };
-      const isValid =
-        (invalidPayload as any).sessionId &&
-        invalidPayload.qualified !== undefined;
+      const isValid = (invalidPayload as any).sessionId && invalidPayload.qualified !== undefined;
       expect(isValid).toBeFalsy();
     });
 
@@ -223,10 +214,7 @@ describe("MeNova REST API Contracts", () => {
         message: "Tell me more",
         history: [
           { role: "user", content: "What is menopause?" },
-          {
-            role: "assistant",
-            content: "Menopause is a natural biological process...",
-          },
+          { role: "assistant", content: "Menopause is a natural biological process..." },
         ],
       };
       expect(payload.history).toHaveLength(2);
@@ -273,7 +261,7 @@ describe("MeNova REST API Contracts", () => {
       const headers = Object.keys(data[0]);
       const csvRows = [headers.join(",")];
       for (const row of data) {
-        const values = headers.map((h) => String((row as any)[h]));
+        const values = headers.map(h => String((row as any)[h]));
         csvRows.push(values.join(","));
       }
       const csv = csvRows.join("\n");

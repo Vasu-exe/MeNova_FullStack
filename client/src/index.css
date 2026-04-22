@@ -51,8 +51,8 @@
   --color-forest: oklch(0.24 0.07 155);
   --color-forest-dark: oklch(0.18 0.07 155);
   --color-forest-light: oklch(0.38 0.07 155);
-  --color-terracotta: oklch(0.6 0.12 42);
-  --color-terracotta-dark: oklch(0.5 0.12 42);
+  --color-terracotta: oklch(0.60 0.12 42);
+  --color-terracotta-dark: oklch(0.50 0.12 42);
   --color-sage: oklch(0.55 0.06 155);
   --color-cream: oklch(0.98 0.01 90);
   --color-cream-dark: oklch(0.94 0.015 90);
@@ -72,8 +72,8 @@
   --secondary: oklch(0.94 0.015 90);
   --secondary-foreground: oklch(0.22 0.005 65);
   --muted: oklch(0.94 0.01 90);
-  --muted-foreground: oklch(0.5 0.01 65);
-  --accent: oklch(0.6 0.12 42);
+  --muted-foreground: oklch(0.50 0.01 65);
+  --accent: oklch(0.60 0.12 42);
   --accent-foreground: oklch(0.98 0.01 90);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
@@ -81,10 +81,10 @@
   --input: oklch(0.88 0.01 90);
   --ring: oklch(0.24 0.07 155);
   --chart-1: oklch(0.24 0.07 155);
-  --chart-2: oklch(0.6 0.12 42);
+  --chart-2: oklch(0.60 0.12 42);
   --chart-3: oklch(0.55 0.06 155);
   --chart-4: oklch(0.38 0.07 155);
-  --chart-5: oklch(0.5 0.12 42);
+  --chart-5: oklch(0.50 0.12 42);
   --sidebar: oklch(0.98 0.01 90);
   --sidebar-foreground: oklch(0.22 0.005 65);
   --sidebar-primary: oklch(0.24 0.07 155);
@@ -101,13 +101,10 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "DM Sans", system-ui, sans-serif;
+    font-family: 'DM Sans', system-ui, sans-serif;
   }
-  h1,
-  h2,
-  h3,
-  h4 {
-    font-family: "Playfair Display", Georgia, serif;
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', Georgia, serif;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -155,9 +152,7 @@
   .fade-up {
     opacity: 0;
     transform: translateY(24px);
-    transition:
-      opacity 0.6s ease,
-      transform 0.6s ease;
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
   .fade-up.visible {
     opacity: 1;
@@ -166,12 +161,8 @@
 
   /* Marquee animation */
   @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
   .animate-marquee {
     animation: marquee 30s linear infinite;
@@ -181,7 +172,7 @@
   .badge-forest {
     background-color: oklch(0.24 0.07 155 / 0.12);
     color: oklch(0.24 0.07 155);
-    font-family: "DM Sans", sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -193,22 +184,20 @@
 
   /* Terracotta CTA button */
   .btn-terracotta {
-    background-color: oklch(0.6 0.12 42);
+    background-color: oklch(0.60 0.12 42);
     color: white;
-    font-family: "DM Sans", sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 600;
     font-size: 0.875rem;
     letter-spacing: 0.05em;
     padding: 0.75rem 2rem;
     border-radius: 9999px;
-    transition:
-      background-color 0.2s ease,
-      transform 0.15s ease;
+    transition: background-color 0.2s ease, transform 0.15s ease;
     display: inline-block;
     text-decoration: none;
   }
   .btn-terracotta:hover {
-    background-color: oklch(0.5 0.12 42);
+    background-color: oklch(0.50 0.12 42);
     transform: translateY(-1px);
   }
 
@@ -216,15 +205,13 @@
   .btn-forest {
     background-color: oklch(0.24 0.07 155);
     color: oklch(0.98 0.01 90);
-    font-family: "DM Sans", sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 600;
     font-size: 0.875rem;
     letter-spacing: 0.05em;
     padding: 0.75rem 2rem;
     border-radius: 9999px;
-    transition:
-      background-color 0.2s ease,
-      transform 0.15s ease;
+    transition: background-color 0.2s ease, transform 0.15s ease;
     display: inline-block;
     text-decoration: none;
   }
@@ -238,7 +225,7 @@
     background-color: transparent;
     color: oklch(0.24 0.07 155);
     border: 1.5px solid oklch(0.24 0.07 155);
-    font-family: "DM Sans", sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 600;
     font-size: 0.875rem;
     letter-spacing: 0.05em;
@@ -255,9 +242,7 @@
 
   /* Card hover */
   .card-hover {
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .card-hover:hover {
     transform: translateY(-4px);

@@ -28,25 +28,13 @@ import {
 } from "lucide-react";
 
 // ─── Image URLs ───────────────────────────────────────────────────────────────
-const HERO_BG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663515887063/Mbboc9yaua4MvveQ5gebGn/menova-hero-bg-jRKC2iNt3D4DtGerP5ykiZ.webp";
-const WOMAN_HERO =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663515887063/Mbboc9yaua4MvveQ5gebGn/menova-woman-hero-TdGCoZDVuHwERKBpG5xxdo.webp";
-const WOMAN_OUTDOOR =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663515887063/Mbboc9yaua4MvveQ5gebGn/menova-woman-outdoor-DmRovSNgWvgd9QDKqkUgts.webp";
-const CONSULTATION =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663515887063/Mbboc9yaua4MvveQ5gebGn/menova-consultation-7HLYCdQ4bkU8gNuifUHess.webp";
+const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663515887063/Mbboc9yaua4MvveQ5gebGn/menova-hero-bg-jRKC2iNt3D4DtGerP5ykiZ.webp";
+const WOMAN_HERO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663515887063/Mbboc9yaua4MvveQ5gebGn/menova-woman-hero-TdGCoZDVuHwERKBpG5xxdo.webp";
+const WOMAN_OUTDOOR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663515887063/Mbboc9yaua4MvveQ5gebGn/menova-woman-outdoor-DmRovSNgWvgd9QDKqkUgts.webp";
+const CONSULTATION = "https://d2xsxph8kpxj0f.cloudfront.net/310519663515887063/Mbboc9yaua4MvveQ5gebGn/menova-consultation-7HLYCdQ4bkU8gNuifUHess.webp";
 
 // ─── Scroll Animation Component ───────────────────────────────────────────────
-function FadeUp({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
+function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
@@ -58,7 +46,7 @@ function FadeUp({
           observer.unobserve(el);
         }
       },
-      { threshold: 0.1 },
+      { threshold: 0.1 }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -99,11 +87,7 @@ function Navbar({ onOpenQuiz }: { onOpenQuiz: () => void }) {
           <a href="#" className="flex items-center gap-2">
             <div
               className="w-8 h-8 rounded-full flex items-center justify-center"
-              style={{
-                backgroundColor: scrolled
-                  ? "oklch(0.24 0.07 155)"
-                  : "rgba(255,255,255,0.2)",
-              }}
+              style={{ backgroundColor: scrolled ? "oklch(0.24 0.07 155)" : "rgba(255,255,255,0.2)" }}
             >
               <Leaf className="w-4 h-4 text-white" />
             </div>
@@ -126,9 +110,7 @@ function Navbar({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                 className="text-sm font-medium transition-colors duration-200 hover:opacity-100"
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  color: scrolled
-                    ? "oklch(0.35 0.005 65)"
-                    : "rgba(255,255,255,0.82)",
+                  color: scrolled ? "oklch(0.35 0.005 65)" : "rgba(255,255,255,0.82)",
                 }}
               >
                 {link.label}
@@ -151,11 +133,7 @@ function Navbar({ onOpenQuiz }: { onOpenQuiz: () => void }) {
             style={{ color: scrolled ? "oklch(0.24 0.07 155)" : "white" }}
             onClick={() => setMobileOpen(!mobileOpen)}
           >
-            {mobileOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
@@ -168,22 +146,13 @@ function Navbar({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                 key={link.label}
                 href={link.href}
                 className="block text-sm font-medium py-2"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  color: "oklch(0.35 0.005 65)",
-                }}
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.35 0.005 65)" }}
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
               </a>
             ))}
-            <button
-              onClick={() => {
-                onOpenQuiz();
-                setMobileOpen(false);
-              }}
-              className="btn-terracotta block text-center w-full mt-4"
-            >
+            <button onClick={() => { onOpenQuiz(); setMobileOpen(false); }} className="btn-terracotta block text-center w-full mt-4">
               Start Your Assessment
             </button>
           </div>
@@ -232,16 +201,10 @@ function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
 
             <h1
               className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                color: "white",
-              }}
+              style={{ fontFamily: "'Playfair Display', serif", color: "white" }}
             >
               Menopause care,{" "}
-              <em
-                className="not-italic"
-                style={{ color: "oklch(0.75 0.10 42)" }}
-              >
+              <em className="not-italic" style={{ color: "oklch(0.75 0.10 42)" }}>
                 redefined
               </em>{" "}
               for BC women.
@@ -249,34 +212,21 @@ function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
 
             <p
               className="text-lg lg:text-xl mb-8 leading-relaxed max-w-lg"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(255,255,255,0.72)",
-              }}
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.72)" }}
             >
-              Vancouver's menopause telehealth clinic. See a BC-licensed Nurse
-              Practitioner this week — no referral, no 6-month wait.
-              Personalized Bioidentical Hormone Replacement Therapy (BHRT)
-              delivered to your door.
+              Vancouver's menopause telehealth clinic. See a BC-licensed Nurse Practitioner this week — no referral, no 6-month wait. Personalized Bioidentical Hormone Replacement Therapy (BHRT) delivered to your door.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <button
-                onClick={onOpenQuiz}
-                className="btn-terracotta text-center"
-              >
+              <button onClick={onOpenQuiz} className="btn-terracotta text-center">
                 Take the Free Symptom Quiz
               </button>
               <a
-                href="https://cal.com/menova/initial-consultation"
+                href="https://cal.com/menova/60min"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-semibold border-2 transition-all hover:bg-white/10"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  color: "white",
-                  borderColor: "rgba(255,255,255,0.45)",
-                }}
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "white", borderColor: "rgba(255,255,255,0.45)" }}
               >
                 Book a Consultation <ArrowRight className="w-4 h-4" />
               </a>
@@ -291,15 +241,9 @@ function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                 <div
                   key={label}
                   className="flex items-center gap-2 text-sm"
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    color: "rgba(255,255,255,0.65)",
-                  }}
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.65)" }}
                 >
-                  <Icon
-                    className="w-4 h-4"
-                    style={{ color: "oklch(0.75 0.10 42)" }}
-                  />
+                  <Icon className="w-4 h-4" style={{ color: "oklch(0.75 0.10 42)" }} />
                   {label}
                 </div>
               ))}
@@ -319,37 +263,25 @@ function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
               />
               <div
                 className="absolute bottom-6 left-6 right-6 rounded-2xl p-4"
-                style={{
-                  backgroundColor: "rgba(255,255,255,0.93)",
-                  backdropFilter: "blur(12px)",
-                }}
+                style={{ backgroundColor: "rgba(255,255,255,0.93)", backdropFilter: "blur(12px)" }}
               >
                 <div className="flex items-center gap-3">
                   <div
                     className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
                     style={{ backgroundColor: "oklch(0.24 0.07 155 / 0.10)" }}
                   >
-                    <HeartPulse
-                      className="w-5 h-5"
-                      style={{ color: "oklch(0.24 0.07 155)" }}
-                    />
+                    <HeartPulse className="w-5 h-5" style={{ color: "oklch(0.24 0.07 155)" }} />
                   </div>
                   <div>
                     <p
                       className="text-xs font-semibold"
-                      style={{
-                        color: "oklch(0.24 0.07 155)",
-                        fontFamily: "'DM Sans', sans-serif",
-                      }}
+                      style={{ color: "oklch(0.24 0.07 155)", fontFamily: "'DM Sans', sans-serif" }}
                     >
                       Next available appointment
                     </p>
                     <p
                       className="text-sm font-bold"
-                      style={{
-                        color: "oklch(0.22 0.005 65)",
-                        fontFamily: "'DM Sans', sans-serif",
-                      }}
+                      style={{ color: "oklch(0.22 0.005 65)", fontFamily: "'DM Sans', sans-serif" }}
                     >
                       This week — Book in 2 minutes
                     </p>
@@ -366,12 +298,7 @@ function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40">
-        <span
-          className="text-xs text-white"
-          style={{ fontFamily: "'DM Sans', sans-serif" }}
-        >
-          Scroll
-        </span>
+        <span className="text-xs text-white" style={{ fontFamily: "'DM Sans', sans-serif" }}>Scroll</span>
         <ChevronDown className="w-4 h-4 text-white animate-bounce" />
       </div>
     </section>
@@ -408,10 +335,7 @@ function CategoryScroll() {
               <span className="text-base">{cat.icon}</span>
               <span
                 className="text-sm font-medium"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  color: "oklch(0.40 0.005 65)",
-                }}
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.40 0.005 65)" }}
               >
                 {cat.label}
               </span>
@@ -440,25 +364,16 @@ function TrustBar() {
   return (
     <section
       className="py-3 border-b"
-      style={{
-        backgroundColor: "oklch(0.96 0.015 90)",
-        borderColor: "oklch(0.88 0.01 90)",
-      }}
+      style={{ backgroundColor: "oklch(0.96 0.015 90)", borderColor: "oklch(0.88 0.01 90)" }}
     >
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-wrap justify-center gap-6 lg:gap-10">
           {items.map(({ icon: Icon, label }) => (
             <div key={label} className="flex items-center gap-2">
-              <Icon
-                className="w-4 h-4"
-                style={{ color: "oklch(0.24 0.07 155)" }}
-              />
+              <Icon className="w-4 h-4" style={{ color: "oklch(0.24 0.07 155)" }} />
               <span
                 className="text-xs font-semibold tracking-wide uppercase"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  color: "oklch(0.40 0.005 65)",
-                }}
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.40 0.005 65)" }}
               >
                 {label}
               </span>
@@ -478,19 +393,9 @@ function WhatIsBHRTSection() {
       icon: (
         <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
           <circle cx="24" cy="24" r="20" fill="oklch(0.24 0.07 155 / 0.12)" />
-          <path
-            d="M16 28c0-4.4 3.6-8 8-8s8 3.6 8 8"
-            stroke="oklch(0.24 0.07 155)"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
+          <path d="M16 28c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="oklch(0.24 0.07 155)" strokeWidth="2.5" strokeLinecap="round" />
           <circle cx="24" cy="18" r="3.5" fill="oklch(0.24 0.07 155)" />
-          <path
-            d="M20 34h8"
-            stroke="oklch(0.60 0.12 42)"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
+          <path d="M20 34h8" stroke="oklch(0.60 0.12 42)" strokeWidth="2.5" strokeLinecap="round" />
         </svg>
       ),
       label: "Your body's hormone levels decline",
@@ -501,21 +406,8 @@ function WhatIsBHRTSection() {
       icon: (
         <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
           <circle cx="24" cy="24" r="20" fill="oklch(0.60 0.12 42 / 0.12)" />
-          <rect
-            x="14"
-            y="20"
-            width="20"
-            height="12"
-            rx="3"
-            stroke="oklch(0.60 0.12 42)"
-            strokeWidth="2.5"
-          />
-          <path
-            d="M18 20v-3a6 6 0 0 1 12 0v3"
-            stroke="oklch(0.60 0.12 42)"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
+          <rect x="14" y="20" width="20" height="12" rx="3" stroke="oklch(0.60 0.12 42)" strokeWidth="2.5" />
+          <path d="M18 20v-3a6 6 0 0 1 12 0v3" stroke="oklch(0.60 0.12 42)" strokeWidth="2.5" strokeLinecap="round" />
           <circle cx="24" cy="26" r="2.5" fill="oklch(0.60 0.12 42)" />
         </svg>
       ),
@@ -527,19 +419,8 @@ function WhatIsBHRTSection() {
       icon: (
         <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
           <circle cx="24" cy="24" r="20" fill="oklch(0.24 0.07 155 / 0.12)" />
-          <path
-            d="M16 32l4-8 4 5 3-4 5 7"
-            stroke="oklch(0.24 0.07 155)"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M14 20h4M30 20h4"
-            stroke="oklch(0.24 0.07 155)"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
+          <path d="M16 32l4-8 4 5 3-4 5 7" stroke="oklch(0.24 0.07 155)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M14 20h4M30 20h4" stroke="oklch(0.24 0.07 155)" strokeWidth="2" strokeLinecap="round" />
         </svg>
       ),
       label: "Compounded & delivered to you",
@@ -550,19 +431,8 @@ function WhatIsBHRTSection() {
       icon: (
         <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
           <circle cx="24" cy="24" r="20" fill="oklch(0.60 0.12 42 / 0.12)" />
-          <path
-            d="M24 14v4M24 30v4M14 24h4M30 24h4"
-            stroke="oklch(0.60 0.12 42)"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
-          <circle
-            cx="24"
-            cy="24"
-            r="5"
-            stroke="oklch(0.60 0.12 42)"
-            strokeWidth="2.5"
-          />
+          <path d="M24 14v4M24 30v4M14 24h4M30 24h4" stroke="oklch(0.60 0.12 42)" strokeWidth="2.5" strokeLinecap="round" />
+          <circle cx="24" cy="24" r="5" stroke="oklch(0.60 0.12 42)" strokeWidth="2.5" />
           <circle cx="24" cy="24" r="2" fill="oklch(0.60 0.12 42)" />
         </svg>
       ),
@@ -572,42 +442,12 @@ function WhatIsBHRTSection() {
   ];
 
   const comparisons = [
-    {
-      label: "Source",
-      bhrt: "Derived from plants (yam, soy)",
-      synth: "Synthetic or animal-derived",
-      highlight: true,
-    },
-    {
-      label: "Structure",
-      bhrt: "Identical to human hormones",
-      synth: "Similar but not identical",
-      highlight: false,
-    },
-    {
-      label: "Dosing",
-      bhrt: "Custom-compounded for you",
-      synth: "Standard fixed doses",
-      highlight: true,
-    },
-    {
-      label: "Delivery",
-      bhrt: "Cream, gel, patch, or capsule",
-      synth: "Mostly oral pill or patch",
-      highlight: false,
-    },
-    {
-      label: "Monitoring",
-      bhrt: "Regular NP check-ins & labs",
-      synth: "Less frequent follow-up",
-      highlight: true,
-    },
-    {
-      label: "Regulation",
-      bhrt: "Health Canada compliant",
-      synth: "Health Canada approved",
-      highlight: false,
-    },
+    { label: "Source", bhrt: "Derived from plants (yam, soy)", synth: "Synthetic or animal-derived", highlight: true },
+    { label: "Structure", bhrt: "Identical to human hormones", synth: "Similar but not identical", highlight: false },
+    { label: "Dosing", bhrt: "Custom-compounded for you", synth: "Standard fixed doses", highlight: true },
+    { label: "Delivery", bhrt: "Cream, gel, patch, or capsule", synth: "Mostly oral pill or patch", highlight: false },
+    { label: "Monitoring", bhrt: "Regular NP check-ins & labs", synth: "Less frequent follow-up", highlight: true },
+    { label: "Regulation", bhrt: "Health Canada compliant", synth: "Health Canada approved", highlight: false },
   ];
 
   return (
@@ -620,21 +460,13 @@ function WhatIsBHRTSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <FadeUp className="text-center mb-16">
-          <span className="badge-forest mb-4">
-            Understanding Your Treatment
-          </span>
+          <span className="badge-forest mb-4">Understanding Your Treatment</span>
           <h2
             className="text-4xl lg:text-5xl font-bold mb-4 leading-tight"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              color: "oklch(0.22 0.005 65)",
-            }}
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
           >
             What is{" "}
-            <em
-              className="not-italic"
-              style={{ color: "oklch(0.24 0.07 155)" }}
-            >
+            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
               Bioidentical Hormone
             </em>
             <br />
@@ -642,19 +474,11 @@ function WhatIsBHRTSection() {
           </h2>
           <p
             className="text-base lg:text-lg max-w-2xl mx-auto leading-relaxed"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "oklch(0.45 0.005 65)",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
           >
-            As you approach perimenopause and menopause, your body produces less
-            estrogen, progesterone, and testosterone. Bioidentical Hormone
-            Replacement Therapy (BHRT) restores these levels using hormones that
-            are{" "}
-            <strong style={{ color: "oklch(0.24 0.07 155)" }}>
-              molecularly identical
-            </strong>{" "}
-            to the ones your body naturally makes.
+            As you approach perimenopause and menopause, your body produces less estrogen, progesterone, and testosterone.
+            Bioidentical Hormone Replacement Therapy (BHRT) restores these levels using hormones that are{" "}
+            <strong style={{ color: "oklch(0.24 0.07 155)" }}>molecularly identical</strong> to the ones your body naturally makes.
           </p>
         </FadeUp>
 
@@ -662,17 +486,11 @@ function WhatIsBHRTSection() {
         <FadeUp className="mb-20">
           <div
             className="rounded-3xl p-8 lg:p-12"
-            style={{
-              backgroundColor: "white",
-              border: "1px solid oklch(0.88 0.01 90)",
-            }}
+            style={{ backgroundColor: "white", border: "1px solid oklch(0.88 0.01 90)" }}
           >
             <p
               className="text-center text-xs font-semibold tracking-widest uppercase mb-10"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                color: "oklch(0.55 0.005 65)",
-              }}
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.55 0.005 65)" }}
             >
               How Bioidentical Hormone Replacement Therapy Works
             </p>
@@ -687,27 +505,18 @@ function WhatIsBHRTSection() {
 
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
                 {steps.map((step, i) => (
-                  <div
-                    key={step.id}
-                    className="flex flex-col items-center text-center"
-                  >
+                  <div key={step.id} className="flex flex-col items-center text-center">
                     {/* Icon bubble */}
                     <div
                       className="w-20 h-20 rounded-full flex items-center justify-center mb-4 shadow-sm relative"
-                      style={{
-                        backgroundColor: "oklch(0.97 0.015 90)",
-                        border: "2px solid oklch(0.88 0.01 90)",
-                      }}
+                      style={{ backgroundColor: "oklch(0.97 0.015 90)", border: "2px solid oklch(0.88 0.01 90)" }}
                     >
                       {step.icon}
                       {/* Step number badge */}
                       <span
                         className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white"
                         style={{
-                          backgroundColor:
-                            i % 2 === 0
-                              ? "oklch(0.24 0.07 155)"
-                              : "oklch(0.60 0.12 42)",
+                          backgroundColor: i % 2 === 0 ? "oklch(0.24 0.07 155)" : "oklch(0.60 0.12 42)",
                           fontFamily: "'DM Sans', sans-serif",
                         }}
                       >
@@ -716,19 +525,13 @@ function WhatIsBHRTSection() {
                     </div>
                     <p
                       className="text-sm font-bold mb-1 leading-snug"
-                      style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        color: "oklch(0.22 0.005 65)",
-                      }}
+                      style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.22 0.005 65)" }}
                     >
                       {step.label}
                     </p>
                     <p
                       className="text-xs"
-                      style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        color: "oklch(0.55 0.005 65)",
-                      }}
+                      style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.55 0.005 65)" }}
                     >
                       {step.sublabel}
                     </p>
@@ -738,141 +541,35 @@ function WhatIsBHRTSection() {
             </div>
 
             {/* Hormone level SVG chart */}
-            <div
-              className="mt-12 pt-10"
-              style={{ borderTop: "1px solid oklch(0.92 0.01 90)" }}
-            >
+            <div className="mt-12 pt-10" style={{ borderTop: "1px solid oklch(0.92 0.01 90)" }}>
               <p
                 className="text-center text-xs font-semibold tracking-widest uppercase mb-6"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  color: "oklch(0.55 0.005 65)",
-                }}
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.55 0.005 65)" }}
               >
                 Hormone Level Over Time
               </p>
               <div className="max-w-2xl mx-auto">
-                <svg
-                  viewBox="0 0 600 200"
-                  className="w-full"
-                  style={{ overflow: "visible" }}
-                >
+                <svg viewBox="0 0 600 200" className="w-full" style={{ overflow: "visible" }}>
                   {/* Grid lines */}
                   {[40, 80, 120, 160].map((y) => (
-                    <line
-                      key={y}
-                      x1="60"
-                      y1={y}
-                      x2="580"
-                      y2={y}
-                      stroke="oklch(0.88 0.01 90)"
-                      strokeWidth="1"
-                      strokeDasharray="4 4"
-                    />
+                    <line key={y} x1="60" y1={y} x2="580" y2={y} stroke="oklch(0.88 0.01 90)" strokeWidth="1" strokeDasharray="4 4" />
                   ))}
 
                   {/* Y-axis labels */}
-                  <text
-                    x="50"
-                    y="44"
-                    textAnchor="end"
-                    fontSize="10"
-                    fill="oklch(0.55 0.005 65)"
-                    fontFamily="DM Sans, sans-serif"
-                  >
-                    High
-                  </text>
-                  <text
-                    x="50"
-                    y="124"
-                    textAnchor="end"
-                    fontSize="10"
-                    fill="oklch(0.55 0.005 65)"
-                    fontFamily="DM Sans, sans-serif"
-                  >
-                    Mid
-                  </text>
-                  <text
-                    x="50"
-                    y="164"
-                    textAnchor="end"
-                    fontSize="10"
-                    fill="oklch(0.55 0.005 65)"
-                    fontFamily="DM Sans, sans-serif"
-                  >
-                    Low
-                  </text>
+                  <text x="50" y="44" textAnchor="end" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">High</text>
+                  <text x="50" y="124" textAnchor="end" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">Mid</text>
+                  <text x="50" y="164" textAnchor="end" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">Low</text>
 
                   {/* X-axis labels */}
-                  <text
-                    x="130"
-                    y="192"
-                    textAnchor="middle"
-                    fontSize="10"
-                    fill="oklch(0.55 0.005 65)"
-                    fontFamily="DM Sans, sans-serif"
-                  >
-                    Pre-menopause
-                  </text>
-                  <text
-                    x="290"
-                    y="192"
-                    textAnchor="middle"
-                    fontSize="10"
-                    fill="oklch(0.55 0.005 65)"
-                    fontFamily="DM Sans, sans-serif"
-                  >
-                    Perimenopause
-                  </text>
-                  <text
-                    x="430"
-                    y="192"
-                    textAnchor="middle"
-                    fontSize="10"
-                    fill="oklch(0.55 0.005 65)"
-                    fontFamily="DM Sans, sans-serif"
-                  >
-                    Menopause
-                  </text>
-                  <text
-                    x="540"
-                    y="192"
-                    textAnchor="middle"
-                    fontSize="10"
-                    fill="oklch(0.55 0.005 65)"
-                    fontFamily="DM Sans, sans-serif"
-                  >
-                    With BHRT
-                  </text>
+                  <text x="130" y="192" textAnchor="middle" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">Pre-menopause</text>
+                  <text x="290" y="192" textAnchor="middle" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">Perimenopause</text>
+                  <text x="430" y="192" textAnchor="middle" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">Menopause</text>
+                  <text x="540" y="192" textAnchor="middle" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">With BHRT</text>
 
                   {/* Vertical dividers */}
-                  <line
-                    x1="200"
-                    y1="30"
-                    x2="200"
-                    y2="175"
-                    stroke="oklch(0.88 0.01 90)"
-                    strokeWidth="1"
-                    strokeDasharray="4 4"
-                  />
-                  <line
-                    x1="360"
-                    y1="30"
-                    x2="360"
-                    y2="175"
-                    stroke="oklch(0.88 0.01 90)"
-                    strokeWidth="1"
-                    strokeDasharray="4 4"
-                  />
-                  <line
-                    x1="480"
-                    y1="30"
-                    x2="480"
-                    y2="175"
-                    stroke="oklch(0.88 0.01 90)"
-                    strokeWidth="1"
-                    strokeDasharray="4 4"
-                  />
+                  <line x1="200" y1="30" x2="200" y2="175" stroke="oklch(0.88 0.01 90)" strokeWidth="1" strokeDasharray="4 4" />
+                  <line x1="360" y1="30" x2="360" y2="175" stroke="oklch(0.88 0.01 90)" strokeWidth="1" strokeDasharray="4 4" />
+                  <line x1="480" y1="30" x2="480" y2="175" stroke="oklch(0.88 0.01 90)" strokeWidth="1" strokeDasharray="4 4" />
 
                   {/* Declining natural hormone line */}
                   <path
@@ -901,72 +598,15 @@ function WhatIsBHRTSection() {
 
                   {/* BHRT start marker */}
                   <circle cx="480" cy="173" r="5" fill="oklch(0.60 0.12 42)" />
-                  <line
-                    x1="480"
-                    y1="30"
-                    x2="480"
-                    y2="173"
-                    stroke="oklch(0.60 0.12 42)"
-                    strokeWidth="1.5"
-                    strokeDasharray="3 3"
-                  />
-                  <rect
-                    x="430"
-                    y="14"
-                    width="100"
-                    height="18"
-                    rx="4"
-                    fill="oklch(0.60 0.12 42)"
-                  />
-                  <text
-                    x="480"
-                    y="26"
-                    textAnchor="middle"
-                    fontSize="9"
-                    fill="white"
-                    fontFamily="DM Sans, sans-serif"
-                    fontWeight="600"
-                  >
-                    BHRT Starts Here
-                  </text>
+                  <line x1="480" y1="30" x2="480" y2="173" stroke="oklch(0.60 0.12 42)" strokeWidth="1.5" strokeDasharray="3 3" />
+                  <rect x="430" y="14" width="100" height="18" rx="4" fill="oklch(0.60 0.12 42)" />
+                  <text x="480" y="26" textAnchor="middle" fontSize="9" fill="white" fontFamily="DM Sans, sans-serif" fontWeight="600">BHRT Starts Here</text>
 
                   {/* Legend */}
-                  <line
-                    x1="70"
-                    y1="15"
-                    x2="100"
-                    y2="15"
-                    stroke="oklch(0.65 0.005 65)"
-                    strokeWidth="2"
-                    strokeDasharray="5 3"
-                  />
-                  <text
-                    x="105"
-                    y="19"
-                    fontSize="10"
-                    fill="oklch(0.55 0.005 65)"
-                    fontFamily="DM Sans, sans-serif"
-                  >
-                    Natural hormone level
-                  </text>
-                  <line
-                    x1="280"
-                    y1="15"
-                    x2="310"
-                    y2="15"
-                    stroke="oklch(0.24 0.07 155)"
-                    strokeWidth="2.5"
-                  />
-                  <text
-                    x="315"
-                    y="19"
-                    fontSize="10"
-                    fill="oklch(0.24 0.07 155)"
-                    fontFamily="DM Sans, sans-serif"
-                    fontWeight="600"
-                  >
-                    With Bioidentical HRT
-                  </text>
+                  <line x1="70" y1="15" x2="100" y2="15" stroke="oklch(0.65 0.005 65)" strokeWidth="2" strokeDasharray="5 3" />
+                  <text x="105" y="19" fontSize="10" fill="oklch(0.55 0.005 65)" fontFamily="DM Sans, sans-serif">Natural hormone level</text>
+                  <line x1="280" y1="15" x2="310" y2="15" stroke="oklch(0.24 0.07 155)" strokeWidth="2.5" />
+                  <text x="315" y="19" fontSize="10" fill="oklch(0.24 0.07 155)" fontFamily="DM Sans, sans-serif" fontWeight="600">With Bioidentical HRT</text>
                 </svg>
               </div>
             </div>
@@ -991,10 +631,7 @@ function WhatIsBHRTSection() {
               </h3>
               <p
                 className="text-sm mt-1"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  color: "rgba(255,255,255,0.60)",
-                }}
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.60)" }}
               >
                 Understanding the key differences
               </p>
@@ -1003,38 +640,11 @@ function WhatIsBHRTSection() {
             {/* Table header */}
             <div
               className="grid grid-cols-3 px-8 py-3"
-              style={{
-                backgroundColor: "oklch(0.22 0.07 155)",
-                borderBottom: "1px solid oklch(0.88 0.01 90)",
-              }}
+              style={{ backgroundColor: "oklch(0.22 0.07 155)", borderBottom: "1px solid oklch(0.88 0.01 90)" }}
             >
-              <span
-                className="text-xs font-semibold tracking-widest uppercase"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  color: "rgba(255,255,255,0.50)",
-                }}
-              >
-                Feature
-              </span>
-              <span
-                className="text-xs font-semibold tracking-widest uppercase"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  color: "oklch(0.75 0.10 42)",
-                }}
-              >
-                Bioidentical HRT (MeNova)
-              </span>
-              <span
-                className="text-xs font-semibold tracking-widest uppercase"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  color: "rgba(255,255,255,0.50)",
-                }}
-              >
-                Conventional HRT
-              </span>
+              <span className="text-xs font-semibold tracking-widest uppercase" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.50)" }}>Feature</span>
+              <span className="text-xs font-semibold tracking-widest uppercase" style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.75 0.10 42)" }}>Bioidentical HRT (MeNova)</span>
+              <span className="text-xs font-semibold tracking-widest uppercase" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.50)" }}>Conventional HRT</span>
             </div>
 
             {comparisons.map((row, i) => (
@@ -1042,45 +652,28 @@ function WhatIsBHRTSection() {
                 key={row.label}
                 className="grid grid-cols-3 px-8 py-4 items-center"
                 style={{
-                  backgroundColor: row.highlight
-                    ? "oklch(0.97 0.015 90)"
-                    : "white",
-                  borderBottom:
-                    i < comparisons.length - 1
-                      ? "1px solid oklch(0.92 0.01 90)"
-                      : "none",
+                  backgroundColor: row.highlight ? "oklch(0.97 0.015 90)" : "white",
+                  borderBottom: i < comparisons.length - 1 ? "1px solid oklch(0.92 0.01 90)" : "none",
                 }}
               >
                 <span
                   className="text-sm font-semibold"
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    color: "oklch(0.35 0.005 65)",
-                  }}
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.35 0.005 65)" }}
                 >
                   {row.label}
                 </span>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2
-                    className="w-4 h-4 mt-0.5 flex-shrink-0"
-                    style={{ color: "oklch(0.24 0.07 155)" }}
-                  />
+                  <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "oklch(0.24 0.07 155)" }} />
                   <span
                     className="text-sm font-medium"
-                    style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      color: "oklch(0.24 0.07 155)",
-                    }}
+                    style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.24 0.07 155)" }}
                   >
                     {row.bhrt}
                   </span>
                 </div>
                 <span
                   className="text-sm"
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    color: "oklch(0.55 0.005 65)",
-                  }}
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.55 0.005 65)" }}
                 >
                   {row.synth}
                 </span>
@@ -1090,13 +683,9 @@ function WhatIsBHRTSection() {
 
           <p
             className="text-center text-xs mt-6"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "oklch(0.60 0.005 65)",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.60 0.005 65)" }}
           >
-            All MeNova treatment plans are prescribed by BC-licensed Nurse
-            Practitioners following current NAMS and SOGC guidelines.
+            All MeNova treatment plans are prescribed by BC-licensed Nurse Practitioners following current NAMS and SOGC guidelines.
           </p>
         </FadeUp>
       </div>
@@ -1115,34 +704,16 @@ function BHRTSection() {
   ];
 
   return (
-    <section
-      id="treatments"
-      className="py-20 lg:py-28"
-      style={{ backgroundColor: "white" }}
-    >
+    <section id="treatments" className="py-20 lg:py-28" style={{ backgroundColor: "white" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <FadeUp className="relative">
             <div className="grid grid-cols-2 gap-4">
-              <div
-                className="rounded-2xl overflow-hidden shadow-lg"
-                style={{ height: 320 }}
-              >
-                <img
-                  src={WOMAN_HERO}
-                  alt="Woman feeling vibrant"
-                  className="w-full h-full object-cover"
-                />
+              <div className="rounded-2xl overflow-hidden shadow-lg" style={{ height: 320 }}>
+                <img src={WOMAN_HERO} alt="Woman feeling vibrant" className="w-full h-full object-cover" />
               </div>
-              <div
-                className="rounded-2xl overflow-hidden shadow-lg mt-10"
-                style={{ height: 280 }}
-              >
-                <img
-                  src={CONSULTATION}
-                  alt="Telehealth consultation"
-                  className="w-full h-full object-cover"
-                />
+              <div className="rounded-2xl overflow-hidden shadow-lg mt-10" style={{ height: 280 }}>
+                <img src={CONSULTATION} alt="Telehealth consultation" className="w-full h-full object-cover" />
               </div>
             </div>
             <div
@@ -1157,10 +728,7 @@ function BHRTSection() {
               </p>
               <p
                 className="text-xs mt-0.5"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  color: "rgba(255,255,255,0.75)",
-                }}
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.75)" }}
               >
                 report symptom relief
                 <br />
@@ -1170,51 +738,31 @@ function BHRTSection() {
           </FadeUp>
 
           <FadeUp delay={120}>
-            <span className="badge-forest mb-4">
-              NP-Guided Bioidentical Hormone Replacement Therapy (BHRT) Care
-            </span>
+            <span className="badge-forest mb-4">NP-Guided Bioidentical Hormone Replacement Therapy (BHRT) Care</span>
             <h2
               className="text-4xl lg:text-5xl font-bold mb-6 leading-tight"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                color: "oklch(0.22 0.005 65)",
-              }}
+              style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
             >
               Hormone balance{" "}
-              <em
-                className="not-italic"
-                style={{ color: "oklch(0.24 0.07 155)" }}
-              >
+              <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
                 made simple
               </em>{" "}
               with personalized care
             </h2>
             <p
               className="text-base lg:text-lg mb-8 leading-relaxed"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                color: "oklch(0.45 0.005 65)",
-              }}
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
             >
-              Find the right Bioidentical Hormone Replacement Therapy (BHRT)
-              with the confidence that comes from knowing it is NP-approved,
-              Health Canada compliant, and budget-friendly. No 6-month wait
-              times.
+              Find the right Bioidentical Hormone Replacement Therapy (BHRT) with the confidence that comes from knowing it is NP-approved, Health Canada compliant, and budget-friendly. No 6-month wait times.
             </p>
 
             <ul className="space-y-3 mb-8">
               {features.map((f) => (
                 <li key={f} className="flex items-center gap-3">
-                  <CheckCircle2
-                    className="w-5 h-5 flex-shrink-0"
-                    style={{ color: "oklch(0.24 0.07 155)" }}
-                  />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" style={{ color: "oklch(0.24 0.07 155)" }} />
                   <span
                     className="text-sm"
-                    style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      color: "oklch(0.35 0.005 65)",
-                    }}
+                    style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.35 0.005 65)" }}
                   >
                     {f}
                   </span>
@@ -1272,28 +820,18 @@ function HowItWorksSection() {
           <span className="badge-forest mb-4">Simple Process</span>
           <h2
             className="text-4xl lg:text-5xl font-bold mb-4"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              color: "oklch(0.22 0.005 65)",
-            }}
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
           >
             Care in{" "}
-            <em
-              className="not-italic"
-              style={{ color: "oklch(0.24 0.07 155)" }}
-            >
+            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
               four steps
             </em>
           </h2>
           <p
             className="text-base lg:text-lg max-w-xl mx-auto"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "oklch(0.45 0.005 65)",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
           >
-            From symptom quiz to medication delivery — the entire process
-            happens online, on your schedule.
+            From symptom quiz to medication delivery — the entire process happens online, on your schedule.
           </p>
         </FadeUp>
 
@@ -1308,35 +846,23 @@ function HowItWorksSection() {
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
                   style={{ backgroundColor: "oklch(0.24 0.07 155 / 0.08)" }}
                 >
-                  <step.icon
-                    className="w-6 h-6"
-                    style={{ color: "oklch(0.24 0.07 155)" }}
-                  />
+                  <step.icon className="w-6 h-6" style={{ color: "oklch(0.24 0.07 155)" }} />
                 </div>
                 <span
                   className="text-4xl font-bold opacity-10 block mb-2"
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    color: "oklch(0.24 0.07 155)",
-                  }}
+                  style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.24 0.07 155)" }}
                 >
                   {step.num}
                 </span>
                 <h3
                   className="text-lg font-bold mb-2"
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    color: "oklch(0.22 0.005 65)",
-                  }}
+                  style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
                 >
                   {step.title}
                 </h3>
                 <p
                   className="text-sm leading-relaxed"
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    color: "oklch(0.50 0.005 65)",
-                  }}
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.50 0.005 65)" }}
                 >
                   {step.desc}
                 </p>
@@ -1389,13 +915,9 @@ function QuizSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
           </h2>
           <p
             className="text-base lg:text-lg mb-10"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "rgba(255,255,255,0.65)",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.65)" }}
           >
-            Take our free symptom assessment and get a personalised care
-            recommendation — in under 3 minutes.
+            Take our free symptom assessment and get a personalised care recommendation — in under 3 minutes.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-10">
@@ -1410,10 +932,7 @@ function QuizSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                 }}
               >
                 <span className="text-xl">{emoji}</span>
-                <span
-                  className="text-sm font-medium"
-                  style={{ fontFamily: "'DM Sans', sans-serif" }}
-                >
+                <span className="text-sm font-medium" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                   {label}
                 </span>
               </div>
@@ -1430,13 +949,9 @@ function QuizSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
 
           <p
             className="mt-4 text-xs"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "rgba(255,255,255,0.40)",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.40)" }}
           >
-            Prescriptions are issued only after an online consultation with a
-            licensed BC Nurse Practitioner.
+            Prescriptions are issued only after an online consultation with a licensed BC Nurse Practitioner.
           </p>
         </FadeUp>
       </div>
@@ -1460,50 +975,31 @@ function WholeCareSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <FadeUp>
-            <span className="badge-forest mb-4">
-              Care Designed for Women's Health
-            </span>
+            <span className="badge-forest mb-4">Care Designed for Women's Health</span>
             <h2
               className="text-4xl lg:text-5xl font-bold mb-6 leading-tight"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                color: "oklch(0.22 0.005 65)",
-              }}
+              style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
             >
               Whole-body care for her{" "}
-              <em
-                className="not-italic"
-                style={{ color: "oklch(0.60 0.12 42)" }}
-              >
+              <em className="not-italic" style={{ color: "oklch(0.60 0.12 42)" }}>
                 balance, vitality,
               </em>{" "}
               and confidence
             </h2>
             <p
               className="text-base lg:text-lg mb-8 leading-relaxed"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                color: "oklch(0.45 0.005 65)",
-              }}
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
             >
-              Doctor-guided care for hormones, weight, skin, and mood — with
-              personalized treatment plans designed to support your health
-              through every stage of perimenopause and beyond.
+              Doctor-guided care for hormones, weight, skin, and mood — with personalized treatment plans designed to support your health through every stage of perimenopause and beyond.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
               {benefits.map((b) => (
                 <div key={b} className="flex items-center gap-2">
-                  <CheckCircle2
-                    className="w-4 h-4 flex-shrink-0"
-                    style={{ color: "oklch(0.60 0.12 42)" }}
-                  />
+                  <CheckCircle2 className="w-4 h-4 flex-shrink-0" style={{ color: "oklch(0.60 0.12 42)" }} />
                   <span
                     className="text-sm"
-                    style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      color: "oklch(0.35 0.005 65)",
-                    }}
+                    style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.35 0.005 65)" }}
                   >
                     {b}
                   </span>
@@ -1518,25 +1014,11 @@ function WholeCareSection() {
 
           <FadeUp delay={120} className="relative">
             <div className="grid grid-cols-2 gap-4">
-              <div
-                className="rounded-2xl overflow-hidden shadow-lg"
-                style={{ height: 360 }}
-              >
-                <img
-                  src={WOMAN_OUTDOOR}
-                  alt="Active woman outdoors"
-                  className="w-full h-full object-cover"
-                />
+              <div className="rounded-2xl overflow-hidden shadow-lg" style={{ height: 360 }}>
+                <img src={WOMAN_OUTDOOR} alt="Active woman outdoors" className="w-full h-full object-cover" />
               </div>
-              <div
-                className="rounded-2xl overflow-hidden shadow-lg mt-12"
-                style={{ height: 300 }}
-              >
-                <img
-                  src={WOMAN_HERO}
-                  alt="Confident woman at home"
-                  className="w-full h-full object-cover"
-                />
+              <div className="rounded-2xl overflow-hidden shadow-lg mt-12" style={{ height: 300 }}>
+                <img src={WOMAN_HERO} alt="Confident woman at home" className="w-full h-full object-cover" />
               </div>
             </div>
           </FadeUp>
@@ -1547,6 +1029,7 @@ function WholeCareSection() {
 }
 
 // ─── Features / Portal Section ────────────────────────────────────────────────
+
 
 // ─── Pricing Section ──────────────────────────────────────────────────────────
 function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
@@ -1584,7 +1067,7 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
         "Refill authorization & prescription renewal",
         "Ongoing progress tracking in your patient portal",
       ],
-      cta: "https://cal.com/menova/follow-up-consultation",
+      cta: "Schedule Follow-up",
       highlight: true,
       badge: null as string | null,
       isDisabled: false,
@@ -1593,38 +1076,24 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
   ];
 
   return (
-    <section
-      id="pricing"
-      className="py-20 lg:py-28"
-      style={{ backgroundColor: "white" }}
-    >
+    <section id="pricing" className="py-20 lg:py-28" style={{ backgroundColor: "white" }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeUp className="text-center mb-16">
           <span className="badge-forest mb-4">Transparent Pricing</span>
           <h2
             className="text-4xl lg:text-5xl font-bold mb-4"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              color: "oklch(0.22 0.005 65)",
-            }}
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
           >
             Clear pricing,{" "}
-            <em
-              className="not-italic"
-              style={{ color: "oklch(0.24 0.07 155)" }}
-            >
+            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
               no surprises
             </em>
           </h2>
           <p
             className="text-base max-w-lg mx-auto"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "oklch(0.45 0.005 65)",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
           >
-            Most private insurance plans cover the medication portion. We'll
-            help you navigate your benefits.
+            Most private insurance plans cover the medication portion. We'll help you navigate your benefits.
           </p>
         </FadeUp>
 
@@ -1634,9 +1103,7 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
               <div
                 className="relative rounded-3xl p-8 shadow-sm h-full flex flex-col"
                 style={{
-                  backgroundColor: plan.highlight
-                    ? "oklch(0.24 0.07 155)"
-                    : "oklch(0.97 0.015 90)",
+                  backgroundColor: plan.highlight ? "oklch(0.24 0.07 155)" : "oklch(0.97 0.015 90)",
                   border: `2px solid ${plan.highlight ? "oklch(0.24 0.07 155)" : "oklch(0.88 0.01 90)"}`,
                 }}
               >
@@ -1653,18 +1120,13 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                   </span>
                 )}
                 {plan.isDisabled && (
-                  <div
-                    className="absolute inset-0 rounded-3xl"
-                    style={{ backgroundColor: "rgba(0,0,0,0.15)" }}
-                  />
+                  <div className="absolute inset-0 rounded-3xl" style={{ backgroundColor: "rgba(0,0,0,0.15)" }} />
                 )}
                 <p
                   className="text-xs font-semibold tracking-widest uppercase mb-2"
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    color: plan.highlight
-                      ? "rgba(255,255,255,0.55)"
-                      : "oklch(0.50 0.005 65)",
+                    color: plan.highlight ? "rgba(255,255,255,0.55)" : "oklch(0.50 0.005 65)",
                   }}
                 >
                   {plan.name}
@@ -1675,9 +1137,7 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                       className="text-2xl line-through"
                       style={{
                         fontFamily: "'Playfair Display', serif",
-                        color: plan.highlight
-                          ? "rgba(255,255,255,0.45)"
-                          : "oklch(0.55 0.005 65)",
+                        color: plan.highlight ? "rgba(255,255,255,0.45)" : "oklch(0.55 0.005 65)",
                       }}
                     >
                       {plan.originalPrice}
@@ -1696,9 +1156,7 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                     className="text-sm"
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
-                      color: plan.highlight
-                        ? "rgba(255,255,255,0.55)"
-                        : "oklch(0.50 0.005 65)",
+                      color: plan.highlight ? "rgba(255,255,255,0.55)" : "oklch(0.50 0.005 65)",
                     }}
                   >
                     CAD / {plan.period}
@@ -1708,9 +1166,7 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                   className="text-sm mb-6"
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    color: plan.highlight
-                      ? "rgba(255,255,255,0.65)"
-                      : "oklch(0.50 0.005 65)",
+                    color: plan.highlight ? "rgba(255,255,255,0.65)" : "oklch(0.50 0.005 65)",
                   }}
                 >
                   {plan.desc}
@@ -1721,19 +1177,13 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                     <li key={f} className="flex items-start gap-3">
                       <CheckCircle2
                         className="w-4 h-4 mt-0.5 flex-shrink-0"
-                        style={{
-                          color: plan.highlight
-                            ? "oklch(0.75 0.10 42)"
-                            : "oklch(0.24 0.07 155)",
-                        }}
+                        style={{ color: plan.highlight ? "oklch(0.75 0.10 42)" : "oklch(0.24 0.07 155)" }}
                       />
                       <span
                         className="text-sm"
                         style={{
                           fontFamily: "'DM Sans', sans-serif",
-                          color: plan.highlight
-                            ? "rgba(255,255,255,0.82)"
-                            : "oklch(0.35 0.005 65)",
+                          color: plan.highlight ? "rgba(255,255,255,0.82)" : "oklch(0.35 0.005 65)",
                         }}
                       >
                         {f}
@@ -1756,16 +1206,10 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                   </div>
                 ) : (
                   <a
-                    href={
-                      plan.link || "https://cal.com/menova/initial-consultation"
-                    }
+                    href={plan.link || "https://cal.com/menova/60min"}
                     target={plan.link ? undefined : "_blank"}
                     rel={plan.link ? undefined : "noopener noreferrer"}
-                    className={
-                      plan.highlight
-                        ? "btn-terracotta w-full text-center block"
-                        : "btn-outline-forest w-full text-center block"
-                    }
+                    className={plan.highlight ? "btn-terracotta w-full text-center block" : "btn-outline-forest w-full text-center block"}
                   >
                     {plan.cta}
                   </a>
@@ -1777,14 +1221,9 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
 
         <p
           className="text-center text-xs mt-8"
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-            color: "oklch(0.55 0.005 65)",
-          }}
+          style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.55 0.005 65)" }}
         >
-          Prescriptions are issued only after an online consultation with a
-          licensed BC Nurse Practitioner. Compound medications are dispensed by
-          Health Canada–regulated pharmacies.
+          Prescriptions are issued only after an online consultation with a licensed BC Nurse Practitioner. Compound medications are dispensed by Health Canada–regulated pharmacies.
         </p>
       </div>
     </section>
@@ -1809,8 +1248,7 @@ function ProvidersSection() {
     {
       name: "Dr. Lisa Tremblay, NP",
       credential: "NAMS Certified Menopause Practitioner",
-      specialty:
-        "Bioidentical Hormone Replacement Therapy (BHRT) & Integrative Medicine",
+      specialty: "Bioidentical Hormone Replacement Therapy (BHRT) & Integrative Medicine",
       img: "https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?w=400&h=400&fit=crop&crop=face",
     },
   ];
@@ -1826,28 +1264,18 @@ function ProvidersSection() {
           <span className="badge-forest mb-4">Our Clinical Team</span>
           <h2
             className="text-4xl lg:text-5xl font-bold mb-4"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              color: "oklch(0.22 0.005 65)",
-            }}
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
           >
             Medical care from{" "}
-            <em
-              className="not-italic"
-              style={{ color: "oklch(0.24 0.07 155)" }}
-            >
+            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
               leading experts
             </em>
           </h2>
           <p
             className="text-base max-w-xl mx-auto"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "oklch(0.45 0.005 65)",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
           >
-            Our BC-licensed Nurse Practitioners specialize in menopause care and
-            bring both expertise and genuine compassion to every appointment.
+            Our BC-licensed Nurse Practitioners specialize in menopause care and bring both expertise and genuine compassion to every appointment.
           </p>
         </FadeUp>
 
@@ -1859,28 +1287,18 @@ function ProvidersSection() {
                 style={{ borderColor: "oklch(0.88 0.01 90)" }}
               >
                 <div className="h-56 overflow-hidden">
-                  <img
-                    src={p.img}
-                    alt={p.name}
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={p.img} alt={p.name} className="w-full h-full object-cover" />
                 </div>
                 <div className="p-6">
                   <h3
                     className="text-lg font-bold mb-1"
-                    style={{
-                      fontFamily: "'Playfair Display', serif",
-                      color: "oklch(0.22 0.005 65)",
-                    }}
+                    style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
                   >
                     {p.name}
                   </h3>
                   <p
                     className="text-xs mb-3"
-                    style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      color: "oklch(0.50 0.005 65)",
-                    }}
+                    style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.50 0.005 65)" }}
                   >
                     {p.credential}
                   </p>
@@ -1974,13 +1392,9 @@ function TestimonialsSection() {
           </h2>
           <p
             className="text-base max-w-xl mx-auto"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "rgba(255,255,255,0.60)",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.60)" }}
           >
-            Join thousands of Canadian women who have reclaimed their vitality
-            with MeNova Health.
+            Join thousands of Canadian women who have reclaimed their vitality with MeNova Health.
           </p>
         </FadeUp>
 
@@ -1996,19 +1410,12 @@ function TestimonialsSection() {
               >
                 <div className="flex gap-0.5 mb-4">
                   {Array.from({ length: t.stars }).map((_, j) => (
-                    <Star
-                      key={j}
-                      className="w-4 h-4 fill-current"
-                      style={{ color: "oklch(0.75 0.10 42)" }}
-                    />
+                    <Star key={j} className="w-4 h-4 fill-current" style={{ color: "oklch(0.75 0.10 42)" }} />
                   ))}
                 </div>
                 <p
                   className="text-sm leading-relaxed mb-4 flex-1"
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    color: "rgba(255,255,255,0.82)",
-                  }}
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.82)" }}
                 >
                   "{t.text}"
                 </p>
@@ -2021,10 +1428,7 @@ function TestimonialsSection() {
                   </p>
                   <p
                     className="text-xs"
-                    style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      color: "rgba(255,255,255,0.45)",
-                    }}
+                    style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.45)" }}
                   >
                     {t.location}
                   </p>
@@ -2042,7 +1446,7 @@ function TestimonialsSection() {
 function FAQSection() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
-  const faqs = [
+    const faqs = [
     {
       q: "Do I need a referral to see a menopause specialist in BC?",
       a: "No referral is needed. MeNova Health is a direct-access telehealth clinic. You can book a virtual consultation with a BC-licensed Nurse Practitioner this week — most patients are seen within 3–5 business days, compared to the 6–12 month wait for a specialist referral through the public system.",
@@ -2082,27 +1486,16 @@ function FAQSection() {
   ];
 
   return (
-    <section
-      id="faq"
-      className="py-20 lg:py-28"
-      style={{ backgroundColor: "white" }}
-      aria-label="Frequently Asked Questions about Menopause and BHRT in BC"
-    >
+    <section id="faq" className="py-20 lg:py-28" style={{ backgroundColor: "white" }} aria-label="Frequently Asked Questions about Menopause and BHRT in BC">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeUp className="text-center mb-16">
           <span className="badge-forest mb-4">Common Questions</span>
           <h2
             className="text-4xl lg:text-5xl font-bold mb-4"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              color: "oklch(0.22 0.005 65)",
-            }}
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
           >
             Frequently asked{" "}
-            <em
-              className="not-italic"
-              style={{ color: "oklch(0.24 0.07 155)" }}
-            >
+            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
               questions
             </em>
           </h2>
@@ -2117,18 +1510,12 @@ function FAQSection() {
               >
                 <button
                   className="w-full flex items-center justify-between p-5 text-left transition-colors"
-                  style={{
-                    backgroundColor:
-                      openIdx === i ? "oklch(0.24 0.07 155 / 0.04)" : "white",
-                  }}
+                  style={{ backgroundColor: openIdx === i ? "oklch(0.24 0.07 155 / 0.04)" : "white" }}
                   onClick={() => setOpenIdx(openIdx === i ? null : i)}
                 >
                   <span
                     className="text-base font-semibold pr-4"
-                    style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      color: "oklch(0.22 0.005 65)",
-                    }}
+                    style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.22 0.005 65)" }}
                   >
                     {faq.q}
                   </span>
@@ -2136,8 +1523,7 @@ function FAQSection() {
                     className="w-5 h-5 flex-shrink-0 transition-transform duration-200"
                     style={{
                       color: "oklch(0.24 0.07 155)",
-                      transform:
-                        openIdx === i ? "rotate(180deg)" : "rotate(0deg)",
+                      transform: openIdx === i ? "rotate(180deg)" : "rotate(0deg)",
                     }}
                   />
                 </button>
@@ -2145,10 +1531,7 @@ function FAQSection() {
                   <div className="px-5 pb-5">
                     <p
                       className="text-sm leading-relaxed"
-                      style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        color: "oklch(0.45 0.005 65)",
-                      }}
+                      style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
                     >
                       {faq.a}
                     </p>
@@ -2183,37 +1566,26 @@ function FinalCTA({ onOpenQuiz }: { onOpenQuiz: () => void }) {
           <span className="badge-forest mb-6">Get Started Today</span>
           <h2
             className="text-4xl lg:text-5xl font-bold mb-6 leading-tight"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              color: "oklch(0.22 0.005 65)",
-            }}
+            style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.005 65)" }}
           >
             Your energy, clarity, and{" "}
-            <em
-              className="not-italic"
-              style={{ color: "oklch(0.24 0.07 155)" }}
-            >
+            <em className="not-italic" style={{ color: "oklch(0.24 0.07 155)" }}>
               confidence
             </em>{" "}
             are waiting
           </h2>
           <p
             className="text-base lg:text-lg mb-10"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "oklch(0.45 0.005 65)",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.45 0.005 65)" }}
           >
-            Canada's menopause gap is real — but it doesn't have to be your
-            reality. Book your first appointment this week and start feeling
-            like yourself again.
+            Canada's menopause gap is real — but it doesn't have to be your reality. Book your first appointment this week and start feeling like yourself again.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button onClick={onOpenQuiz} className="btn-forest text-center">
               Take the Free Symptom Quiz
             </button>
             <a
-              href="https://cal.com/menova/initial-consultation"
+              href="https://cal.com/menova/60min"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline-forest text-center"
@@ -2223,10 +1595,7 @@ function FinalCTA({ onOpenQuiz }: { onOpenQuiz: () => void }) {
           </div>
           <p
             className="mt-6 text-xs"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "oklch(0.55 0.005 65)",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.55 0.005 65)" }}
           >
             No referral needed · BC-licensed providers · Cancel anytime
           </p>
@@ -2254,7 +1623,7 @@ function Footer() {
     ],
     Support: [
       { label: "Contact Us", href: "#" },
-      // { label: "Patient Portal", href: "#" },
+     // { label: "Patient Portal", href: "#" },
     ],
   };
 
@@ -2276,21 +1645,13 @@ function Footer() {
             </div>
             <p
               className="text-sm leading-relaxed mb-4"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(255,255,255,0.50)",
-              }}
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.50)" }}
             >
-              Menopause telehealth care for Canadian women. Licensed NPs,
-              personalized Bioidentical Hormone Replacement Therapy (BHRT),
-              delivered to your door.
+              Menopause telehealth care for Canadian women. Licensed NPs, personalized Bioidentical Hormone Replacement Therapy (BHRT), delivered to your door.
             </p>
             <p
               className="text-xs"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(255,255,255,0.30)",
-              }}
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.30)" }}
             >
               Serving Vancouver, BC & across British Columbia
             </p>
@@ -2300,10 +1661,7 @@ function Footer() {
             <div key={category}>
               <h4
                 className="text-xs font-semibold tracking-widest uppercase mb-4"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  color: "rgba(255,255,255,0.45)",
-                }}
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.45)" }}
               >
                 {category}
               </h4>
@@ -2313,18 +1671,11 @@ function Footer() {
                     <a
                       href={item.href}
                       className="text-sm transition-colors hover:text-white"
-                      style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        color: "rgba(255,255,255,0.60)",
-                      }}
-                      onClick={
-                        item.href === "#"
-                          ? (e) => {
-                              e.preventDefault();
-                              toast.info(`${item.label} — Feature coming soon`);
-                            }
-                          : undefined
-                      }
+                      style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.60)" }}
+                      onClick={item.href === "#" ? (e) => {
+                        e.preventDefault();
+                        toast.info(`${item.label} — Feature coming soon`);
+                      } : undefined}
                     >
                       {item.label}
                     </a>
@@ -2341,15 +1692,9 @@ function Footer() {
         >
           <p
             className="text-xs text-center sm:text-left"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "rgba(255,255,255,0.30)",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.30)" }}
           >
-            © 2026 MeNova Health MSO Inc. All rights reserved. MeNova Health is
-            a Management Services Organization. Medical care is provided by
-            independently contracted licensed Nurse Practitioners registered
-            with the BC College of Nursing Professionals.
+            © 2026 MeNova Health MSO Inc. All rights reserved. MeNova Health is a Management Services Organization. Medical care is provided by independently contracted licensed Nurse Practitioners registered with the BC College of Nursing Professionals.
           </p>
           <div className="flex gap-4 flex-shrink-0">
             {["Instagram", "Facebook", "LinkedIn"].map((s) => (
@@ -2357,10 +1702,7 @@ function Footer() {
                 key={s}
                 href="#"
                 className="text-xs transition-colors hover:text-white"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  color: "rgba(255,255,255,0.40)",
-                }}
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.40)" }}
                 onClick={(e) => {
                   e.preventDefault();
                   toast.info(`${s} — Coming soon`);
@@ -2375,18 +1717,9 @@ function Footer() {
         {/* SEO keyword paragraph — visible to crawlers, styled subtly */}
         <p
           className="text-xs mt-8 leading-relaxed max-w-4xl mx-auto text-center"
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-            color: "rgba(255,255,255,0.18)",
-          }}
+          style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.18)" }}
         >
-          MeNova Health provides virtual menopause care and Bioidentical Hormone
-          Replacement Therapy (BHRT) to women across British Columbia, including
-          Vancouver, Surrey, Burnaby, Richmond, North Vancouver, Coquitlam,
-          Kelowna, Victoria, and Kamloops. Our BC-licensed Nurse Practitioners
-          treat hot flashes, night sweats, brain fog, sleep disturbances, mood
-          changes, weight gain, low libido, and vaginal dryness. No referral
-          required. Book a menopause consultation online today.
+          MeNova Health provides virtual menopause care and Bioidentical Hormone Replacement Therapy (BHRT) to women across British Columbia, including Vancouver, Surrey, Burnaby, Richmond, North Vancouver, Coquitlam, Kelowna, Victoria, and Kamloops. Our BC-licensed Nurse Practitioners treat hot flashes, night sweats, brain fog, sleep disturbances, mood changes, weight gain, low libido, and vaginal dryness. No referral required. Book a menopause consultation online today.
         </p>
       </div>
     </footer>
@@ -2403,21 +1736,22 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar onOpenQuiz={openQuiz} />
       <main id="main-content">
-        <HeroSection onOpenQuiz={openQuiz} />
-        <CategoryScroll />
-        <TrustBar />
-        <WhatIsBHRTSection />
-        <BHRTSection />
-        <HowItWorksSection />
-        <PricingSection onOpenQuiz={openQuiz} />
-        <QuizSection onOpenQuiz={openQuiz} />
-        <WholeCareSection />
-        <TestimonialsSection />
-        <FAQSection />
-        <FinalCTA onOpenQuiz={openQuiz} />
-        <WaitlistSection />
+      <HeroSection onOpenQuiz={openQuiz} />
+      <CategoryScroll />
+      <TrustBar />
+      <WhatIsBHRTSection />
+      <BHRTSection />
+      <HowItWorksSection />
+      <PricingSection onOpenQuiz={openQuiz} />
+      <QuizSection onOpenQuiz={openQuiz} />
+      <WholeCareSection />
+      <TestimonialsSection />
+      <FAQSection />
+      <FinalCTA onOpenQuiz={openQuiz} />
+      <WaitlistSection />
       </main>
       <Footer />
+
 
       {/* Global quiz modal */}
       <AnimatePresence>

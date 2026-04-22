@@ -18,6 +18,7 @@ import UTMTracker from "./components/UTMTracker";
 import AIChatWidget from "./components/AIChatWidget";
 import { useLocation } from "wouter";
 
+
 function Router() {
   return (
     <Switch>
@@ -41,19 +42,16 @@ function Router() {
 function GlobalChatWidget() {
   const [location] = useLocation();
   // Don't show chat on admin, portal, or dashboard pages
-  if (
-    location.startsWith("/admin") ||
-    location.startsWith("/patient-portal") ||
-    location.startsWith("/np-portal")
-  )
-    return null;
+  if (location.startsWith("/admin") || location.startsWith("/patient-portal") || location.startsWith("/np-portal")) return null;
   return <AIChatWidget />;
 }
 
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="light">
+      <ThemeProvider
+        defaultTheme="light"
+      >
         <TooltipProvider>
           <Toaster />
           <UTMTracker />

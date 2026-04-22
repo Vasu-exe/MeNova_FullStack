@@ -22,6 +22,13 @@
       "when": 1776407178061,
       "tag": "0002_lumpy_dreaming_celestial",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1776667943556,
+      "tag": "0003_mature_chat",
+      "breakpoints": true
     }
   ]
 }

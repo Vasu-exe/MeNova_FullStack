@@ -46,9 +46,7 @@ export function usePortalAuth() {
         headers: {
           ...options.headers,
           Authorization: `Bearer ${t}`,
-          ...(options.body instanceof FormData
-            ? {}
-            : { "Content-Type": "application/json" }),
+          ...(options.body instanceof FormData ? {} : { "Content-Type": "application/json" }),
         },
       });
       if (res.status === 401) {
@@ -57,7 +55,7 @@ export function usePortalAuth() {
       }
       return res;
     },
-    [logout],
+    [logout]
   );
 
   return { user, loading, token, logout, authFetch };

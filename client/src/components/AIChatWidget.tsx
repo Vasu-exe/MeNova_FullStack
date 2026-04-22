@@ -71,8 +71,7 @@ export default function AIChatWidget() {
       const assistantMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
-        content:
-          data.reply || "I'm sorry, I couldn't process that. Please try again.",
+        content: data.reply || "I'm sorry, I couldn't process that. Please try again.",
         timestamp: new Date(),
       };
 
@@ -137,16 +136,10 @@ export default function AIChatWidget() {
                 <Leaf className="w-4.5 h-4.5 text-white" />
               </div>
               <div>
-                <p
-                  className="text-sm font-semibold text-white"
-                  style={{ fontFamily: "'DM Sans', sans-serif" }}
-                >
+                <p className="text-sm font-semibold text-white" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                   MeNova Health Assistant
                 </p>
-                <p
-                  className="text-xs text-white/60"
-                  style={{ fontFamily: "'DM Sans', sans-serif" }}
-                >
+                <p className="text-xs text-white/60" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                   Ask about menopause & BHRT
                 </p>
               </div>
@@ -174,18 +167,11 @@ export default function AIChatWidget() {
                   className="max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed"
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    backgroundColor:
-                      msg.role === "user" ? "oklch(0.24 0.07 155)" : "white",
-                    color:
-                      msg.role === "user" ? "white" : "oklch(0.30 0.005 65)",
-                    border:
-                      msg.role === "assistant"
-                        ? "1px solid oklch(0.88 0.01 90)"
-                        : "none",
-                    borderBottomRightRadius:
-                      msg.role === "user" ? "4px" : undefined,
-                    borderBottomLeftRadius:
-                      msg.role === "assistant" ? "4px" : undefined,
+                    backgroundColor: msg.role === "user" ? "oklch(0.24 0.07 155)" : "white",
+                    color: msg.role === "user" ? "white" : "oklch(0.30 0.005 65)",
+                    border: msg.role === "assistant" ? "1px solid oklch(0.88 0.01 90)" : "none",
+                    borderBottomRightRadius: msg.role === "user" ? "4px" : undefined,
+                    borderBottomLeftRadius: msg.role === "assistant" ? "4px" : undefined,
                   }}
                 >
                   {msg.content}
@@ -197,22 +183,10 @@ export default function AIChatWidget() {
               <div className="flex justify-start">
                 <div
                   className="rounded-2xl px-4 py-3 flex items-center gap-2"
-                  style={{
-                    backgroundColor: "white",
-                    border: "1px solid oklch(0.88 0.01 90)",
-                  }}
+                  style={{ backgroundColor: "white", border: "1px solid oklch(0.88 0.01 90)" }}
                 >
-                  <Loader2
-                    className="w-4 h-4 animate-spin"
-                    style={{ color: "oklch(0.24 0.07 155)" }}
-                  />
-                  <span
-                    className="text-sm"
-                    style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      color: "oklch(0.55 0.005 65)",
-                    }}
-                  >
+                  <Loader2 className="w-4 h-4 animate-spin" style={{ color: "oklch(0.24 0.07 155)" }} />
+                  <span className="text-sm" style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.55 0.005 65)" }}>
                     Thinking...
                   </span>
                 </div>
@@ -224,13 +198,7 @@ export default function AIChatWidget() {
 
           {/* Suggested Questions (only show when few messages) */}
           {messages.length <= 2 && !isLoading && (
-            <div
-              className="px-4 py-2 flex flex-wrap gap-2 border-t"
-              style={{
-                borderColor: "oklch(0.92 0.01 90)",
-                backgroundColor: "white",
-              }}
-            >
+            <div className="px-4 py-2 flex flex-wrap gap-2 border-t" style={{ borderColor: "oklch(0.92 0.01 90)", backgroundColor: "white" }}>
               {SUGGESTED_QUESTIONS.map((q) => (
                 <button
                   key={q}
@@ -253,10 +221,7 @@ export default function AIChatWidget() {
           <form
             onSubmit={handleSubmit}
             className="px-4 py-3 flex items-center gap-2 border-t flex-shrink-0"
-            style={{
-              borderColor: "oklch(0.88 0.01 90)",
-              backgroundColor: "white",
-            }}
+            style={{ borderColor: "oklch(0.88 0.01 90)", backgroundColor: "white" }}
           >
             <input
               ref={inputRef}
@@ -283,19 +248,9 @@ export default function AIChatWidget() {
           </form>
 
           {/* Disclaimer */}
-          <div
-            className="px-4 py-2 flex-shrink-0"
-            style={{ backgroundColor: "oklch(0.97 0.015 90)" }}
-          >
-            <p
-              className="text-[10px] text-center"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                color: "oklch(0.60 0.005 65)",
-              }}
-            >
-              This AI assistant provides general information only. It is not
-              medical advice. Always consult a licensed healthcare provider.
+          <div className="px-4 py-2 flex-shrink-0" style={{ backgroundColor: "oklch(0.97 0.015 90)" }}>
+            <p className="text-[10px] text-center" style={{ fontFamily: "'DM Sans', sans-serif", color: "oklch(0.60 0.005 65)" }}>
+              This AI assistant provides general information only. It is not medical advice. Always consult a licensed healthcare provider.
             </p>
           </div>
         </div>
