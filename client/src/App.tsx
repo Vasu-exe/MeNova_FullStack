@@ -5,6 +5,7 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import WaitlistPage from "./pages/WaitlistPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import CookiePolicy from "./pages/CookiePolicy";
@@ -22,7 +23,9 @@ import { useLocation } from "wouter";
 function Router() {
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
+      {/* SOFT LAUNCH: WaitlistPage is active. To restore full site, swap the two lines below */}
+      <Route path={"/"} component={WaitlistPage} />
+      <Route path={"/home"} component={Home} />
       <Route path={"/privacy-policy"} component={PrivacyPolicy} />
       <Route path={"/terms-and-conditions"} component={TermsAndConditions} />
       <Route path={"/cookie-policy"} component={CookiePolicy} />

@@ -76,3 +76,11 @@
 - [x] Add PATCH routes for treatment plan and appointment status updates
 - [x] Add POST /api/np/documents/:id/review route (frontend uses POST)
 - [x] Push portal files to GitHub (Vasu-exe/MeNova_FullStack)
+
+## Soft Launch Waitlist Page
+- [x] Create WaitlistPage.tsx with MeNova branding (dark forest green theme)
+- [x] Add waitlist form (first name, last name, email) with validation
+- [x] Connect Make.com webhook (https://hook.us2.make.com/ygbmyty71u7pahms7m7owjvcxpf22v68)
+- [x] Swap App.tsx route "/" to WaitlistPage (Home.tsx kept safe at /home)
+- [x] Portals remain accessible at /portal, /patient-portal, /np-portal (just not linked from homepage)
+- [x] Push to GitHub
