@@ -84,3 +84,14 @@
 - [x] Swap App.tsx route "/" to WaitlistPage (Home.tsx kept safe at /home)
 - [x] Portals remain accessible at /portal, /patient-portal, /np-portal (just not linked from homepage)
 - [x] Push to GitHub
+
+## Waitlist Page Update (Session 4)
+- [x] Update meta tags (title, description) for SEO
+- [x] Update hero section copy (H1, paragraph, sub-line, early-bird offer)
+- [x] Update "What is MeNova Health?" section
+- [x] Update "Who It's For" cards (3 cards with new copy)
+- [x] Update "Why It Matters" stats section
+- [x] Add mini-FAQ section
+- [x] Update bottom CTA section with 15% off early access offer
+- [x] Redesign page with soothing mixed-color palette matching homepage
+- [x] Push to GitHub
