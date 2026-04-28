@@ -125,12 +125,12 @@ export default function WaitlistPage() {
         className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 max-w-6xl mx-auto"
         style={{ background: "oklch(0.98 0.01 90 / 0.95)", backdropFilter: "blur(12px)" }}
       >
-        <div className="flex items-center gap-2">
+        <a href="/" className="flex items-center gap-2" style={{ textDecoration: "none" }}>
           <Leaf className="w-6 h-6" style={{ color: "oklch(0.40 0.10 155)" }} />
           <span className="text-xl font-bold tracking-tight" style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.22 0.06 155)" }}>
             MeNova Health
           </span>
-        </div>
+        </a>
         <span
           className="text-xs font-semibold px-3 py-1.5 rounded-full"
           style={{ background: "oklch(0.22 0.06 155)", color: "oklch(0.94 0.02 80)" }}

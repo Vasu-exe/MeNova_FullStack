@@ -16,8 +16,6 @@ import PortalAuth from "./pages/PortalAuth";
 import PatientPortal from "./pages/PatientPortal";
 import NPPortal from "./pages/NPPortal";
 import UTMTracker from "./components/UTMTracker";
-import AIChatWidget from "./components/AIChatWidget";
-import { useLocation } from "wouter";
 
 
 function Router() {
@@ -42,13 +40,6 @@ function Router() {
   );
 }
 
-function GlobalChatWidget() {
-  const [location] = useLocation();
-  // Don't show chat on admin, portal, or dashboard pages
-  if (location.startsWith("/admin") || location.startsWith("/patient-portal") || location.startsWith("/np-portal")) return null;
-  return <AIChatWidget />;
-}
-
 function App() {
   return (
     <ErrorBoundary>
@@ -59,7 +50,6 @@ function App() {
           <Toaster />
           <UTMTracker />
           <Router />
-          <GlobalChatWidget />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

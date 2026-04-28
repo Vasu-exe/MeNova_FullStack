@@ -95,3 +95,7 @@
 - [x] Update bottom CTA section with 15% off early access offer
 - [x] Redesign page with soothing mixed-color palette matching homepage
 - [x] Push to GitHub
+## WaitlistPage Fixes (Session 5)
+- [x] Make "MeNova Health" logo/text in nav a link to "/" (the site root)
+- [x] Remove AI chatbot widget from WaitlistPage
+- [x] Push changes to GitHub
