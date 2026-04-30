@@ -846,13 +846,6 @@ export default function WaitlistPage() {
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
           {/* Left: text */}
           <div className="flex-1 text-center md:text-left">
-            <div
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4"
-              style={{ background: "oklch(0.55 0.14 155 / 0.20)", color: "oklch(0.75 0.14 155)", border: "1px solid oklch(0.55 0.14 155 / 0.35)" }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: "oklch(0.75 0.14 155)" }} />
-              Full Website In Development
-            </div>
             <h3
               className="text-xl font-bold mb-2"
               style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.97 0.01 90)" }}
