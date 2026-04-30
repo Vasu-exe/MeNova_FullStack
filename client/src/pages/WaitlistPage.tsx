@@ -451,6 +451,28 @@ export default function WaitlistPage() {
   return (
     <div className="min-h-screen font-sans" style={{ background: "oklch(0.98 0.01 90)", color: "oklch(0.22 0.06 155)" }}>
 
+      {/* ── Pre-launch announcement bar ── */}
+      <div
+        className="w-full flex items-center justify-center gap-3 px-4 py-2.5 text-xs font-medium"
+        style={{
+          background: "linear-gradient(90deg, oklch(0.22 0.06 155) 0%, oklch(0.28 0.09 155) 50%, oklch(0.22 0.06 155) 100%)",
+          color: "oklch(0.88 0.04 90)",
+          borderBottom: "1px solid oklch(0.35 0.08 155)",
+          letterSpacing: "0.03em",
+        }}
+      >
+        <span
+          className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold"
+          style={{ background: "oklch(0.60 0.12 42 / 0.25)", color: "oklch(0.85 0.10 42)", border: "1px solid oklch(0.60 0.12 42 / 0.40)" }}
+        >
+          <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "oklch(0.75 0.14 42)" }} />
+          Pre-Launch
+        </span>
+        <span>You're visiting our early access page — our full clinic website is currently in development.</span>
+        <span className="hidden md:inline" style={{ color: "oklch(0.65 0.04 90)" }}>·</span>
+        <span className="hidden md:inline" style={{ color: "oklch(0.75 0.14 155)" }}>Full site launching with our first NP appointments.</span>
+      </div>
+
       {/* ── SEO meta ── */}
       {typeof document !== "undefined" && (() => {
         document.title = "Menopause Specialist Vancouver BC | Virtual Menopause Clinic";
@@ -813,6 +835,60 @@ export default function WaitlistPage() {
           <p className="text-xs mt-4" style={{ color: "oklch(0.65 0.04 90)" }}>
             You'll get a short welcome email and be notified as soon as we open our booking calendar.
           </p>
+        </div>
+      </section>
+
+      {/* ── Full site coming soon teaser ── */}
+      <section
+        className="py-12 px-6"
+        style={{ background: "oklch(0.20 0.06 155)", borderTop: "1px solid oklch(0.30 0.07 155)" }}
+      >
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
+          {/* Left: text */}
+          <div className="flex-1 text-center md:text-left">
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4"
+              style={{ background: "oklch(0.55 0.14 155 / 0.20)", color: "oklch(0.75 0.14 155)", border: "1px solid oklch(0.55 0.14 155 / 0.35)" }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: "oklch(0.75 0.14 155)" }} />
+              Full Website In Development
+            </div>
+            <h3
+              className="text-xl font-bold mb-2"
+              style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.97 0.01 90)" }}
+            >
+              The Full MeNova Health Experience Is Coming
+            </h3>
+            <p className="text-sm leading-relaxed" style={{ color: "oklch(0.70 0.04 90)" }}>
+              This early access page is a preview. Our complete clinic website — including the full service menu, NP profiles, patient portal, and booking system — will go live alongside our first appointments.
+            </p>
+          </div>
+
+          {/* Right: feature preview pills */}
+          <div className="flex-shrink-0 flex flex-col gap-2">
+            {[
+              { icon: "🩺", label: "Full NP profiles & bios" },
+              { icon: "📅", label: "Live appointment booking" },
+              { icon: "💊", label: "BHRT treatment guide" },
+              { icon: "🔒", label: "Secure patient portal" },
+              { icon: "📋", label: "Symptom assessment quiz" },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm"
+                style={{
+                  background: "oklch(0.28 0.07 155 / 0.60)",
+                  border: "1px solid oklch(0.38 0.08 155)",
+                  color: "oklch(0.82 0.04 90)",
+                  boxShadow: "inset 0 1px 0 oklch(1 0 0 / 0.06)",
+                }}
+              >
+                <span>{item.icon}</span>
+                <span>{item.label}</span>
+                <span className="ml-auto text-xs" style={{ color: "oklch(0.50 0.06 155)" }}>Soon</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
