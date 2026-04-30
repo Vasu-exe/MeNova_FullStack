@@ -460,7 +460,7 @@ export default function WaitlistPage() {
       {/* ── Header ── */}
       <header
         className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 max-w-6xl mx-auto"
-        style={{ background: "oklch(0.98 0.01 90 / 0.95)", backdropFilter: "blur(12px)" }}
+        style={{ background: "oklch(0.98 0.01 90 / 0.95)", backdropFilter: "blur(12px)", borderRadius: "0px", borderStyle: "none" }}
       >
         <a href="/" className="flex items-center gap-2" style={{ textDecoration: "none" }}>
           <Leaf className="w-6 h-6" style={{ color: "oklch(0.40 0.10 155)" }} />
