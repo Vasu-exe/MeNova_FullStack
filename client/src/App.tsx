@@ -21,9 +21,9 @@ import UTMTracker from "./components/UTMTracker";
 function Router() {
   return (
     <Switch>
-      {/* SOFT LAUNCH: WaitlistPage is active. To restore full site, swap the two lines below */}
-      <Route path={"/"} component={WaitlistPage} />
-      <Route path={"/home"} component={Home} />
+      {/* FULL SITE: Home is active. Waitlist form embedded in hero. */}
+      <Route path={"/"} component={Home} />
+      <Route path={"/waitlist"} component={WaitlistPage} />
       <Route path={"/privacy-policy"} component={PrivacyPolicy} />
       <Route path={"/terms-and-conditions"} component={TermsAndConditions} />
       <Route path={"/cookie-policy"} component={CookiePolicy} />

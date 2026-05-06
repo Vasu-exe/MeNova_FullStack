@@ -99,3 +99,16 @@
 - [x] Make "MeNova Health" logo/text in nav a link to "/" (the site root)
 - [x] Remove AI chatbot widget from WaitlistPage
 - [x] Push changes to GitHub
+
+
+## Swap to Full Site with Embedded Waitlist (Session 6)
+- [x] Swap App.tsx route from WaitlistPage to Home
+- [x] Extract Make.com webhook URL from WaitlistPage.tsx
+- [x] Add waitlist form component to Home.tsx hero section (already in place)
+- [x] Hide "Book Consultation" buttons from pricing section
+- [x] Hide "Book a Consultation" button from hero
+- [x] Fix WaitlistSection to POST directly to Make.com webhook
+- [x] Keep pricing visible and all other content intact
+- [x] Restore original meta tags in index.html
+- [x] Move WaitlistSection to after pricing section
+- [ ] Checkpoint and push to GitHub

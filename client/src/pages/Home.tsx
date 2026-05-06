@@ -225,7 +225,7 @@ function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                 href="https://cal.com/menova/initial-consultation"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-semibold border-2 transition-all hover:bg-white/10"
+                className="hidden inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-semibold border-2 transition-all hover:bg-white/10"
                 style={{ fontFamily: "'DM Sans', sans-serif", color: "white", borderColor: "rgba(255,255,255,0.45)" }}
               >
                 Book a Consultation <ArrowRight className="w-4 h-4" />
@@ -1051,7 +1051,7 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
       cta: "Book Consult",
       highlight: false,
       badge: null as string | null,
-      isDisabled: false,
+      isDisabled: true,
       link: "https://cal.com/menova/initial-consultation",
     },
     {
@@ -1070,7 +1070,7 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
       cta: "Schedule Follow-up",
       highlight: true,
       badge: null as string | null,
-      isDisabled: false,
+      isDisabled: true,
       link: "/schedule-followup",
     },
   ];
@@ -1199,10 +1199,9 @@ function PricingSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                       backgroundColor: "oklch(0.85 0.01 90)",
                       color: "oklch(0.55 0.005 65)",
                       fontFamily: "'DM Sans', sans-serif",
-                      opacity: 0.6,
                     }}
                   >
-                    {plan.cta}
+                    Join waitlist to book
                   </div>
                 ) : (
                   <a
@@ -1743,12 +1742,12 @@ export default function Home() {
       <BHRTSection />
       <HowItWorksSection />
       <PricingSection onOpenQuiz={openQuiz} />
+      <WaitlistSection />
       <QuizSection onOpenQuiz={openQuiz} />
       <WholeCareSection />
       <TestimonialsSection />
       <FAQSection />
       <FinalCTA onOpenQuiz={openQuiz} />
-      <WaitlistSection />
       </main>
       <Footer />
 

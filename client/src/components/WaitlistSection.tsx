@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { CheckCircle2, Bell, ArrowRight } from "lucide-react";
 
+const MAKE_WEBHOOK_URL = "https://hook.us2.make.com/ygbmyty71u7pahms7m7owjvcxpf22v68";
+
 export default function WaitlistSection() {
   const [formData, setFormData] = useState({ name: "", email: "", interest: "" });
   const [submitted, setSubmitted] = useState(false);
@@ -21,17 +23,22 @@ export default function WaitlistSection() {
     }
 
     try {
-      const res = await fetch("/api/waitlist", {
+      const res = await fetch(MAKE_WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          firstName: formData.name.split(' ')[0],
+          lastName: formData.name.split(' ').slice(1).join(' '),
+          email: formData.email,
+          timestamp: new Date().toISOString(),
+          source: "menova-homepage-waitlist",
+        }),
       });
 
-      const data = await res.json();
-      if (data.success) {
+      if (res.ok) {
         setSubmitted(true);
       } else {
-        setError(data.error || "Something went wrong. Please try again.");
+        setError("Something went wrong. Please try again.");
       }
     } catch {
       setError("Connection error. Please try again.");
