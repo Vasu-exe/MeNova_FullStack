@@ -111,4 +111,11 @@
 - [x] Keep pricing visible and all other content intact
 - [x] Restore original meta tags in index.html
 - [x] Move WaitlistSection to after pricing section
+- [x] Checkpoint and push to GitHub
+
+
+## Hide All Remaining Booking Buttons (Session 7)
+- [x] Hide booking button in FinalCTA section
+- [x] Hide booking button in SymptomQuiz result screen
+- [x] Hide any other booking CTAs throughout the site (ScheduleFollowup is internal-only, not user-facing)
 - [ ] Checkpoint and push to GitHub

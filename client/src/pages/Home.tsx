@@ -1587,7 +1587,7 @@ function FinalCTA({ onOpenQuiz }: { onOpenQuiz: () => void }) {
               href="https://cal.com/menova/initial-consultation"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline-forest text-center"
+              className="btn-outline-forest text-center hidden"
             >
               Book a Consult — $199 CAD
             </a>

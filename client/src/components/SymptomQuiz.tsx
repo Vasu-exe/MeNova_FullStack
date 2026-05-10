@@ -747,7 +747,7 @@ function submitContact(e: React.FormEvent) {
                 href="https://cal.com/menova/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 text-center py-4 rounded-full text-white font-semibold text-base transition-all hover:opacity-90 active:scale-95"
+                className="flex-1 text-center py-4 rounded-full text-white font-semibold text-base transition-all hover:opacity-90 active:scale-95 hidden"
                 style={{
                   backgroundColor: "oklch(0.24 0.07 155)",
                   fontFamily: "'DM Sans', sans-serif",
