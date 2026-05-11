@@ -118,4 +118,12 @@
 - [x] Hide booking button in FinalCTA section
 - [x] Hide booking button in SymptomQuiz result screen
 - [x] Hide any other booking CTAs throughout the site (ScheduleFollowup is internal-only, not user-facing)
-- [ ] Checkpoint and push to GitHub
+- [x] Checkpoint and push to GitHub
+
+
+## Route Protection & Button Rename (Session 8)
+- [x] Make /admin, /patient-portal, /np-portal completely inaccessible (404)
+- [x] Replace navbar "Start Your Assessment" button with "Join the Waiting List"
+- [x] Add smooth scroll to waitlist section for navbar button
+- [x] Update mobile nav button to "Join the Waiting List" with smooth scroll
+- [x] Checkpoint and push to GitHub

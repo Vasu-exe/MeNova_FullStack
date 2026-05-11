@@ -16,7 +16,14 @@ import PortalAuth from "./pages/PortalAuth";
 import PatientPortal from "./pages/PatientPortal";
 import NPPortal from "./pages/NPPortal";
 import UTMTracker from "./components/UTMTracker";
+import { useAuth } from "@/_core/hooks/useAuth";
 
+
+// Protected route wrapper - completely inaccessible (404) unless explicitly enabled
+function ProtectedRoute({ path, component: Component }: { path: string; component: any }) {
+  // These routes are completely disabled and will show 404
+  return <Route path={path} component={NotFound} />;
+}
 
 function Router() {
   return (
@@ -29,10 +36,11 @@ function Router() {
       <Route path={"/cookie-policy"} component={CookiePolicy} />
       <Route path={"/accessibility"} component={Accessibility} />
       <Route path={"/schedule-followup"} component={ScheduleFollowup} />
-      <Route path={"/admin"} component={AdminDashboard} />
-      <Route path={"/portal"} component={PortalAuth} />
-      <Route path={"/patient-portal"} component={PatientPortal} />
-      <Route path={"/np-portal"} component={NPPortal} />
+      {/* Protected routes - only accessible if authenticated */}
+      <ProtectedRoute path={"/admin"} component={AdminDashboard} />
+      <ProtectedRoute path={"/portal"} component={PortalAuth} />
+      <ProtectedRoute path={"/patient-portal"} component={PatientPortal} />
+      <ProtectedRoute path={"/np-portal"} component={NPPortal} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

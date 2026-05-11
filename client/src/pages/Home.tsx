@@ -120,11 +120,16 @@ function Navbar({ onOpenQuiz }: { onOpenQuiz: () => void }) {
 
           <div className="hidden lg:flex items-center gap-3">
             <button
-              onClick={onOpenQuiz}
+              onClick={() => {
+                const element = document.getElementById('waitlist');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
               className="btn-terracotta"
               style={{ padding: "0.6rem 1.5rem", fontSize: "0.875rem" }}
             >
-              Start Your Assessment
+              Join the Waiting List
             </button>
           </div>
 
@@ -152,8 +157,14 @@ function Navbar({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                 {link.label}
               </a>
             ))}
-            <button onClick={() => { onOpenQuiz(); setMobileOpen(false); }} className="btn-terracotta block text-center w-full mt-4">
-              Start Your Assessment
+            <button onClick={() => { 
+              const element = document.getElementById('waitlist');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+              setMobileOpen(false);
+            }} className="btn-terracotta block text-center w-full mt-4">
+              Join the Waiting List
             </button>
           </div>
         </div>
@@ -164,6 +175,12 @@ function Navbar({ onOpenQuiz }: { onOpenQuiz: () => void }) {
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
 function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
+  const handleScrollToWaitlist = () => {
+    const element = document.getElementById('waitlist');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <section
       className="relative min-h-screen flex items-center overflow-hidden"
@@ -1547,6 +1564,12 @@ function FAQSection() {
 
 // ─── Final CTA ────────────────────────────────────────────────────────────────
 function FinalCTA({ onOpenQuiz }: { onOpenQuiz: () => void }) {
+  const handleScrollToWaitlist = () => {
+    const element = document.getElementById('waitlist');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <section
       className="py-20 lg:py-28 relative overflow-hidden"
@@ -1583,14 +1606,12 @@ function FinalCTA({ onOpenQuiz }: { onOpenQuiz: () => void }) {
             <button onClick={onOpenQuiz} className="btn-forest text-center">
               Take the Free Symptom Quiz
             </button>
-            <a
-              href="https://cal.com/menova/initial-consultation"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline-forest text-center hidden"
+            <button
+              onClick={handleScrollToWaitlist}
+              className="btn-outline-forest text-center"
             >
-              Book a Consult — $199 CAD
-            </a>
+              Join the Waiting List <ArrowRight className="w-4 h-4 inline ml-2" />
+            </button>
           </div>
           <p
             className="mt-6 text-xs"
