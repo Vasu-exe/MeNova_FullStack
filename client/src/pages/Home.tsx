@@ -238,15 +238,6 @@ function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
               <button onClick={onOpenQuiz} className="btn-terracotta text-center">
                 Take the Free Symptom Quiz
               </button>
-              <a
-                href="https://cal.com/menova/initial-consultation"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-semibold border-2 transition-all hover:bg-white/10"
-                style={{ fontFamily: "'DM Sans', sans-serif", color: "white", borderColor: "rgba(255,255,255,0.45)" }}
-              >
-                Book a Consultation <ArrowRight className="w-4 h-4" />
-              </a>
             </div>
 
             <div className="flex flex-wrap gap-6">
