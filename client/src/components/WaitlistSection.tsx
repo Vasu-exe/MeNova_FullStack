@@ -30,6 +30,7 @@ export default function WaitlistSection() {
           firstName: formData.name.split(' ')[0],
           lastName: formData.name.split(' ').slice(1).join(' '),
           email: formData.email,
+          interest: formData.interest || "Not specified",
           timestamp: new Date().toISOString(),
           source: "menova-homepage-waitlist",
         }),
@@ -158,10 +159,14 @@ export default function WaitlistSection() {
                 }}
               >
                 <option value="">What are you most interested in? (optional)</option>
-                <option value="bhrt">Bioidentical Hormone Therapy (BHRT)</option>
-                <option value="consultation">Initial Consultation</option>
-                <option value="followup">Follow-up Appointment</option>
-                <option value="general">General Information</option>
+                <option value="Bioidentical Hormone Therapy (BHRT)">Bioidentical Hormone Therapy (BHRT)</option>
+                <option value="Perimenopause Care">Perimenopause Care</option>
+                <option value="Menopause Symptom Relief">Menopause Symptom Relief (hot flashes, brain fog, mood)</option>
+                <option value="Sleep & Night Sweats">Sleep & Night Sweats</option>
+                <option value="Weight & Metabolism">Weight & Metabolism</option>
+                <option value="Intimacy & Sexual Health">Intimacy & Sexual Health</option>
+                <option value="Initial Consultation">Initial Consultation</option>
+                <option value="General Information">General Information / Not Sure Yet</option>
               </select>
             </div>
 

@@ -127,3 +127,9 @@
 - [x] Add smooth scroll to waitlist section for navbar button
 - [x] Update mobile nav button to "Join the Waiting List" with smooth scroll
 - [x] Checkpoint and push to GitHub
+
+## Add Interest Field to Waitlist Form (Session 9)
+- [ ] Add "What are you most interested in?" multi-select field to WaitlistSection
+- [ ] Send selected interest(s) to Make.com webhook as a field
+- [ ] Confirm Make.com webhook URL is correct
+- [ ] Checkpoint and push to GitHub
