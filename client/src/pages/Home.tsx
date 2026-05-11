@@ -1633,7 +1633,7 @@ function Footer() {
       { label: "Accessibility", href: "/accessibility" },
     ],
     Support: [
-      { label: "Contact Us", href: "#" },
+      { label: "Contact Us", href: "/contact" },
      // { label: "Patient Portal", href: "#" },
     ],
   };
