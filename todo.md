@@ -129,7 +129,15 @@
 - [x] Checkpoint and push to GitHub
 
 ## Add Interest Field to Waitlist Form (Session 9)
-- [ ] Add "What are you most interested in?" multi-select field to WaitlistSection
-- [ ] Send selected interest(s) to Make.com webhook as a field
-- [ ] Confirm Make.com webhook URL is correct
+- [x] Add "What are you most interested in?" multi-select field to WaitlistSection
+- [x] Send selected interest(s) to Make.com webhook as a field
+- [x] Confirm Make.com webhook URL is correct
+- [x] Checkpoint and push to GitHub
+
+## Contact Us Page (Session 10)
+- [ ] Create Contact.tsx page with brand aesthetic (forest green header, cream bg, white cards)
+- [ ] Add support email (support.menova@gmail.com) to Contact page
+- [ ] Remove social links from footer
+- [ ] Add Contact link to footer navigation
+- [ ] Add /contact route to App.tsx
 - [ ] Checkpoint and push to GitHub

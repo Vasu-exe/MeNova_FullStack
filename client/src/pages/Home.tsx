@@ -1708,20 +1708,13 @@ function Footer() {
             © 2026 MeNova Health MSO Inc. All rights reserved. MeNova Health is a Management Services Organization. Medical care is provided by independently contracted licensed Nurse Practitioners registered with the BC College of Nursing Professionals.
           </p>
           <div className="flex gap-4 flex-shrink-0">
-            {["Instagram", "Facebook", "LinkedIn"].map((s) => (
-              <a
-                key={s}
-                href="#"
-                className="text-xs transition-colors hover:text-white"
-                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.40)" }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  toast.info(`${s} — Coming soon`);
-                }}
-              >
-                {s}
-              </a>
-            ))}
+            <a
+              href="/contact"
+              className="text-xs transition-colors hover:text-white"
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.50)" }}
+            >
+              Contact Us
+            </a>
           </div>
         </div>
 

@@ -10,6 +10,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import CookiePolicy from "./pages/CookiePolicy";
 import Accessibility from "./pages/Accessibility";
+import Contact from "./pages/Contact";
 import ScheduleFollowup from "./pages/ScheduleFollowup";
 import AdminDashboard from "./pages/AdminDashboard";
 import PortalAuth from "./pages/PortalAuth";
@@ -35,6 +36,7 @@ function Router() {
       <Route path={"/terms-and-conditions"} component={TermsAndConditions} />
       <Route path={"/cookie-policy"} component={CookiePolicy} />
       <Route path={"/accessibility"} component={Accessibility} />
+      <Route path={"/contact"} component={Contact} />
       <Route path={"/schedule-followup"} component={ScheduleFollowup} />
       {/* Protected routes - only accessible if authenticated */}
       <ProtectedRoute path={"/admin"} component={AdminDashboard} />
