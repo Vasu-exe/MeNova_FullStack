@@ -756,15 +756,21 @@ function submitContact(e: React.FormEvent) {
                 Book My Consultation — $175 CAD
               </a>
               <button
-                onClick={onClose}
-                className="flex-1 py-4 rounded-full font-semibold text-base border-2 transition-all hover:bg-gray-50"
+                onClick={() => {
+                  onClose();
+                  setTimeout(() => {
+                    const el = document.getElementById('waitlist-section');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+                className="flex-1 py-4 rounded-full font-semibold text-base transition-all hover:opacity-90 active:scale-95"
                 style={{
-                  borderColor: "oklch(0.88 0.01 90)",
-                  color: "oklch(0.35 0.005 65)",
+                  backgroundColor: "oklch(0.60 0.12 42)",
+                  color: "white",
                   fontFamily: "'DM Sans', sans-serif",
                 }}
               >
-                Close
+                Join the Waitlist
               </button>
             </div>
             <p

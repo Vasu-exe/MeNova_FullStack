@@ -1,0 +1,42 @@
+{
+  "build_command": "pnpm run build",
+  "capabilities": [
+    "db",
+    "server",
+    "user"
+  ],
+  "dev_command": "pnpm run dev",
+  "env_vars": {
+    "DATABASE_URL": "mysql://31c17tuLWfYqKgD.root:Qm4NA7X6kbYjw93vUPP8@gateway05.us-east-1.prod.aws.tidbcloud.com:4000/Mbboc9yaua4MvveQ5gebGn?ssl={\"rejectUnauthorized\":true}"
+  },
+  "experiments": null,
+  "git_remote": {
+    "repo_url": "s3://vida-prod-gitrepo/webdev-git/310519663515887063/Mbboc9yaua4MvveQ5gebGn",
+    "access_key_id": "ASIAZV3A2ECZCJJT7YVL",
+    "secret_access_key": "LaChq1iDCCZjlMub3LOQbONwPhxtCZLuXjOVpFEs",
+    "session_token": "IQoJb3JpZ2luX2VjEB0aCXVzLWVhc3QtMSJHMEUCIH4TUX59r10nW+XYnTRQcIimgPHIMw1/eeE7col4ru8jAiEAvcJf/3+vPAgPos7EBTYo2ZLazc0/w08HRTEkOIBSbgMq/wMI5v//////////ARAEGgw2NjUzODYwOTg4NjYiDAGVVoq2RO5XybL5LSrTA7zchRKUoc9o4SxS1WkPy7LFT4L8ltRDXd0ZVCqi5f2W8/90mw2XraL0rfpB9qXJL6sAwCsb06Ov7qwh89idJhu2xOASdrNSGXiP9DfbIr0fFPtQROgbxn7aaCbAoQlo3xdrlz7+N/Lbj9Jfad24LTkO7Xp1h6eXJ10LROv55ug8qymstHC0KUknoMb8qxvB1jSmsqw827oLbbDsqp0oNTlMuhjtkuG7YOSdYptG6HTPH7zbw6xCyGw/5pBUhsoOJ5iO5xOrgvjdyxLs07FQm/XvqZqqdgxNj/YaJLDA4NcHgfI1c3Rmlgpk3l13ZfSRbKWQDD0JbDsOUO9aht8Gble4VwttX5RlJbv3vUovPsHC6lDK9QOac/vthhYNDiE/+MXPRh+Tia9uVf9Gfl3anA89BLNwUkB8wXDjDJzdLkDiwLbov88TP5ZXhJPDCmPGYoLSNoCJZlhOAzJw5dZHYyJzV6r/4oclmvDH6HT4CFTlv8dqb7pAoFMrW2893S6UWDxDE7e24m3ZRhwHLx6HVQ8O50eVpAb2LT3lzvDM4oehjwl00IzxBjO3Jrj8oWsaCCxUZHqDLwzxUfkZuut7H4Tp5ZtN6zomUCBN7/swXPQ396maMOT8tNAGOp0BuCkCnjV/KMfeTVZ1NkRLf8sbzHDcU9wqwe/tj9gFhDnIQM78FahcXEfvFWNlUJIDZJkg6yJQKFTzEUwfOYNXyCOP34bwxr2J89bgHvX2gYam+DrC78OY+mnrvCINnQr6dUZhE7PeqNYf9d1I3nbBL7++tcPXNl/O22ITuAQm+RIzaC1727gAPkKb5FxLNt9cYopRwtGIFI7ZDtIwGg==",
+    "expiration": "2026-05-20T16:53:56.000Z"
+  },
+  "name": "menova-health",
+  "path": "/home/ubuntu/menova-health",
+  "port": 3000,
+  "secrets": {
+    "BUILT_IN_FORGE_API_KEY": "LnygufyFec2jLckrTBYss6",
+    "BUILT_IN_FORGE_API_URL": "https://forge.manus.ai",
+    "JWT_SECRET": "cQfcx8dpj9GaPY83CwF9VH",
+    "MENOVA_ADMIN_PASSWORD": "Therealworld0897!",
+    "OAUTH_SERVER_URL": "https://api.manus.im",
+    "OWNER_NAME": "vasu.chaudhary",
+    "OWNER_OPEN_ID": "NsVScAgChQBwTRSXxpF7c5",
+    "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
+    "VITE_ANALYTICS_WEBSITE_ID": "f0bfb5db-6f6a-40ed-b4dc-259a8ebaa573",
+    "VITE_APP_ID": "Mbboc9yaua4MvveQ5gebGn",
+    "VITE_APP_LOGO": "https://files.manuscdn.com/user_upload_by_module/web_dev_logo/310519663515887063/wPWroEvXIKScnWFQ.webp",
+    "VITE_APP_TITLE": "MeNova Health - Menopause Telehealth Care Vancouver",
+    "VITE_FRONTEND_FORGE_API_KEY": "4FXCiYvdYieeP2j6jhnD6v",
+    "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
+    "VITE_OAUTH_PORTAL_URL": "https://manus.im"
+  },
+  "template_id": "web-db-user",
+  "test_command": "pnpm test"
+}

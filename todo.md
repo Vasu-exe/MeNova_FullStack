@@ -141,3 +141,8 @@
 - [ ] Add Contact link to footer navigation
 - [ ] Add /contact route to App.tsx
 - [ ] Checkpoint and push to GitHub
+
+## SymptomQuiz CTA Update (Session 11)
+- [x] Replace "Close" button in SymptomQuiz result screen with "Join the Waitlist" button
+- [x] Button closes quiz and scrolls to waitlist section (id="waitlist-section")
+- [x] Checkpoint and push to GitHub
