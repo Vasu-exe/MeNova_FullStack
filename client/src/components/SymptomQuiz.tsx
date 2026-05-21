@@ -757,11 +757,11 @@ function submitContact(e: React.FormEvent) {
               </a>
               <button
                 onClick={() => {
+                  const el = document.getElementById('waitlist-section');
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
                   onClose();
-                  setTimeout(() => {
-                    const el = document.getElementById('waitlist-section');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                  }, 100);
                 }}
                 className="flex-1 py-4 rounded-full font-semibold text-base transition-all hover:opacity-90 active:scale-95"
                 style={{

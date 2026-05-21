@@ -79,7 +79,7 @@ export default function WaitlistSection() {
 
   return (
     <section
-      id="waitlist"
+      id="waitlist-section"
       className="py-16 lg:py-20"
       style={{ backgroundColor: "oklch(0.97 0.015 90)" }}
     >
